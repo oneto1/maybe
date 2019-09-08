@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="docker,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="基于docker for windows">
+<meta name="keywords" content="docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker使用笔记">
+<meta property="og:url" content="http://yoursite.com/2019/09/04/docker使用笔记/index.html">
+<meta property="og:site_name" content="oneto1">
+<meta property="og:description" content="基于docker for windows">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-09-08T12:11:02.755Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="docker使用笔记">
+<meta name="twitter:description" content="基于docker for windows">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/09/04/docker使用笔记/">
+
+
+
+
+
+  <title>docker使用笔记 | oneto1</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">oneto1</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-坑">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            坑
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/04/docker使用笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="oneto1">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="oneto1">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">docker使用笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-04T20:30:36+08:00">
+                2019-09-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>基于docker for windows</p>
+<hr>
+<a id="more"></a>
+<p><a href="/download/容器第一讲Intro to Docker.pdf">学习资料</a></p>
+<h1 id="Docker-是什么？"><a href="#Docker-是什么？" class="headerlink" title="Docker 是什么？"></a>Docker 是什么？</h1><blockquote>
+<p>Docker 属于 <em>Linux 容器</em>的一种封装，提供简单易用的容器使用接口。它是目前最流行的 Linux 容器解决方案。</p>
+</blockquote>
+<blockquote>
+<p>Docker 将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。有了 Docker，就不用担心环境问题。</p>
+</blockquote>
+<blockquote>
+<p>总体来说，Docker 的接口相当简单，用户可以方便地创建和使用容器，把自己的应用放入容器。容器还可以进行版本管理、复制、分享、修改，就像管理普通的代码一样。</p>
+</blockquote>
+<h4 id="windows-container"><a href="#windows-container" class="headerlink" title="windows container"></a>windows container</h4><p>大致分为两种</p>
+<ul>
+<li>Window Server Contianer  </li>
+<li>Hyper-V Container</li>
+</ul>
+<p>Windows Container 只能运行 Windows应用程序</p>
+<h4 id="与传统虚机差别"><a href="#与传统虚机差别" class="headerlink" title="与传统虚机差别"></a>与传统虚机差别</h4><ul>
+<li>基于进程隔离，而非os</li>
+<li>体积小</li>
+<li>启动速度快</li>
+<li>资源占用少</li>
+</ul>
+<h2 id="but"><a href="#but" class="headerlink" title="but"></a>but</h2><hr>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p><a href="https://docs.docker.com/docker-for-windows/install/" target="_blank" rel="noopener">links</a></p>
+<hr>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>命令有普通命令和管理命令两种，后者更长但分组更加明确<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker ps  ===</span><br><span class="line">docker container ls</span><br></pre></td></tr></table></figure></p>
+<h4 id="配置加速器"><a href="#配置加速器" class="headerlink" title="配置加速器"></a>配置加速器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 未配置前</span><br><span class="line"> Client.Timeout exceeded while awaiting headers</span><br><span class="line"></span><br><span class="line"># 配置后</span><br><span class="line"> 很快</span><br></pre></td></tr></table></figure>
+<ul>
+<li>上<a href="https://cr.console.aliyun.com" target="_blank" rel="noopener">https://cr.console.aliyun.com</a> 注册一个账号，开通加速器服务，得到一个镜像地址</li>
+<li>再至deamon中填入<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;: [</span><br><span class="line">    &quot;https://****.mirror.aliyuncs.com&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="容器使用"><a href="#容器使用" class="headerlink" title="容器使用"></a>容器使用</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker pull training/webapp </span><br><span class="line"></span><br><span class="line">docker run -d -P training/webapp python app.py</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这将从远程仓库下载镜像 (training为用户名,webapp为该用户下的webapp镜像)</li>
+<li><p>-d 为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Run container in background and print container ID</span><br></pre></td></tr></table></figure>
+<p>-P 为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Publish all exposed ports to random ports</span><br></pre></td></tr></table></figure>
+<p> -p 为手动映射</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 4999:5000 training/webapp python app.py</span><br><span class="line"></span><br><span class="line"># 4999 为映射后的端口</span><br><span class="line"># 5000 为映射前的端口</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>查看容器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure></p>
+<p>查看容器logs<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker logs (容器id 或 名字[非镜像名字])</span><br></pre></td></tr></table></figure></p>
+<p>查看容器底层信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker inspect (name or id)</span><br></pre></td></tr></table></figure></p>
+<p>停止重启<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker start </span><br><span class="line"></span><br><span class="line">docker stop </span><br><span class="line">docker kill</span><br><span class="line"></span><br><span class="line">docker restart</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>stop kill的差别在于kill是强制停止,类似于kill -9</li>
+<li>restart 只用于正在运行的</li>
+</ul>
+<p>删除<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rm</span><br></pre></td></tr></table></figure></p>
+<h4 id="镜像使用"><a href="#镜像使用" class="headerlink" title="镜像使用"></a>镜像使用</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看已下载的镜像</li>
+</ul>
+<p><strong>搜索</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker search docker</span><br></pre></td></tr></table></figure></p>
+<p><strong>下载(pull)</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker pull docker </span><br><span class="line">~~~ </span><br><span class="line"></span><br><span class="line">**删除**</span><br><span class="line">~~~ </span><br><span class="line">docker rmi -f id</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>-f(force) 为强制删除</li>
+</ul>
+<p><strong>新建镜像</strong></p>
+<ol>
+<li>通过已有镜像修改<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li>-a 指定作者</li>
+<li>-m 描述</li>
+</ul>
+<hr>
+<ol start="2">
+<li>通过Dockerfile构建<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">FROM ubuntu:18.04</span><br><span class="line">COPY . /app</span><br><span class="line">RUN make /app</span><br><span class="line">CMD python /app/app.py</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li>从ubuntu:18.04 docker映像创建一个层。<br>从Docker客户端的当前目录复制添加文件。<br>run使用make构建应用程序。<br>cmd指定要在容器中运行的命令。</li>
+<li>FROM等必须大写</li>
+<li>Dockerfile是一行一行执行的</li>
+</ul>
+<hr>
+<table>
+<thead>
+<tr>
+<th>常用命令</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FROM</td>
+<td>指定基础镜像(id或name)</td>
+</tr>
+<tr>
+<td>LABEL</td>
+<td>添加元数据(以键值对传入)</td>
+</tr>
+<tr>
+<td>ADD</td>
+<td>将本地文件添加到容器中，tar类型文件会自动解压(网络压缩资源不会被解压)，可以访问网络资源</td>
+</tr>
+<tr>
+<td>COPY</td>
+<td>与ADD类似，没有解压和访问网络资源功能</td>
+</tr>
+<tr>
+<td>ENV</td>
+<td>添加环境变量</td>
+</tr>
+<tr>
+<td>EXPOSE</td>
+<td>对外暴露端口</td>
+</tr>
+<tr>
+<td>VOLUME</td>
+<td>设置共享卷</td>
+</tr>
+<tr>
+<td>WORKDIR</td>
+<td>设置工作目录</td>
+</tr>
+<tr>
+<td>CMD</td>
+<td>运行容器后会执行的命令</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p><a href="https://docs.docker.com/engine/reference/builder/" target="_blank" rel="noopener">官方示例</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># Nginx</span><br><span class="line">#</span><br><span class="line"># VERSION               0.0.1</span><br><span class="line"></span><br><span class="line">FROM      ubuntu</span><br><span class="line">LABEL Description=&quot;This image is used to start the foobar executable&quot; Vendor= \</span><br><span class="line"> &quot;ACME Products&quot; Version=&quot;1.0&quot;</span><br><span class="line">RUN apt-get update &amp;&amp; apt-get install -y \ </span><br><span class="line">inotify-tools nginx apache2 openssh-server</span><br></pre></td></tr></table></figure></p>
+<p><strong>构建镜像</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker build [OPTIONS] PATH | URL |</span><br><span class="line"></span><br><span class="line">docker built -t Dockerfile .</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>指定从当前目录下的Dockerfile构建</li>
+</ul>
+<p><strong>上传镜像</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker login</span><br><span class="line"></span><br><span class="line">docker push [OPTIONS] NAME[:TAG]</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/docker/" rel="tag"># docker</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/26/python-爬虫学习笔记-4/" rel="next" title="python-爬虫学习笔记(4)">
+                <i class="fa fa-chevron-left"></i> python-爬虫学习笔记(4)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/08/一篇短篇/" rel="prev" title="一篇短篇">
+                一篇短篇 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">oneto1</p>
+              <p class="site-description motion-element" itemprop="description">你说是梦所以才痛   睡醒了再说</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker-是什么？"><span class="nav-number">1.</span> <span class="nav-text">Docker 是什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#windows-container"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">windows container</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#与传统虚机差别"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">与传统虚机差别</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#but"><span class="nav-number">1.1.</span> <span class="nav-text">but</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用"><span class="nav-number">3.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#配置加速器"><span class="nav-number">3.0.0.1.</span> <span class="nav-text">配置加速器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#容器使用"><span class="nav-number">3.0.0.2.</span> <span class="nav-text">容器使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#镜像使用"><span class="nav-number">3.0.0.3.</span> <span class="nav-text">镜像使用</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">oneto1</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
