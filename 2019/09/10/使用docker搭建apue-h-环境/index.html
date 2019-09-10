@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="网络,">
+  <meta name="keywords" content="docker,linux,">
 
 
 
@@ -79,20 +79,18 @@
 
 
 
-<meta name="description" content="总体思路    TCP/IP      应用层 telnet   TCP 传输层 UDP   ICMP 网络层 IP   ARP 数据链路层 mac    物理层">
-<meta name="keywords" content="网络">
+<meta name="description" content="既是回顾也是实战">
+<meta name="keywords" content="docker,linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="网络排障简单总结">
-<meta property="og:url" content="http://yoursite.com/2019/06/19/网络排障简单总结/index.html">
+<meta property="og:title" content="使用docker搭建apue.h 环境 ">
+<meta property="og:url" content="http://yoursite.com/2019/09/10/使用docker搭建apue-h-环境/index.html">
 <meta property="og:site_name" content="oneto1">
-<meta property="og:description" content="总体思路    TCP/IP      应用层 telnet   TCP 传输层 UDP   ICMP 网络层 IP   ARP 数据链路层 mac    物理层">
+<meta property="og:description" content="既是回顾也是实战">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/images/20190619=0.png">
-<meta property="og:updated_time" content="2019-07-15T12:06:15.935Z">
+<meta property="og:updated_time" content="2019-09-10T09:18:34.957Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="网络排障简单总结">
-<meta name="twitter:description" content="总体思路    TCP/IP      应用层 telnet   TCP 传输层 UDP   ICMP 网络层 IP   ARP 数据链路层 mac    物理层">
-<meta name="twitter:image" content="http://yoursite.com/images/20190619=0.png">
+<meta name="twitter:title" content="使用docker搭建apue.h 环境 ">
+<meta name="twitter:description" content="既是回顾也是实战">
 
 
 
@@ -122,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/06/19/网络排障简单总结/">
+  <link rel="canonical" href="http://yoursite.com/2019/09/10/使用docker搭建apue-h-环境/">
 
 
 
 
 
-  <title>网络排障简单总结 | oneto1</title>
+  <title>使用docker搭建apue.h 环境  | oneto1</title>
   
 
 
@@ -265,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/19/网络排障简单总结/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/10/使用docker搭建apue-h-环境/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="oneto1">
@@ -282,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">网络排障简单总结</h1>
+          <h1 class="post-title" itemprop="name headline">使用docker搭建apue.h 环境 </h1>
         
 
         <div class="post-meta">
@@ -294,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-19T18:28:21+08:00">
-                2019-06-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-10T16:29:23+08:00">
+                2019-09-10
               </time>
             
 
@@ -332,64 +330,35 @@
       
 
       
-        <h3 id="总体思路"><a href="#总体思路" class="headerlink" title="总体思路"></a>总体思路</h3><table>
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">TCP/IP</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center">应用层</td>
-<td style="text-align:center">telnet</td>
-</tr>
-<tr>
-<td style="text-align:center">TCP</td>
-<td style="text-align:center">传输层</td>
-<td style="text-align:center">UDP</td>
-</tr>
-<tr>
-<td style="text-align:center">ICMP</td>
-<td style="text-align:center">网络层</td>
-<td style="text-align:center">IP</td>
-</tr>
-<tr>
-<td style="text-align:center">ARP</td>
-<td style="text-align:center">数据链路层</td>
-<td style="text-align:center">mac</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center">物理层</td>
-<td style="text-align:center"></td>
-</tr>
-</tbody>
-</table>
+        <p>既是回顾也是实战</p>
 <a id="more"></a>
-<h3 id="1"><a href="#1" class="headerlink" title="1"></a>1</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ping 127.0.0.1</span><br><span class="line">ping baidu.com</span><br></pre></td></tr></table></figure>
-<p>此时通的话可排除本身tcp/ip协议栈和网络层以下的问题,若不通多半是物理线路问题</p>
-<hr>
-<h3 id="2"><a href="#2" class="headerlink" title="2"></a>2</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">traceroute baidu.com</span><br></pre></td></tr></table></figure>
-<p>其原理是ICMP中的TTL，若过程中出现*可能是路由器未开启功能或防火墙过滤</p>
-<hr>
-<h3 id="3"><a href="#3" class="headerlink" title="3"></a>3</h3><p>Dig是域信息搜索器的简称(Domain Information Groper),使用dig命令可以执行查询域名相关的任务。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dig baidu.com</span><br></pre></td></tr></table></figure></p>
-<p><img src="/images/20190619=0.png" alt="dig"><br>其比较重要的有 </p>
+<p>apue.h为《UNIX高级环境编程》所用的自定义头文件</p>
+<h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker pull ubuntu</span><br><span class="line">docker run -itd ubuntu</span><br><span class="line"></span><br><span class="line">&gt; apt update</span><br><span class="line">&gt; apt install -y gcc wget vim </span><br><span class="line">&gt; cd /home </span><br><span class="line">&gt; wget http://www.apuebook.com/src.3e.tar.gz</span><br><span class="line">&gt; tar -zxvf src.3e.tar.gz</span><br></pre></td></tr></table></figure>
 <ul>
-<li><p><strong>status：NOERROR</strong></p>
-</li>
-<li><p><strong>ANSWER SECTION</strong> 查询结果  可看到具体记录</p>
-</li>
-<li><strong>SERVER</strong> 权威服务器</li>
+<li>-d 使容器在后台运行</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dig baidu.com +(no) short   只输出查询结果</span><br><span class="line">dig @8.8.8.8 *      指定服务器查询dns</span><br><span class="line">dig baidu.com +trace    可查看具体dns查询过程</span><br><span class="line">dig baidu.com MX    查询具体记录</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dig -x 8.8.8.8      反向查询dns主机名</span><br></pre></td></tr></table></figure>
-<p>若此时一切正常，则说明cdn正常或dns正常</p>
 <hr>
-<h3 id="4"><a href="#4" class="headerlink" title="4"></a>4</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">telnet baidu.com 443</span><br></pre></td></tr></table></figure>
-<p>可用来简单判断传输层是否正常，常用来判断主机端口是否打开</p>
-<h3 id="5"><a href="#5" class="headerlink" title="5"></a>5</h3><p>到了这基本上就是应用层了，打开浏览器能否上网，最多再检查代理服务器是否正确配置</p>
+<h1 id="配置头文件"><a href="#配置头文件" class="headerlink" title="配置头文件"></a>配置头文件</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; cd ./src.3e/apue.3e</span><br><span class="line">&gt; cp ./include/apue.h /usr/include/</span><br><span class="line">&gt; cp ./lib/error.c /usr/include/</span><br><span class="line">&gt; vim /usr/include/apue.h</span><br></pre></td></tr></table></figure>
+<ul>
+<li>光标移动到文件最后一行”#endif”的前面，然后添加如下代码<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;error.h&quot;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/dd734b0e8cb9" target="_blank" rel="noopener">links</a></p>
+</blockquote>
+<hr>
+<h1 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; make</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&gt; cd ~</span><br><span class="line">&gt; vim test.c</span><br><span class="line">&gt;&gt;  include &quot;apue.h&quot;</span><br><span class="line">&gt;&gt;  include &quot;stdio.h&quot;</span><br><span class="line">&gt;&gt;  </span><br><span class="line">&gt;&gt;  void main()&#123;</span><br><span class="line">    printf(&quot;this is a test!&quot;);</span><br><span class="line">&gt;&gt;  &#125;</span><br><span class="line"></span><br><span class="line">&gt; gcc tset.c</span><br><span class="line">&gt; ./a.out</span><br><span class="line"></span><br><span class="line">&gt; this is a test!</span><br></pre></td></tr></table></figure>
+<ul>
+<li>此时应该是没有错误的</li>
+</ul>
+<hr>
+<h1 id="打包收工"><a href="#打包收工" class="headerlink" title="打包收工"></a>打包收工</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; cd ~</span><br><span class="line">&gt; rm -rf *</span><br><span class="line">&gt; exit</span><br><span class="line"></span><br><span class="line">docker commit -m=&quot;add apue.h&quot; CONTAINER [REPOSITORY[:TAG]] </span><br><span class="line">docker push</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="docker补充"><a href="#docker补充" class="headerlink" title="docker补充"></a>docker补充</h1><p>进入后台运行的容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">docker exec [OPTIONS] CONTAINER COMMAND</span><br><span class="line"></span><br><span class="line">docker exec -it name bash</span><br></pre></td></tr></table></figure>
+<hr>
 
       
     </div>
@@ -407,7 +376,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/网络/" rel="tag"># 网络</a>
+            <a href="/tags/docker/" rel="tag"># docker</a>
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
           
         </div>
       
@@ -420,8 +391,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/13/零碎知识收集/" rel="next" title="零碎知识收集(1) ">
-                <i class="fa fa-chevron-left"></i> 零碎知识收集(1) 
+              <a href="/2019/09/08/一篇短篇/" rel="next" title="一篇短篇">
+                <i class="fa fa-chevron-left"></i> 一篇短篇
               </a>
             
           </div>
@@ -429,10 +400,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/07/15/sysV、sysD学习笔记/" rel="prev" title="sysV、sysD学习笔记">
-                sysV、sysD学习笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -564,7 +531,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#总体思路"><span class="nav-number">1.</span> <span class="nav-text">总体思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1"><span class="nav-number">2.</span> <span class="nav-text">1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2"><span class="nav-number">3.</span> <span class="nav-text">2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3"><span class="nav-number">4.</span> <span class="nav-text">3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4"><span class="nav-number">5.</span> <span class="nav-text">4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5"><span class="nav-number">6.</span> <span class="nav-text">5</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#准备"><span class="nav-number">1.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置头文件"><span class="nav-number">2.</span> <span class="nav-text">配置头文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编译"><span class="nav-number">3.</span> <span class="nav-text">编译</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#测试"><span class="nav-number">4.</span> <span class="nav-text">测试</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#打包收工"><span class="nav-number">5.</span> <span class="nav-text">打包收工</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#docker补充"><span class="nav-number">6.</span> <span class="nav-text">docker补充</span></a></li></ol></div>
             
 
           </div>
