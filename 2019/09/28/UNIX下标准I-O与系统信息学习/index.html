@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="c,linux,">
+
+
+
+
+
+
+
+
+
+
+<meta name="keywords" content="c,linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UNIX下标准I&#x2F;O与系统信息学习">
+<meta property="og:url" content="http://yoursite.com/2019/09/28/UNIX下标准I-O与系统信息学习/index.html">
+<meta property="og:site_name" content="oneto1">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/images/20190928=0.png">
+<meta property="og:image" content="http://yoursite.com/images/20190928=1.png">
+<meta property="og:image" content="http://yoursite.com/images/20190928=2.png">
+<meta property="og:updated_time" content="2019-09-28T10:35:21.194Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UNIX下标准I&#x2F;O与系统信息学习">
+<meta name="twitter:image" content="http://yoursite.com/images/20190928=0.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/09/28/UNIX下标准I-O与系统信息学习/">
+
+
+
+
+
+  <title>UNIX下标准I/O与系统信息学习 | oneto1</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">oneto1</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-坑">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            坑
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/28/UNIX下标准I-O与系统信息学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="oneto1">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="oneto1">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">UNIX下标准I/O与系统信息学习</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-28T12:34:37+08:00">
+                2019-09-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<a id="more"></a>
+<h1 id="标准I-O"><a href="#标准I-O" class="headerlink" title="标准I/O"></a>标准I/O</h1><h3 id="流与文件指针"><a href="#流与文件指针" class="headerlink" title="流与文件指针"></a>流与文件指针</h3><blockquote>
+<p> a <a href="https://en.wikipedia.org/wiki/Stream_(computing" target="_blank" rel="noopener">stream</a> is a source or sink of data, usually individual bytes or characters.</p>
+</blockquote>
+<ul>
+<li>标准I/O都是围绕流来进行的</li>
+<li>同样标准I/O操作都是围绕FILE指针完成的</li>
+<li>典型的stdin、stdout、stderr流都是被相应的文件指针绑定的</li>
+</ul>
+<h3 id="缓冲"><a href="#缓冲" class="headerlink" title="缓冲"></a>缓冲</h3><ul>
+<li>全缓冲(填满缓冲区进行IO)</li>
+<li>行缓冲(遇到换行符就进行IO))</li>
+<li>不缓冲</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#include&quot;stdio.h&quot;</span><br><span class="line"></span><br><span class="line">void setbuf(FILE *__restrict__ __stream, char *__restrict__ __buf)</span><br><span class="line"></span><br><span class="line">int setvbuf(FILE *__restrict__ __stream, char *__restrict__ __buf, int __modes, size_t __n)</span><br><span class="line"></span><br><span class="line">成功返回0，失败返回非0</span><br></pre></td></tr></table></figure>
+<ul>
+<li>setbuf()通常设置后是全缓冲，但终端设备可以是行缓冲，不进行缓冲则将buf设置为NULL</li>
+<li>setvbuf()可以指定缓冲类型，具体见下图<br><img src="/images/20190928=0.png" alt></li>
+</ul>
+<h3 id="打开流"><a href="#打开流" class="headerlink" title="打开流"></a>打开流</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#include&quot;stdio.h&quot;</span><br><span class="line"></span><br><span class="line">FILE * fopen(const char *__restrict__ __filename, const char *__restrict__ __modes)</span><br><span class="line"></span><br><span class="line">FILE *freopen(const char *__restrict__ __filename, const char *__restrict__ __modes, FILE *__restrict__ __stream)</span><br><span class="line"></span><br><span class="line">FILE *fdopen (int __fd, const char *__modes)</span><br><span class="line"></span><br><span class="line">成功返回文件指针，失败返回NULL</span><br></pre></td></tr></table></figure>
+<ul>
+<li>freopen()用于在一个指定的流上打开文件</li>
+<li>type<br><img src="/images/20190928=1.png" alt></li>
+</ul>
+<h3 id="读写流"><a href="#读写流" class="headerlink" title="读写流"></a>读写流</h3><ul>
+<li><p>读</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#include&quot;stdio.h&quot;</span><br><span class="line"></span><br><span class="line">#define getc(_fp) _IO_getc (_fp)</span><br><span class="line">int _IO_getc(_IO_FILE *__fp)</span><br><span class="line"></span><br><span class="line">int fgetc(FILE *__stream)</span><br><span class="line"></span><br><span class="line">int getchar(void)</span><br><span class="line"></span><br><span class="line">成功返回下一个字符，失败返回EOF</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#include&quot;stdio.h&quot;</span><br><span class="line"></span><br><span class="line">int putc(_ch,_fp) </span><br><span class="line"></span><br><span class="line">int fputc(int __c, FILE *__stream)</span><br><span class="line"></span><br><span class="line">int putchar(int __c)</span><br><span class="line"></span><br><span class="line">成功返回c，失败返回NULL</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>返回的c为ASCII字符</p>
+</li>
+</ul>
+<p>行IO<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">char * fgets(char *__restrict__ __s, int __n, FILE *__restrict__ __stream)</span><br><span class="line"></span><br><span class="line">成功返回buf，失败返回NULL</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int fputs(const char *__restrict__ __s, FILE *__restrict__ __stream)</span><br><span class="line"></span><br><span class="line">成功返回非负，失败返回NULL</span><br></pre></td></tr></table></figure>
+<h3 id="定位流"><a href="#定位流" class="headerlink" title="定位流"></a>定位流</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#include&quot;stdio.h&quot;</span><br><span class="line"></span><br><span class="line">long ftell(FILE *__stream)</span><br><span class="line"></span><br><span class="line">成功返回当前文件位置指示，失败返回-1L</span><br><span class="line"></span><br><span class="line">int fseek(FILE *__stream, long __off, int __whence)</span><br><span class="line"></span><br><span class="line">成功返回0，失败返回-1</span><br></pre></td></tr></table></figure>
+<h3 id="临时文件"><a href="#临时文件" class="headerlink" title="临时文件"></a>临时文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#include&quot;stdio.h&quot;</span><br><span class="line"></span><br><span class="line">char * tmpnam(char *__s)</span><br><span class="line"></span><br><span class="line">成功返回文件指针，失败返回NULL</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="系统数据文件信息"><a href="#系统数据文件信息" class="headerlink" title="系统数据文件信息"></a>系统数据文件信息</h1><h3 id="passwd文件"><a href="#passwd文件" class="headerlink" title="passwd文件"></a>passwd文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># /etc/passwd</span><br><span class="line"></span><br><span class="line">root:x:0:0:root:/root:/bin/bash</span><br><span class="line">daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin</span><br><span class="line">bin:x:2:2:bin:/bin:/usr/sbin/nologin</span><br><span class="line">sys:x:3:3:sys:/dev:/usr/sbin/nologin</span><br><span class="line">sync:x:4:65534:sync:/bin:/bin/sync</span><br><span class="line">games:x:5:60:games:/usr/games:/usr/sbin/nologin</span><br><span class="line">nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin</span><br></pre></td></tr></table></figure>
+<ul>
+<li>相对应的是用户、口令、用户id、组id、注释、用户工作目录、登录可执行文件</li>
+<li>像/usr/sbin/nologin、/dev/null是为了防止其登录</li>
+<li>用户id、组id65534 没有任何特权，只能访问人人都能读写的文件</li>
+<li>一般口令经单向加密算法加密后存放在/etc/shadow</li>
+</ul>
+<h3 id="组文件与id"><a href="#组文件与id" class="headerlink" title="组文件与id"></a>组文件与id</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># /etc/group</span><br><span class="line"></span><br><span class="line">root:x:0:</span><br><span class="line">daemon:x:1:</span><br><span class="line">bin:x:2:</span><br><span class="line">sys:x:3:</span><br><span class="line">adm:x:4:syslog</span><br><span class="line">tty:x:5:</span><br><span class="line">disk:x:6:</span><br><span class="line">lp:x:7:</span><br></pre></td></tr></table></figure>
+<ul>
+<li>类似于passwd结构，相对应是组名、口令、组id、所包含的用户名</li>
+<li>在使用useradd命令创建用户的时侯可以用-g 和-G 指定用户所属组和附属组。<br>基本组：如果没有指定用户组，创建用户的时候系统会默认同时创建一个和这个用户名同名的组，这个组就是基本组，不可以把用户从基本组中删除。在创建文件时，文件的所属组就是用户的基本组。<br>附加组：除了基本组之外，用户所在的其他组，都是附加组。用户是可以从附加组中被删除的。<br>用户不论为与基本组中还是附加组中，就会拥有该组的权限。一个用户可以属于多个附加组。但是一个用户只能有一个基本组。</li>
+</ul>
+<p>使用 <figure class="highlight plain"><figcaption><span>user~~~查看</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">~~~</span><br><span class="line">uid=1000(123) gid=1000(123) groups=1000(123),4(adm),20(dialout),24(cdrom),25(floppy),27(sudo),29(audio),30(dip),44(video),46(plugdev),108(lxd),114(netdev)</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>groups后除了123组之外，全是附属组</li>
+</ul>
+<hr>
+<h3 id="日期"><a href="#日期" class="headerlink" title="日期"></a>日期</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#include&quot;time.h&quot;</span><br><span class="line"></span><br><span class="line">time_t time(time_t *__timer)</span><br><span class="line"></span><br><span class="line">成功返回时间值，失败返回-1</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>返回的是日历时间，又叫Unix时间戳(Unix timestamp)，或称Unix时间(Unix time)、POSIX时间(POSIX time)，是一种时间表示方式，定义为从格林威治时间1970年01月01日00时00分00秒起至现在的总秒数。Unix时间戳不仅被使用在Unix系统、类Unix系统中，也在许多其他操作系统中被广泛采用</p>
+</li>
+<li><p>时间值被保存在__timer所指单元内</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#include&quot;time.h&quot;</span><br><span class="line"></span><br><span class="line">struct tm *gmtime(const time_t *__timer)</span><br><span class="line"></span><br><span class="line">struct tm *localtime(const time_t *__timer)</span><br><span class="line"></span><br><span class="line">成功返回指向tm结构体的指针,失败返回NULL</span><br></pre></td></tr></table></figure>
+<ul>
+<li>gtime()将日历时间转化为UTC时间(协调世界时),localtime则是本地时间</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">struct tm</span><br><span class="line">&#123;</span><br><span class="line">  int tm_sec;			/* Seconds.	[0-60] (1 leap second) */</span><br><span class="line">  int tm_min;			/* Minutes.	[0-59] */</span><br><span class="line">  int tm_hour;			/* Hours.	[0-23] */</span><br><span class="line">  int tm_mday;			/* Day.		[1-31] */</span><br><span class="line">  int tm_mon;			/* Month.	[0-11] */</span><br><span class="line">  int tm_year;			/* Year	- 1900.  */</span><br><span class="line">  int tm_wday;			/* Day of week.	[0-6] */</span><br><span class="line">  int tm_yday;			/* Days in year.[0-365]	*/</span><br><span class="line">  int tm_isdst;			/* DST.		[-1/0/1]*/</span><br><span class="line"></span><br><span class="line"># ifdef	__USE_MISC</span><br><span class="line">  long int tm_gmtoff;		/* Seconds east of UTC.  */</span><br><span class="line">  const char *tm_zone;		/* Timezone abbreviation.  */</span><br><span class="line"># else</span><br><span class="line">  long int __tm_gmtoff;		/* Seconds east of UTC.  */</span><br><span class="line">  const char *__tm_zone;	/* Timezone abbreviation.  */</span><br><span class="line"># endif</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><em>用于格式化输出时间</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#include&quot;time.h&quot;</span><br><span class="line"></span><br><span class="line">size_t strftime(char *__restrict__ __s, size_t __maxsize, const char *__restrict__ __format, const struct tm *__restrict__ __tp)</span><br><span class="line"></span><br><span class="line">成功返回存入数组字节，失败返回0</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/20190928=2.png" alt></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// 示例</span><br><span class="line"></span><br><span class="line">#include&quot;stdio.h&quot;</span><br><span class="line">#include&quot;time.h&quot;</span><br><span class="line">     </span><br><span class="line">int main()&#123;</span><br><span class="line">    </span><br><span class="line">    char qq[100];</span><br><span class="line">    struct tm *stime;</span><br><span class="line">    time_t timer;</span><br><span class="line">    </span><br><span class="line">    time(&amp;timer);</span><br><span class="line">    stime=localtime(&amp;timer);</span><br><span class="line">    strftime(qq,100,&quot;%c&quot;,stime);</span><br><span class="line">    </span><br><span class="line">    printf(&quot;%s\n&quot;,qq);</span><br><span class="line">    printf(&quot;%ld&quot;,timer);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&gt; Sat Sep 28 18:33:54 2019</span><br><span class="line">1569666834</span><br></pre></td></tr></table></figure>
+<ul>
+<li>可见可以快速打印出漂亮的格式</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/c/" rel="tag"># c</a>
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/24/UNIX下文件目录学习/" rel="next" title="UNIX下文件目录学习">
+                <i class="fa fa-chevron-left"></i> UNIX下文件目录学习
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">oneto1</p>
+              <p class="site-description motion-element" itemprop="description">你说是梦所以才痛   睡醒了再说</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#标准I-O"><span class="nav-number">1.</span> <span class="nav-text">标准I/O</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#流与文件指针"><span class="nav-number">1.0.1.</span> <span class="nav-text">流与文件指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓冲"><span class="nav-number">1.0.2.</span> <span class="nav-text">缓冲</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打开流"><span class="nav-number">1.0.3.</span> <span class="nav-text">打开流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#读写流"><span class="nav-number">1.0.4.</span> <span class="nav-text">读写流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定位流"><span class="nav-number">1.0.5.</span> <span class="nav-text">定位流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#临时文件"><span class="nav-number">1.0.6.</span> <span class="nav-text">临时文件</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#系统数据文件信息"><span class="nav-number">2.</span> <span class="nav-text">系统数据文件信息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#passwd文件"><span class="nav-number">2.0.1.</span> <span class="nav-text">passwd文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组文件与id"><span class="nav-number">2.0.2.</span> <span class="nav-text">组文件与id</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#日期"><span class="nav-number">2.0.3.</span> <span class="nav-text">日期</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">oneto1</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
