@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="数据结构,">
+
+
+
+
+
+
+
+
+
+
+<meta name="keywords" content="数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构之数组、链表、队列、栈">
+<meta property="og:url" content="http://yoursite.com/2019/11/09/数据结构之数组、链表、队列、栈/index.html">
+<meta property="og:site_name" content="oneto1">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-11-09T14:06:11.415Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构之数组、链表、队列、栈">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/11/09/数据结构之数组、链表、队列、栈/">
+
+
+
+
+
+  <title>数据结构之数组、链表、队列、栈 | oneto1</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">oneto1</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-坑">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            坑
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/09/数据结构之数组、链表、队列、栈/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="oneto1">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="oneto1">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据结构之数组、链表、队列、栈</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-09T20:14:24+08:00">
+                2019-11-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<a id="more"></a>
+<h1 id="什么是数据结构"><a href="#什么是数据结构" class="headerlink" title="什么是数据结构"></a>什么是数据结构</h1><blockquote>
+<p>在计算机科学中，<a href="https://zh.wikipedia.org/wiki/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84" target="_blank" rel="noopener">数据结构</a>（英语：data structure）是计算机中存储、组织数据的方式。</p>
+</blockquote>
+<p>数据结构意味着接口或封装：一个数据结构可被视为两个函数之间的接口，或者是由数据类型联合组成的存储内容的访问方法封装。</p>
+<p>大多数数据结构都由数列、记录、可辨识联合、引用等基本类型构成。举例而言，可为空的引用（nullable reference）是引用与可辨识联合的结合体，而最简单的链式结构链表则是由记录与可空引用构成。</p>
+<p>数据结构可透过编程语言所提供的数据类型、引用及其他操作加以实现。一个设计良好的数据结构，应该在尽可能使用较少的时间与空间资源的前提下，支持各种程序运行。</p>
+<p>不同种类的数据结构适合不同种类的应用，部分数据结构甚至是为了解决特定问题而设计出来的。例如B树即为加快树状结构访问速度而设计的数据结构，常被应用在数据库和文件系统上。</p>
+<p>…</p>
+<blockquote>
+<p><a href="https://zh.wikipedia.org/wiki/%E6%8A%BD%E8%B1%A1%E8%B3%87%E6%96%99%E5%9E%8B%E5%88%A5" target="_blank" rel="noopener">抽象数据类型</a>（Abstract Data Type，ADT）是计算机科学中具有类似行为的特定类别的数据结构的数学模型；或者具有类似语义的一种或多种程序设计语言的数据类型。抽象数据类型是间接定义的，通过其上的可执行的操作以及这些操作的效果的数学约束（与可能的代价）。</p>
+</blockquote>
+<p>例如，抽象的堆栈（stack）由3个操作定义：推入push，弹出pop（接受约束：每次弹出返回的是最新被推入且没有被弹出的数据，也就是后进先出），查看堆栈顶端数据peek。当分析使用堆栈算法的效率，所有这3个操作用时相同，无论堆栈中包含多少项数据；并且对每项数据栈使用了常量大小的存储。</p>
+<p><strong>抽象数据类型（ADT）是纯粹理论实体(数学的抽象)，用于简化描述抽象算法，分类与评价数据结构，形式描述程序设计语言的类型系统。一个ADT可以用特定数据类型或数据结构实现，但不涉及如何实现</strong></p>
+<hr>
+<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><blockquote>
+<p>在计算机科学中，<a href="https://zh.wikipedia.org/wiki/%E6%95%B0%E7%BB%84" target="_blank" rel="noopener">数组</a>数据结构（英语：array data structure），简称数组（英语：Array），是由相同类型的元素（element）的集合所组成的数据结构，分配一块连续的内存来存储。利用元素的索引（index）可以计算出该元素对应的存储地址。</p>
+</blockquote>
+<p>数组的优缺点：</p>
+<ul>
+<li>优点：存取速度很快</li>
+<li>缺点：插入删除元素很慢</li>
+</ul>
+<p>应用</p>
+<ul>
+<li>数组实现数学向量和矩阵，以及其它类型的长方表格。许多数据库是由元素为（或包含）记录的一维数组所组成。 数组也用于实现其它数据结构，例如列表、堆、散列表、双向队列、队列、 堆栈、字符串和VLists。与基于树实现的数据结构相比，基于数组实现的数据结构通常是简单和有空间效率的（隐式数据结构），空间成本开销很少；但数组需要修改时则空间的复杂性相对比较差（已排序的数组结构，与搜索树相比）。</li>
+</ul>
+<p><a href="https://github.com/oneto1/data-structure-go/tree/master/arr" target="_blank" rel="noopener">个人实现</a></p>
+<hr>
+<h1 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h1><blockquote>
+<p><a href="https://zh.wikipedia.org/wiki/%E9%98%9F%E5%88%97" target="_blank" rel="noopener">链表</a>（Linked list）是一种常见的基础数据结构，是一种线性表，但是并不会按线性的顺序存储数据，而是在每一个节点里存到下一个节点的指针(Pointer)。由于不必须按顺序存储，链表在插入的时候可以达到O(1)的复杂度，比另一种线性表顺序表快得多，但是查找一个节点或者访问特定编号的节点则需要O(n)的时间，而顺序表相应的时间复杂度分别是O(logn)和O(1)。</p>
+</blockquote>
+<p>使用链表结构可以克服数组链表需要预先知道数据大小的缺点，链表结构可以充分利用计算机内存空间，实现灵活的内存动态管理。但是链表失去了数组随机读取的优点，同时链表由于增加了结点的指针域，空间开销比较大</p>
+<p>专业术语:</p>
+<ul>
+<li>首节点：存放第一个有效数据的节点</li>
+<li>尾节点：存放最后一个有效数据的节点</li>
+<li>头结点：位于首节点之前的一个节点，头结点并不存放有效的数据，加头结点的目的主要是为了方便对链表的操作</li>
+<li>头指针：指向头结点的指针变量</li>
+<li>尾指针：指向尾节点的指针变量</li>
+</ul>
+<p>分类</p>
+<ul>
+<li>单链表：每一个节点只有一个指针域</li>
+<li>双链表：每一个节点有两个指针域</li>
+<li>循环链表：能通过任何一个节点找到其他所有的节点</li>
+<li>非循环链表：不能通过任何一个节点找到其他所有的节点</li>
+</ul>
+<p>优缺点:</p>
+<ul>
+<li>优点：空间没有限制，插入和删除元素很快</li>
+<li>缺点：存取速度很慢</li>
+</ul>
+<p>常用于组织检索较少，而删除、添加、遍历较多的数据<a href="https://github.com/oneto1/data-structure-go/tree/master/list" target="_blank" rel="noopener">个人实现</a></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">// 以下代码摘自Linux内核2.6.21.5源码(部分)，展示了链表的另一种实现思</span><br><span class="line">路，未采用ANSI C标准，采用GNU C标准，遵从GPL著作权许可。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">struct list_head &#123;</span><br><span class="line">    struct list_head *next, *prev;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">#define LIST_HEAD_INIT(name) &#123; &amp;(name), &amp;(name) &#125;</span><br><span class="line">#define LIST_HEAD(name) \</span><br><span class="line">        struct list_head name = LIST_HEAD_INIT(name)</span><br><span class="line"></span><br><span class="line">static inline void INIT_LIST_HEAD(struct list_head *list) &#123;</span><br><span class="line">    list-&gt;next = list;</span><br><span class="line">    list-&gt;prev = list;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">static inline void __list_add(struct list_head *new,</span><br><span class="line">                              struct list_head *prev,</span><br><span class="line">                              struct list_head *next) &#123;</span><br><span class="line">    next-&gt;prev = new;</span><br><span class="line">    new-&gt;next = next;</span><br><span class="line">    new-&gt;prev = prev;</span><br><span class="line">    prev-&gt;next = new;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">static inline void list_add(struct list_head *new, struct list_head *head) </span><br><span class="line">&#123;</span><br><span class="line">    __list_add(new, head, head-&gt;next);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">static inline void __list_del(struct list_head *prev, struct list_head *next)</span><br><span class="line">&#123;</span><br><span class="line">    next-&gt;prev = prev;</span><br><span class="line">    prev-&gt;next = next;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">static inline void list_del(struct list_head *entry) &#123;</span><br><span class="line">    __list_del(entry-&gt;prev, entry-&gt;next);</span><br><span class="line">    entry-&gt;next = NULL;</span><br><span class="line">    entry-&gt;prev = NULL;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#define __list_for_each(pos, head) \</span><br><span class="line">        for (pos = (head)-&gt;next; pos != (head); pos = pos-&gt;next)</span><br><span class="line"></span><br><span class="line">#define list_for_each_entry(pos, head, member)                          \</span><br><span class="line">        for (pos = list_entry((head)-&gt;next, typeof(*pos), member);      \</span><br><span class="line">             prefetch(pos-&gt;member.next), &amp;pos-&gt;member != (head);        \</span><br><span class="line">             pos = list_entry(pos-&gt;member.next, typeof(*pos), member))</span><br></pre></td></tr></table></figure>
+<p><a href="https://blog.csdn.net/wanshilun/article/details/79747710" target="_blank" rel="noopener">Linux内核中经典链表 list_head 常见使用方法解析</a><br><a href="https://medium.com/@hauyang/%E6%88%91%E6%9C%89%E6%89%80%E4%B8%8D%E7%9F%A5%E7%9A%84-static-inline-b363892b7450" target="_blank" rel="noopener">我有所不知的 static inline function</a></p>
+<hr>
+<h1 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h1><blockquote>
+<p><a href="https://zh.wikipedia.org/wiki/%E9%98%9F%E5%88%97" target="_blank" rel="noopener">队列</a>（queue），是先进先出（FIFO, First-In-First-Out）的线性表。在具体应用中通常用链表或者数组来实现。队列只允许在后端（称为rear）进行插入操作，在前端（称为front）进行删除操作。</p>
+</blockquote>
+<p>分类:</p>
+<ul>
+<li>链式队列——用链表实现</li>
+<li>静态队列——用数组实现</li>
+<li>静态队列通常都必须是循环队列</li>
+</ul>
+<p>应用:</p>
+<ul>
+<li>消息队列</li>
+<li>管道</li>
+<li>命名管道</li>
+</ul>
+<p><a href="https://github.com/oneto1/data-structure-go/tree/master/queue" target="_blank" rel="noopener">个人实现</a></p>
+<hr>
+<h1 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h1><blockquote>
+<p><a href="https://zh.wikipedia.org/wiki/%E5%A0%86%E6%A0%88" target="_blank" rel="noopener">堆栈</a>（英语：stack）又称为栈或堆叠，是计算机科学中的一种抽象数据类型，只允许在有序的线性数据集合的一端（称为堆栈顶端，英语：top）进行加入数据（英语：push）和移除数据（英语：pop）的运算。因而按照后进先出（LIFO, Last In First Out）的原理运作。</p>
+</blockquote>
+<p>分类:</p>
+<ul>
+<li>静态(数组)栈</li>
+<li>动态(链表)栈</li>
+</ul>
+<p>应用：</p>
+<ul>
+<li>函数调用</li>
+<li>中断</li>
+<li>表达式求值</li>
+<li>内存分配</li>
+<li>缓冲处理</li>
+</ul>
+<p><a href="https://github.com/oneto1/data-structure-go/tree/master/stack" target="_blank" rel="noopener">个人实现</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/01/UNIX下文件系统学习/" rel="next" title="UNIX下文件系统学习">
+                <i class="fa fa-chevron-left"></i> UNIX下文件系统学习
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">oneto1</p>
+              <p class="site-description motion-element" itemprop="description">你说是梦所以才痛   睡醒了再说</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是数据结构"><span class="nav-number">1.</span> <span class="nav-text">什么是数据结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数组"><span class="nav-number">2.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#链表"><span class="nav-number">3.</span> <span class="nav-text">链表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#队列"><span class="nav-number">4.</span> <span class="nav-text">队列</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#栈"><span class="nav-number">5.</span> <span class="nav-text">栈</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">oneto1</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
