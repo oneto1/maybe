@@ -99,7 +99,7 @@
 <meta property="og:image" content="http://yoursite.com/images/20191103=9.png">
 <meta property="og:image" content="http://yoursite.com/images/20191103=10.png">
 <meta property="og:image" content="http://yoursite.com/images/20191103=11.png">
-<meta property="og:updated_time" content="2019-11-03T11:02:06.392Z">
+<meta property="og:updated_time" content="2019-12-01T15:00:38.624Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UNIX下文件系统学习">
 <meta name="twitter:image" content="http://yoursite.com/images/20191103=0.png">
@@ -382,7 +382,7 @@
 <p><strong>vnode/vfs接口使用了面向对象的编程概念设计</strong></p>
 <ul>
 <li>一般而言，我们用基类来简单表示一个抽象类或定义一个接口，用派生类来实现器成员函数的实现。由此文件类可以创建一个creat()的成员函数，但是当用户调用这个函数来处理任何文件时，将基于文件类型来调用不同的函数。 而实际上，没有通用的可以创建任何文件的通用函数实现，这样的函数叫虚函数</li>
-<li>由于基类针对该函数没有具体的实现，因此该基类不能被实例化。 它仅可以被提供该虚函数特定实现的派生子类使用，但它可以被子类重写该该函数，就叫面向对象的重载</li>
+<li>由于基类针对该函数没有具体的实现，因此该基类不能被实例化。 它仅可以被提供该虚函数特定实现的派生子类使用，但它可以被子类重写该函数，就叫面向对象的重载</li>
 <li>所有对象是派生类的一个实例，但用户可以使用一个指向基类的指针来操作对象，不需要知道该对象属于哪个子类。当对象调用一个虚函数时，实现将基于对象的实际类型自动决定调用哪个具体的函数</li>
 </ul>
 <p>vnode(virtual node)抽象表示在UNIX内核中一个的文件，vfs(virtual file system)抽象表示为一个文件系统，都被认为是抽象基类，由这两个基类派生出针对不同文件系统类型实现的子类，如<br>s5fs、ufs、NFS、FAT等等</p>
@@ -410,7 +410,7 @@
 </blockquote>
 <p><a href="https://juejin.im/post/5b8ba9e26fb9a019c372e100" target="_blank" rel="noopener">补充链接</a></p>
 <h3 id="s5fs"><a href="#s5fs" class="headerlink" title="s5fs"></a>s5fs</h3><p><img src="/images/20191103=4.png" alt><br><img src="/images/20190924=1.png" alt></p>
-<p><strong>超级块</strong>中包含文件系统的元数据，每一个文件系统都有一个超级快，它驻留在磁盘上文件系统的开始处。当挂载一个文件系统是，内核读取超级块到内存中，当文件系统被卸载时，将其从内存中删除。 </p>
+<p><strong>超级块</strong>中包含文件系统的元数据，每一个文件系统都有一个超级快，它驻留在磁盘上文件系统的开始处。当挂载一个文件系统时，内核读取超级块到内存中，当文件系统被卸载时，将其从内存中删除。 </p>
 <p>一个超级块中包含：</p>
 <ul>
 <li>文件系统块大小</li>
@@ -543,7 +543,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -565,7 +565,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
