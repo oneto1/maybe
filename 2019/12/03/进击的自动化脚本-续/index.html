@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="网络,">
+  <meta name="keywords" content="linux,sed,">
 
 
 
@@ -79,19 +79,17 @@
 
 
 
-<meta name="keywords" content="网络">
+<meta name="keywords" content="linux,sed">
 <meta property="og:type" content="article">
-<meta property="og:title" content="零碎知识收集(1) ">
-<meta property="og:url" content="http://yoursite.com/2019/06/13/零碎知识收集/index.html">
+<meta property="og:title" content="sed的应用">
+<meta property="og:url" content="http://yoursite.com/2019/12/03/进击的自动化脚本-续/index.html">
 <meta property="og:site_name" content="oneto1">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/images/20190613=2.png">
-<meta property="og:image" content="http://yoursite.com/images/20190613=0.png">
-<meta property="og:image" content="http://yoursite.com/images/20190613=1.png">
-<meta property="og:updated_time" content="2019-06-13T11:59:37.222Z">
+<meta property="og:image" content="http://yoursite.com/images/20191208=0.png">
+<meta property="og:updated_time" content="2019-12-08T13:21:35.925Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="零碎知识收集(1) ">
-<meta name="twitter:image" content="http://yoursite.com/images/20190613=2.png">
+<meta name="twitter:title" content="sed的应用">
+<meta name="twitter:image" content="http://yoursite.com/images/20191208=0.png">
 
 
 
@@ -121,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/06/13/零碎知识收集/">
+  <link rel="canonical" href="http://yoursite.com/2019/12/03/进击的自动化脚本-续/">
 
 
 
 
 
-  <title>零碎知识收集(1)  | oneto1</title>
+  <title>sed的应用 | oneto1</title>
   
 
 
@@ -264,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/13/零碎知识收集/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/03/进击的自动化脚本-续/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="oneto1">
@@ -281,7 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">零碎知识收集(1) </h1>
+          <h1 class="post-title" itemprop="name headline">sed的应用</h1>
         
 
         <div class="post-meta">
@@ -293,8 +291,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-13T18:01:23+08:00">
-                2019-06-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-03T15:47:10+08:00">
+                2019-12-03
               </time>
             
 
@@ -331,34 +329,51 @@
       
 
       
-        <p><img src="/images/20190613=2.png" alt="世界加钱可及？"><br><a id="more"></a></p>
+        <hr>
+<a id="more"></a>
+<p>sed每次处理的单位是一行</p>
+<p>sed默认并不修改实际文件，若需修改加上参数 -i 或加上重定向</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">替换</th>
+<th style="text-align:center">删除</th>
+<th style="text-align:center">新增</th>
+<th style="text-align:center">打印</th>
+<th style="text-align:center">插入</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">s/old/new/</td>
+<td style="text-align:center">nd(n为行号)</td>
+<td style="text-align:center">a</td>
+<td style="text-align:center">1，5p</td>
+<td style="text-align:center">i </td>
+</tr>
+</tbody>
+</table>
+<p>替换指定内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$  echo &quot;123 123 123&quot; &gt; 123</span><br><span class="line">123 123 123 </span><br><span class="line"></span><br><span class="line">sed -e &apos;s/123/!/  123</span><br><span class="line">$ ! 123 123</span><br><span class="line"></span><br><span class="line">sed &apos;s/123/!/g  123</span><br><span class="line">$ ! ! !</span><br><span class="line"></span><br><span class="line">可见末尾加g是全匹配的</span><br></pre></td></tr></table></figure></p>
+<p>参数 -e 后面接的是要处理的表达式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 删除第一第二行</span><br><span class="line">sed -e &quot;1d&quot; -e &quot;2d&quot;</span><br></pre></td></tr></table></figure></p>
+<p>删除首部为字母的行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sed &apos;/^[A-Z]/d&apos;</span><br><span class="line"></span><br><span class="line">^为锚点的一种，意思是从最开始匹配，而另一种是$，是末尾匹配</span><br></pre></td></tr></table></figure></p>
+<p>删除末尾n个字符<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sed  &apos;s/\(.*\)\(.\&#123;7\&#125;\)/\1/g&apos;</span><br><span class="line"></span><br><span class="line">()为分组，\1为一分组，\2为二分组，上句为将字符</span><br><span class="line">分为两组（一组为要保留的，另一组为要删除的，s/ 则是将</span><br><span class="line">原先字符替换为 \1分组内的内容 （要保留的）</span><br></pre></td></tr></table></figure></p>
 <ul>
-<li>地球周长：40076千米 (赤道)</li>
-<li>光速 光在真空中的速率是299,792,458米/秒，约3×10ˆ5千米/秒，是已知的速度上限</li>
-<li>BGP (边界网关协议) 是运行于 TCP 上的一种自治系统的路由协议。 BGP 是唯一一个用来处理像因特网大小的网络的协议，也是唯一能够妥善处理好不相关路由域间的多路连接的协议。 BGP 构建在 EGP 的经验之上。 BGP 系统的主要功能是和其他的 BGP 系统交换网络可达信息。网络可达信息包括列出的自治系统（AS）的信息。这些信息有效地构造了 AS 互联的拓朴图并由此清除了路由环路，同时在 AS 级别上可实施策略决策。</li>
-<li>BGP机房 采用BGP方案来实现双线路互联或多线路互联的机房，常用于线路加速</li>
-<li>互联网数据中心（Internet Data Center）简称IDC</li>
+<li>注意在grep 、sed内 使用正则时特殊符号要加转义，或加上参数 -r</li>
+<li>需要加转义的符号：<br>（ ） { }  \ </li>
+<li>曾经付出惨痛代价，一度怀疑我用的是假的</li>
 </ul>
-<h3 id="中国四大骨干网"><a href="#中国四大骨干网" class="headerlink" title="中国四大骨干网"></a>中国四大骨干网</h3><blockquote>
-<p>CHINANET外，CERNET，CSTNET，CHINAGBN，合起来称为中国四大骨干网。<br>①中国公用计算机互联网（CHINANET）<br>又称邮电部互联网、中国公用Internet网，是邮电部经营管理的基于Internet网络技术的电子信息网，1995年初与国际互联网连通，并于5月向社会提供服务。CHINANET由骨干网、接入网组成，骨干网是其主要信息通路，由直辖市和各省会城市的网络节点构成；接入网是各省（区）建设的网络接点形成的网络。CHINANET的灵活接入方式和遍布全国各城市的接入点，可以方便地接入国际Internet, 享用Internet上的丰富信息资源和各种服务，并可为国内的计算机互联，为国内的信息资源共享提供方便的网络环境。<br>②中国教育与科研网（CERNET）<br>1994年启动，1995年底完成首期工程，包括北京（网络中心）、上海、南京、广州、武汉、西安、成都和沈阳等高等学校集中的大城市。有连接美国的国际专线。全国主干网（共11条64Kbps DDN专线）于1995年10月开通。二期工程完成后，全国主干网和国际联网的逐步升级，主干网达到2Kbps以上，国际联网达到8Kbps以上。<br>③中国科学技术网（CSTNET）<br>由中国科学院主持，联合清华、北大共同建设。1994年4月开通了与Internet的专线连接。1994年5月21日完成了我国最高域名CN主服务器的设置，实现了与Internet的TCP/IP连接。1995年底基本完成“百所联网”工程。至1997年底，已连接100多个以太网、3000多台计算机、1万多名用户，成为中国地域广、用量大、性能好、通信量大、服务设施齐全的全国性科研教育网络。<br>④中国金桥信息网（CHINAGBN）<br>即国家公用经济信息通信网，由原电子工业部管理，面向政府、企业、事业单位和社会公众提供数据通信和信息服务。金桥网年底与Internet连通，已开通24个城市，发展了1000多个本地和远程仿真终端，提供全面的Internet服务。</p>
-<blockquote>
-<p><a href="https://www.idcbest.com/idcnews/11002480.html" target="_blank" rel="noopener">原文</a></p>
-</blockquote>
-</blockquote>
-<h3 id="CN2-中国电信下一代承载网（ChinaNetNextCarryingNetwork）"><a href="#CN2-中国电信下一代承载网（ChinaNetNextCarryingNetwork）" class="headerlink" title="CN2 中国电信下一代承载网（ChinaNetNextCarryingNetwork）"></a>CN2 中国电信下一代承载网（ChinaNetNextCarryingNetwork）</h3><p>  Chinanet 又被称为163网<br>其区别</p>
+<p>也可以在一个表达式中执行多个命令,用；分开<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sed -e &apos;s/123/!/;p&apos;</span><br><span class="line"></span><br><span class="line">$ ! 123 123</span><br><span class="line">$ ! 123 123</span><br></pre></td></tr></table></figure></p>
 <ul>
-<li><p>CN2 其路由多为59.43.<em>.</em><br><img src="/images/20190613=0.png" alt="图"></p>
-</li>
-<li><p>chinanet 其路由多为202.97.<em>.</em><br><img src="/images/20190613=1.png" alt="图"></p>
+<li>样例分析<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">原始数据:</span><br><span class="line">74-67-F7-53-8A-A4 NY6-416-538AA4       ap6522   v4022                6 days, 0:30:23</span><br><span class="line">74-67-F7-BE-C5-38 BJ9-510-BEC538       ap6522   v4018                2 days, 1:15:39</span><br><span class="line">74-67-F7-AC-BA-BC BJ8-523-ACBABC       ap6522   v4017                unknown              None</span><br><span class="line">74-67-F7-52-3E-F8 NY6-406-523EF8       ap6522   v4022                6 days, 0:29:38</span><br><span class="line">74-67-F7-B7-C1-8C BJ9-421-B7C18C       ap6522   v4018                2 days, 1:15:39</span><br><span class="line">74-67-F7-AF-B2-C4 BJ8-508-AFB2C4       ap6522   v4017                unknown              None</span><br><span class="line">74-67-F7-53-87-28 NY6-402-538728       ap6522   v4022                6 days, 0:30:08</span><br><span class="line">74-67-F7-52-CC-98 NY6-407-52CC98       ap6522   v4022                6 days, 0:30:23</span><br><span class="line"></span><br><span class="line">......</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><h5 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmd &gt; tracert *</span><br></pre></td></tr></table></figure>
-<h5 id="linux"><a href="#linux" class="headerlink" title="linux"></a>linux</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">traceroute *</span><br></pre></td></tr></table></figure>
-<h5 id="web"><a href="#web" class="headerlink" title="web"></a>web</h5><p><a href="https://ipms.chinatelecomglobal.com/public/lookglass/lookglassDisclaimer.html?lang=zh_CN" target="_blank" rel="noopener">其在线测试网址</a></p>
-<h3 id="CERNET2"><a href="#CERNET2" class="headerlink" title="CERNET2"></a>CERNET2</h3><p>第二代中国教育和科研计算机网CERNET2是中国下一代互联网示范工程CNGI最大的核心网和唯一的全国性学术网，是目前所知世界上规模最大的采用纯IPv6技术的下一代互联网主干网。</p>
-<p><a href="http://www.edu.cn/include/cernet/ipv6/ipv6.htm" target="_blank" rel="noopener">中国教育和科研计算机网</a></p>
-<p><del>最近马上在看ipv6相关书籍，下篇再写</del></p>
-<hr>
+<p>刚开始干这个的时候需要复制到word里一个一个查找出需要的信息并手动排版，虽然不难，但心累啊</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">grep &apos;NY&apos;  sedtest \                 ## grep 用于筛选  </span><br><span class="line">|  sed &apos;s/^.*NY//&apos;  \                ## 删除 NY之前的字符</span><br><span class="line">|  sed &apos;s/ap.*//&apos; \                  ## 由于ap 前的mac地址为随机的，故先删除ap后面的</span><br><span class="line">|  sed &apos;s/\(.*\)\(.\&#123;6\&#125;\)/\1/g&apos;     ## 删除最后面6个空格</span><br><span class="line">|  sed &apos;/^[A-Z]/d&apos; |sed &apos;s/ //&apos; \    ## 删除字母开头的行</span><br><span class="line">|  sed &apos;s/\(.*\)\(.\&#123;7\&#125;\)/\1/&apos; \    ## 去掉数字后的mac地址</span><br><span class="line">|  sed &apos;$!N;s/\n/\t/&apos;\               ## 将每两行合并为一行</span><br><span class="line">|  sed &apos;$!N;s/\n/\t/&apos; \              ## 将每两行合并为一行</span><br><span class="line">|  sed &apos;1s/^/南院: \n/&apos; \            ## 在开头添加字样</span><br></pre></td></tr></table></figure>
+<p><a href="https://askubuntu.com/questions/461191/what-is-the-meaning-of-an-in-a-sed-command" target="_blank" rel="noopener">What is the meaning of :a;$!N; in a sed command?</a><br><a href="https://blog.51cto.com/goome/1749171" target="_blank" rel="noopener">关于合并两行为什么是 sed ‘$!N;s/\n/\t/‘</a><br><a href="https://www.cnblogs.com/jjzd/p/6892891.html?utm_source=itdadao&amp;utm_medium=referral" target="_blank" rel="noopener">sed行处理详解(交换行,合并行,删除行等)</a></p>
+<ul>
+<li>nl 命令可在每一行前加序号</li>
+</ul>
+<p>回顾下正则<br><img src="/images/20191208=0.png" alt></p>
 
       
     </div>
@@ -376,7 +391,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/网络/" rel="tag"># 网络</a>
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+            <a href="/tags/sed/" rel="tag"># sed</a>
           
         </div>
       
@@ -389,8 +406,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/30/linux-终端复用利器tmux使用/" rel="next" title="linux下终端复用利器tmux使用">
-                <i class="fa fa-chevron-left"></i> linux下终端复用利器tmux使用
+              <a href="/2019/12/01/刷题小总结之二分搜索/" rel="next" title="刷题小总结之二分搜索">
+                <i class="fa fa-chevron-left"></i> 刷题小总结之二分搜索
               </a>
             
           </div>
@@ -398,10 +415,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/06/19/网络排障简单总结/" rel="prev" title="网络排障简单总结">
-                网络排障简单总结 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -453,17 +466,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -523,22 +527,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#中国四大骨干网"><span class="nav-number">1.</span> <span class="nav-text">中国四大骨干网</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CN2-中国电信下一代承载网（ChinaNetNextCarryingNetwork）"><span class="nav-number">2.</span> <span class="nav-text">CN2 中国电信下一代承载网（ChinaNetNextCarryingNetwork）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#测试"><span class="nav-number">2.1.</span> <span class="nav-text">测试</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#windows"><span class="nav-number">2.1.1.</span> <span class="nav-text">windows</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#linux"><span class="nav-number">2.1.2.</span> <span class="nav-text">linux</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#web"><span class="nav-number">2.1.3.</span> <span class="nav-text">web</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CERNET2"><span class="nav-number">3.</span> <span class="nav-text">CERNET2</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
