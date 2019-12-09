@@ -91,7 +91,7 @@
 <meta property="og:image" content="http://yoursite.com/images/20191001=3.png">
 <meta property="og:image" content="http://yoursite.com/images/20191001=4.png">
 <meta property="og:image" content="http://yoursite.com/images/20191001=5.png">
-<meta property="og:updated_time" content="2019-10-02T12:52:07.986Z">
+<meta property="og:updated_time" content="2019-12-09T09:14:23.977Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UNIX下进程环境与控制学习">
 <meta name="twitter:image" content="http://yoursite.com/images/20191001=0.png">
@@ -405,10 +405,9 @@
 <li>子进程继承父进程的输出重定向</li>
 <li><p>为什么之前hi只输出了一次？</p>
 <ol>
-<li><p>这是因为标准I/O默认是带缓冲的(默认为全缓冲 终端设备为行缓冲)而这里的\n 刷洗了缓冲，导致只输出了一次hi</p>
-</li>
-<li><p>而第二个重定向至文本却有两个hi ，这是因为在fork()之前就已经被缓冲了，fork()之后便有两个带缓冲的程序输出被重定向至文件</p>
-</li>
+<li>这是因为标准I/O默认是带缓冲的(默认为全缓冲 终端设备为行缓冲)而这里(指的是shell即终端)的\n 刷洗了缓冲，导致只输出了一次hi</li>
+<li>flush有两种意思。在标准I/O库方面，flush以为这将缓冲区中的内容写到磁盘上。在终端驱动程序方面flush表示丢弃已存储在缓冲区中的数据</li>
+<li>而第二个重定向至文本却有两个hi ，这是因为在fork()之前就已经被缓冲了，fork()之后便有两个带缓冲的程序输出被重定向至文件</li>
 </ol>
 </li>
 </ul>
@@ -473,7 +472,7 @@
 <tbody>
 <tr>
 <td style="text-align:center">WCONTINUED (0)</td>
-<td style="text-align:center">若该实现支持作业控制，那么由pid指定的子进程在停止后已经继续，但其状态尚未报告，则返回状态   (???  作业控制未知)</td>
+<td style="text-align:center">若该实现支持作业控制，那么由pid指定的子进程在停止后已经继续，但其状态尚未报告，则返回状态   </td>
 </tr>
 <tr>
 <td style="text-align:center">WNOHANG (1)</td>

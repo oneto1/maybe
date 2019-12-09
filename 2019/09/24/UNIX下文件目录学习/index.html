@@ -89,7 +89,7 @@
 <meta property="og:image" content="http://yoursite.com/images/20190924=1.png">
 <meta property="og:image" content="http://yoursite.com/images/20190924=2.png">
 <meta property="og:image" content="http://yoursite.com/images/20190924=3.png">
-<meta property="og:updated_time" content="2019-09-24T09:34:49.554Z">
+<meta property="og:updated_time" content="2019-12-09T07:50:10.487Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UNIX下文件目录学习">
 <meta name="twitter:image" content="http://yoursite.com/images/20190924=0.png">
@@ -479,13 +479,8 @@
 <li>用于获得绝对路径</li>
 </ul>
 <h3 id="文件位权限位小结"><a href="#文件位权限位小结" class="headerlink" title="文件位权限位小结"></a>文件位权限位小结</h3><p><img src="/images/20190924=3.png" alt></p>
-<h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><p><a href="https://www.cnblogs.com/luntai/p/6129634.html" target="_blank" rel="noopener">复杂定义读法</a><br>从变量名看起，先往右，再往左，碰到圆括号就调转阅读的方向；括号内分析完就跳出括号，还是先右后左的顺序。如此循环，直到分析完整个定义。</p>
-<blockquote>
-<p>int (<em>pfunc) (int);<br>  找到变量名pfunc，先往右是圆括号，调转方向，左边是一个</em>号，这说明pfunc是一个指针；然后跳出这个圆括号，先看右边，又遇到圆括号，这说明(*pfunc)是一个函数，所以pfunc是一个指向这类函数的指针，即函数指针，这类函数具有一个int类型的参数，返回值类型是int。</p>
-</blockquote>
-<blockquote>
-<p>float (<em> (</em>fp2) (int, int, float)) (int);<br>  找到变量名fp2，往右看是圆括号，调转方向往左看到<em>号，说明fp2是一个指针；跳出内层圆括号，往右看是参数列表，说明fp2是一个函数指针，接着往 左看是</em>号，说明指向的函数返回值是指针；再跳出外层圆括号，往右看还是参数列表，说明返回的指针是一个函数指针，该函数有一个int类型的参数，返回值 类型是float。简言之，fp2是一个指向函数的指针，该函数接受三个参数(int, int和float)，且返回一个指向函数的指针，该函数接受一个整型参数并返回一个float。</p>
-</blockquote>
+<h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><p><a href="https://www.cnblogs.com/luntai/p/6129634.html" target="_blank" rel="noopener">复杂定义读法</a><br>从变量名看起，先往右，再往左，碰到圆括号就调转阅读的方向；括号内分析完就跳出括号，还是先右后左的顺序。如此循环，直到分析完整个定义。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int (*pfunc) (int);</span><br><span class="line"> 找到变量名pfunc，先往右是圆括号，调转方向，左边是一个*号，这说明pfunc是一个指针；然</span><br><span class="line"> 后跳出这个圆括号，先看右边，又遇到圆括号，这说明(*pfunc)是一个函数，所以pfunc是一个</span><br><span class="line"> 指向这类函数的指针，即函数指针，这类函数具有一个int类型的参数，返回值类型是int。</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">float (* (*fp2) (int, int, float)) (int);</span><br><span class="line">找到变量名fp2，往右看是圆括号，调转方向往左看到*号，说明fp2是一个指针；跳出内层圆括号</span><br><span class="line">，往右看是参数列表，说明fp2是一个函数指针，接着往 左看是*号，说明指向的函数返回值是指</span><br><span class="line">针；再跳出外层圆括号，往右看还是参数列表，说明返回的指针是一个函数指针，该函数有一个</span><br><span class="line">int类型的参数，返回值 类型是float。简言之，fp2是一个指向函数的指针，该函数接受三个参</span><br><span class="line">数(int, int和float)，且返回一个指向函数的指针，该函数接受一个整型参数并返回一个float。</span><br></pre></td></tr></table></figure>
 
       
     </div>

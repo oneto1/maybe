@@ -90,7 +90,7 @@
 <meta property="og:image" content="http://yoursite.com/images/20191024=1.png">
 <meta property="og:image" content="http://yoursite.com/images/20191024=2.png">
 <meta property="og:image" content="http://yoursite.com/images/20191024=4.png">
-<meta property="og:updated_time" content="2019-10-25T11:52:43.821Z">
+<meta property="og:updated_time" content="2019-12-09T11:08:12.612Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UNIX下线程学习">
 <meta name="twitter:image" content="http://yoursite.com/images/20191024=3.png">
@@ -381,10 +381,10 @@
 <h3 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h3><blockquote>
 <p>当两个以上的运算单元，双方都在等待对方停止运行，以获取系统资源，但是没有一方提前退出时，就称为<a href="https://zh.wikipedia.org/wiki/%E6%AD%BB%E9%94%81" target="_blank" rel="noopener">死锁</a></p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">典型</span><br><span class="line"></span><br><span class="line">P1、P2两个process都需要资源才能继续运行。P1拥有资源R2、还需要额外资源R1才能运行；P2拥有资源R1、还需要额外资源R2才能运行，两边都在互相等待而没有任何一个可执行。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">典型</span><br><span class="line"></span><br><span class="line">P1、P2两个process都需要资源才能继续运行。P1拥有资源R2、还</span><br><span class="line">需要额外资源R1才能运行；P2拥有资源R1、还需要额外资源R2才能</span><br><span class="line">运行，两边都在互相等待而没有任何一个可执行。</span><br></pre></td></tr></table></figure>
 <p>死锁的四个条件是：</p>
 <ul>
-<li>禁止抢占 (no preemption) - 系统资源不能被强制从一个进程中退出0</li>
+<li>禁止抢占 (no preemption) - 系统资源不能被强制从一个进程中退出</li>
 <li>持有和等待 (hold and wait) - 一个进程可以在等待时持有系统资源</li>
 <li>互斥 (mutual exclusion) - 只有一个进程能持有一个资源</li>
 <li>循环等待 (circular waiting) - 一系列进程互相持有其他进程所需要的资源</li>
@@ -460,7 +460,7 @@
 </ul>
 <h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><p>大端模式，是指数据的高字节保存在内存的低地址中，而数据的低字节保存在内存的高地址中，这样的存储模式有点儿类似于把数据当作字符串顺序处理：地址由小向大增加，而数据从高位往低位放；这和我们的<strong>阅读习惯</strong>一致。</p>
 <p>小端模式，是指数据的高字节保存在内存的高地址中，而数据的低字节保存在内存的低地址中，这种存储模式将地址的高低和数据位权有效地结合起来，高地址部分权值高，低地址部分权值低。</p>
-<p>Big-Endian: 低地址存放高位，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">高地址</span><br><span class="line">　　---------------</span><br><span class="line">　　buf[3] (0x78) -- 低位</span><br><span class="line">　　buf[2] (0x56)</span><br><span class="line">　　buf[1] (0x34)</span><br><span class="line">　　buf[0] (0x12) -- 高位</span><br><span class="line">　　---------------</span><br><span class="line">　　低地址</span><br></pre></td></tr></table></figure></p>
+<p>Big-Endian: 低地址存放高位，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">高地址</span><br><span class="line">　　---------------</span><br><span class="line">　　buf[3] (0x78) -- 低位</span><br><span class="line">　　buf[2] (0x56)</span><br><span class="line">　　buf[1] (0x34)</span><br><span class="line">　　buf[0] (0x12) -- 高位</span><br><span class="line">　　--------------- </span><br><span class="line">低地址</span><br></pre></td></tr></table></figure></p>
 <p>Little-Endian: 低地址存放低位，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">高地址</span><br><span class="line">　　---------------</span><br><span class="line">　　buf[3] (0x12) -- 高位</span><br><span class="line">　　buf[2] (0x34)</span><br><span class="line">　　buf[1] (0x56)</span><br><span class="line">　　buf[0] (0x78) -- 低位</span><br><span class="line">　　--------------</span><br><span class="line">低地址</span><br></pre></td></tr></table></figure></p>
 <p>共用体与结构体大小</p>
 <ul>
