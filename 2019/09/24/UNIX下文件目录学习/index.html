@@ -89,7 +89,7 @@
 <meta property="og:image" content="http://yoursite.com/images/20190924=1.png">
 <meta property="og:image" content="http://yoursite.com/images/20190924=2.png">
 <meta property="og:image" content="http://yoursite.com/images/20190924=3.png">
-<meta property="og:updated_time" content="2019-12-09T07:50:10.487Z">
+<meta property="og:updated_time" content="2020-02-02T06:52:15.027Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UNIX下文件目录学习">
 <meta name="twitter:image" content="http://yoursite.com/images/20190924=0.png">
@@ -441,7 +441,8 @@
 </ul>
 <h3 id="chmod"><a href="#chmod" class="headerlink" title="chmod()"></a>chmod()</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#include “sys/stat.h” </span><br><span class="line"></span><br><span class="line">int chmod(const char *pathname,mode_t mode); </span><br><span class="line"></span><br><span class="line">int fchmod(int fd,mode_t mode); </span><br><span class="line"></span><br><span class="line">成功返回0，失败返回-1</span><br></pre></td></tr></table></figure>
 <ul>
-<li><p>node 除了基本的9个外，还可用<br>S_ISUID|设置用户id<br>:–:|:–:<br>S_ISGID|设置组id<br>S_ISVTX|保存粘着位(保存正文位)<br>S_IRWXU|用户读写执行<br>S_IRWXG|群组读写执行<br>S_IRWXO|其他读写执行</p>
+<li><p>node 除了基本的9个外，还可用 </p>
+<p>S_ISUID|设置用户id<br>:–:|:–:<br>S_ISGID|设置组id<br>S_ISVTX|保存粘着位(保存正文位)<br>S_IRWXU|用户读写执行<br>S_IRWXG|群组读写执行<br>S_IRWXO|其他读写执行</p>
 </li>
 <li><p>一个可执行文件的粘着位设置后，那么当它第一次被执行被终止的的时候，程序正文部分的一个副本会被保存在交换区，方便下次执行的时候快速载入内存</p>
 </li>

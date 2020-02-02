@@ -91,7 +91,7 @@
 <meta property="og:image" content="http://yoursite.com/images/20191001=3.png">
 <meta property="og:image" content="http://yoursite.com/images/20191001=4.png">
 <meta property="og:image" content="http://yoursite.com/images/20191001=5.png">
-<meta property="og:updated_time" content="2019-12-09T09:14:23.977Z">
+<meta property="og:updated_time" content="2020-02-02T07:23:14.625Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UNIX下进程环境与控制学习">
 <meta name="twitter:image" content="http://yoursite.com/images/20191001=0.png">
@@ -389,7 +389,7 @@
 <li>程序结束前记得用free()</li>
 </ul>
 <hr>
-<h1 id="进程控制"><a href="#进程控制" class="headerlink" title="进程控制"></a>进程控制</h1><h3 id="进程标识"><a href="#进程标识" class="headerlink" title="进程标识"></a>进程标识</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#include&quot;unisted.h&quot;</span><br><span class="line"></span><br><span class="line">__pid_t getpid(void)            返回pid</span><br><span class="line"></span><br><span class="line">__pid_t getppid(void)          返回父id</span><br><span class="line"></span><br><span class="line">__pid_t getuid(void)            返回进程的实际用户id</span><br><span class="line"></span><br><span class="line">__pid_t geteuid(void)           返回有效id</span><br><span class="line"></span><br><span class="line">__pid_t getgid(void)            返回实际组id</span><br><span class="line"></span><br><span class="line">__pid_t getegid(void)           返回有效组id</span><br></pre></td></tr></table></figure>
+<h1 id="进程控制"><a href="#进程控制" class="headerlink" title="进程控制"></a>进程控制</h1><h3 id="进程标识"><a href="#进程标识" class="headerlink" title="进程标识"></a>进程标识</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#include&quot;unistd.h&quot;</span><br><span class="line"></span><br><span class="line">__pid_t getpid(void)            返回pid</span><br><span class="line"></span><br><span class="line">__pid_t getppid(void)          返回父id</span><br><span class="line"></span><br><span class="line">__pid_t getuid(void)            返回进程的实际用户id</span><br><span class="line"></span><br><span class="line">__pid_t geteuid(void)           返回有效id</span><br><span class="line"></span><br><span class="line">__pid_t getgid(void)            返回实际组id</span><br><span class="line"></span><br><span class="line">__pid_t getegid(void)           返回有效组id</span><br></pre></td></tr></table></figure>
 <ul>
 <li>pid为0的被叫做调度进程也叫交换进程，该进程为内核的一部分，它不执行磁盘上的任何程序，为系统进程</li>
 <li>pid为1的是init进程，它负责自举内核后启动UNIX系统，它会成为所有孤儿进程的父进程，称这些进程被init进程收养</li>
