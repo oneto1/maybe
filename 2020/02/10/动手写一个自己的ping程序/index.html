@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="c,linux,计算机网络,">
+
+
+
+
+
+
+
+
+
+
+<meta name="keywords" content="c,linux,计算机网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="动手写一个自己的ping程序">
+<meta property="og:url" content="http://yoursite.com/2020/02/10/动手写一个自己的ping程序/index.html">
+<meta property="og:site_name" content="oneto1">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/images/20200210=0.png">
+<meta property="og:image" content="http://yoursite.com/images/20200210=1.png">
+<meta property="og:image" content="http://yoursite.com/images/20200210=2.png">
+<meta property="og:updated_time" content="2020-02-10T09:46:57.467Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="动手写一个自己的ping程序">
+<meta name="twitter:image" content="http://yoursite.com/images/20200210=0.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/02/10/动手写一个自己的ping程序/">
+
+
+
+
+
+  <title>动手写一个自己的ping程序 | oneto1</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">oneto1</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-坑">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            坑
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/10/动手写一个自己的ping程序/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="oneto1">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="oneto1">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">动手写一个自己的ping程序</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-10T15:09:42+08:00">
+                2020-02-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<a id="more"></a>
+<blockquote>
+<p>ping是一种计算机网络工具，用来测试数据包能否透过IP协议到达特定主机。ping的运作原理是向目标主机传出一个ICMP的请求回显数据包，并等待接收回显回应数据包,器工作原理与声呐相似,所以叫ping</p>
+</blockquote>
+<p>ping功能的实现依赖于icmp协议,而icmp又依赖TCP/IP,换句话说,ping的实现是在IP层上的ICMP协议,所以不可避免的要用到IP协议和ICMP协议</p>
+<h1 id="ip报头格式"><a href="#ip报头格式" class="headerlink" title="ip报头格式"></a>ip报头格式</h1><p><img src="/images/20200210=0.png" alt></p>
+<p>对应起来的ip数据结构<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;netinet/ip.h&gt;</span><br><span class="line"></span><br><span class="line">struct ip</span><br><span class="line">  &#123;</span><br><span class="line">#if __BYTE_ORDER == __LITTLE_ENDIAN</span><br><span class="line">    unsigned int ip_hl:4;		/* header length */</span><br><span class="line">    unsigned int ip_v:4;		/* version */</span><br><span class="line">#endif</span><br><span class="line">#if __BYTE_ORDER == __BIG_ENDIAN</span><br><span class="line">    unsigned int ip_v:4;		/* version */</span><br><span class="line">    unsigned int ip_hl:4;		/* header length */</span><br><span class="line">#endif</span><br><span class="line">    uint8_t ip_tos;			/* type of service */</span><br><span class="line">    unsigned short ip_len;		/* total length */</span><br><span class="line">    unsigned short ip_id;		/* identification */</span><br><span class="line">    unsigned short ip_off;		/* fragment offset field */</span><br><span class="line">#define	IP_RF 0x8000			/* reserved fragment flag */</span><br><span class="line">#define	IP_DF 0x4000			/* dont fragment flag */</span><br><span class="line">#define	IP_MF 0x2000			/* more fragments flag */</span><br><span class="line">#define	IP_OFFMASK 0x1fff		/* mask for fragmenting bits */</span><br><span class="line">    uint8_t ip_ttl;			/* time to live */</span><br><span class="line">    uint8_t ip_p;			/* protocol */</span><br><span class="line">    unsigned short ip_sum;		/* checksum */</span><br><span class="line">    struct in_addr ip_src, ip_dst;	/* source and dest address */</span><br><span class="line">  &#125;;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>虽然看上去很多,但这次用到的只有ip报头长度(ip_hl) </li>
+<li>由上可知,一般情况下(没有选项的话)一个ip报头最大字节数为ip_hl<em>4(ip_hl以4字节为单位),而从数据结构的定义中可以看到ip_hl只定义用了4位,即无论什么情况下最大ip报头长度为15</em>4字节</li>
+</ul>
+<h1 id="ICMP报头格式"><a href="#ICMP报头格式" class="headerlink" title="ICMP报头格式"></a>ICMP报头格式</h1><p>介绍完IP报头,那么它后面的数据段也就是ICMP报头也需要介绍介绍</p>
+<p><img src="/images/20200210=1.png" alt></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;netinet/ip_icmp.h&gt;</span><br><span class="line"></span><br><span class="line">// 删了部分没用到的定义</span><br><span class="line">struct icmp</span><br><span class="line">&#123;</span><br><span class="line">  uint8_t  icmp_type;	/* type of message, see below */</span><br><span class="line">  uint8_t  icmp_code;	/* type sub code */</span><br><span class="line">  uint16_t icmp_cksum;	/* ones complement checksum of struct */</span><br><span class="line">  union</span><br><span class="line">  &#123;</span><br><span class="line">    unsigned char ih_pptr;	/* ICMP_PARAMPROB */</span><br><span class="line">    struct in_addr ih_gwaddr;	/* gateway address */</span><br><span class="line">    struct ih_idseq		/* echo datagram */</span><br><span class="line">    &#123;</span><br><span class="line">      uint16_t icd_id;</span><br><span class="line">      uint16_t icd_seq;</span><br><span class="line">    &#125; ih_idseq;</span><br><span class="line">&#125;icmp_hun;;</span><br><span class="line"></span><br><span class="line">#define	icmp_id		icmp_hun.ih_idseq.icd_id</span><br><span class="line">#define	icmp_seq	icmp_hun.ih_idseq.icd_seq</span><br></pre></td></tr></table></figure>
+<ul>
+<li>与<code>struct icmp</code>定义差不多的还有<code>struct icmphdr</code>,hdr即为header的意思,定义的内容也差不多,毕竟实现的是同一个协议</li>
+<li>这里要用到的是能够成最小报文的是icmp_type、icmp_code、icmp_cknum、icmp_id    、    icmp_seq(注意最后面两个是宏定义,用起来更方便了)</li>
+<li>icmp_id用于标示一个icmp报文,icmp_seq表示发送顺序</li>
+</ul>
+<p>ICMP报头最开始的类型在头文件中定义的很清楚<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#define ICMP_ECHOREPLY		0	/* Echo Reply			*/</span><br><span class="line">#define ICMP_DEST_UNREACH	3	/* Destination Unreachable	*/</span><br><span class="line">#define ICMP_SOURCE_QUENCH	4	/* Source Quench		*/</span><br><span class="line">#define ICMP_REDIRECT		5	/* Redirect (change route)	*/</span><br><span class="line">#define ICMP_ECHO		8	/* Echo Request			*/</span><br><span class="line">#define ICMP_TIME_EXCEEDED	11	/* Time Exceeded		*/</span><br><span class="line">#define ICMP_PARAMETERPROB	12	/* Parameter Problem		*/</span><br><span class="line">#define ICMP_TIMESTAMP		13	/* Timestamp Request		*/</span><br><span class="line">#define ICMP_TIMESTAMPREPLY	14	/* Timestamp Reply		*/</span><br><span class="line">#define ICMP_INFO_REQUEST	15	/* Information Request		*/</span><br><span class="line">#define ICMP_INFO_REPLY		16	/* Information Reply		*/</span><br><span class="line">#define ICMP_ADDRESS		17	/* Address Mask Request		*/</span><br><span class="line">#define ICMP_ADDRESSREPLY	18	/* Address Mask Reply		*/</span><br><span class="line">#define NR_ICMP_TYPES		18</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>这里用到了发送时的<code>ICMP_ECHO</code>    和接收时用到的<code>ICMP_ECHOREPLY</code></li>
+</ul>
+<p>报文类型和代码段组合起来有很多种解释<br><img src="/images/20200210=2.png" alt></p>
+<p>所以可以得到一个完整的定义了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">  #include&lt;netinet/ip_icmp.h&gt;</span><br><span class="line"></span><br><span class="line">  struct icmp s_icmp;</span><br><span class="line"></span><br><span class="line">  s_icmp.icmp_type = ICMP_ECHO;			        //报头类型</span><br><span class="line">  s_icmp.icmp_code = 0;					 //表示状态的代码</span><br><span class="line">  s_icmp.icmp_cksum = 0;				  //校验和</span><br><span class="line"> 	s_icmp.icmp_id = pid;				 //标识</span><br><span class="line">s_icmp.icmp_seq = 0;					//顺序号</span><br></pre></td></tr></table></figure></p>
+<h1 id="发送icmp报文"><a href="#发送icmp报文" class="headerlink" title="发送icmp报文"></a>发送icmp报文</h1><p>由于ip协议是无连接的,自然不需要使用bind()或connect()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">  #include &lt;sys/types.h&gt;</span><br><span class="line">  #include &lt;sys/socket.h&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ssize_t sendto(int sockfd, const void *buf, size_t len, int flags,     </span><br><span class="line">                   const struct sockaddr *dest_addr, socklen_t addrlen);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>对于sendto()成功与否,需要加上判断</li>
+</ul>
+<h1 id="接受报文"><a href="#接受报文" class="headerlink" title="接受报文"></a>接受报文</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;sys/types.h&gt;</span><br><span class="line">#include &lt;sys/socket.h&gt;</span><br><span class="line"></span><br><span class="line">ssize_t recvfrom(int sockfd, void *buf, size_t len, int flags,</span><br><span class="line">                    struct sockaddr *src_addr, socklen_t *addrlen);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>与上同理</li>
+</ul>
+<p>具体实现<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//超过3秒后即退出</span><br><span class="line">signal(SIGALRM, ping_stat);</span><br><span class="line">alarm(3);															//默认不处理超时信号则退出整个程序</span><br><span class="line"></span><br><span class="line">while(1 )&#123;</span><br><span class="line">	struct sockaddr_in recv_in;</span><br><span class="line">	socklen_t len = sizeof(recv_in);</span><br><span class="line">	int recvlen ;</span><br><span class="line">	if((recvlen =  recvfrom(sockfd,buf,BUFLEN,0,(struct sockaddr *)&amp;recv_in,&amp;len)) &lt;0 )</span><br><span class="line">		exit_error(&quot;recv error &quot;);</span><br><span class="line"></span><br><span class="line">       //若收到的报文长度小于最大ip报文头部长度,则受到的不是所需数据</span><br><span class="line">	if(recvlen &gt; MAXIPLEN)&#123;</span><br><span class="line">		struct ip *p_ip = (struct ip *)buf;</span><br><span class="line">		int iplen =p_ip-&gt;ip_hl &lt;&lt; 2;</span><br><span class="line"></span><br><span class="line">		struct icmp * p = (struct icmp *)(buf+iplen);               //跳过ip首部</span><br><span class="line"></span><br><span class="line">           //若收到的报文标识号不是自己规定的标识号或报文类型不是 reply则不是想要的报文</span><br><span class="line">		if(p-&gt;icmp_id == pid  &amp;&amp; p-&gt;icmp_type == ICMP_ECHOREPLY)&#123;</span><br><span class="line">			recv_num++;</span><br><span class="line">			break;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>另外利用select来检查套接字是否可读,也就是是否收到回复,也不失为一种办法</p>
+<h1 id="完整版"><a href="#完整版" class="headerlink" title="完整版"></a>完整版</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">#include&lt;stdlib.h&gt;</span><br><span class="line">#include&lt;string.h&gt;</span><br><span class="line">#include&lt;unistd.h&gt;</span><br><span class="line">#include&lt;netinet/ip.h&gt;</span><br><span class="line">#include&lt;netinet/in.h&gt;</span><br><span class="line">#include&lt;netinet/ip_icmp.h&gt;</span><br><span class="line">#include&lt;netdb.h&gt;</span><br><span class="line">#include&lt;arpa/inet.h&gt;</span><br><span class="line">#include&lt;sys/socket.h&gt;</span><br><span class="line">#include&lt;sys/types.h&gt;</span><br><span class="line">#include&lt;sys/time.h&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//#define SELECT 0</span><br><span class="line">//#define NORMAL 0</span><br><span class="line">/*1.如果只定义了SELECT,超时处理为selcet版实现</span><br><span class="line">	2.如果只定义了NORMAL则为堵塞式实现(若ping的主机不回复,</span><br><span class="line">	将一直堵塞,无超时处理)</span><br><span class="line">	3.两者都没定义,超时处理为信号实现</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">#ifdef SELECT</span><br><span class="line">#include&lt;sys/select.h&gt;</span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">#ifndef  NORMAL</span><br><span class="line">#include&lt;sys/signal.h&gt;</span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#define ICMPDATALEN 56</span><br><span class="line">#define MAXIPLEN 60</span><br><span class="line">#define MAXICMPLEN 76</span><br><span class="line">#define BUFLEN MAXICMPLEN+MAXIPLEN+ICMPDATALEN</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int check_sum(unsigned short *,int );</span><br><span class="line">void send_pak(char *);</span><br><span class="line">void unpack_pak(void );</span><br><span class="line">void  ping_stat(int  );</span><br><span class="line">void exit_error(char *);</span><br><span class="line"></span><br><span class="line">int pid;								</span><br><span class="line">int sockfd;					</span><br><span class="line">char buf[BUFLEN];</span><br><span class="line">char *iplist;</span><br><span class="line"></span><br><span class="line">int recv_num = 0;</span><br><span class="line">int send_num = 0;</span><br><span class="line"></span><br><span class="line">int main(int argc,char **argv )</span><br><span class="line">&#123;</span><br><span class="line">    if(argc != 2)&#123;</span><br><span class="line">        printf(&quot;Usage: %s [ip address]&quot;,argv[0]);</span><br><span class="line">        exit(1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    iplist = argv[1];</span><br><span class="line"></span><br><span class="line">    send_pak(iplist);</span><br><span class="line">    unpack_pak();</span><br><span class="line"></span><br><span class="line">    ping_stat(0);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/*校验和算法*/</span><br><span class="line">int check_sum(unsigned short *buf, int len)</span><br><span class="line">&#123;</span><br><span class="line">	int nleft = len;</span><br><span class="line">	int sum = 0;</span><br><span class="line">	unsigned short *w = buf;</span><br><span class="line">	unsigned short ans = 0;</span><br><span class="line"></span><br><span class="line">	//每次相加以两字节为单位</span><br><span class="line">	while (nleft &gt; 1) &#123;</span><br><span class="line">		sum += *w++;</span><br><span class="line">		nleft -= 2;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	if (nleft == 1) &#123;</span><br><span class="line">		*(unsigned char *) (&amp;ans) = *(unsigned char *) w;</span><br><span class="line">		sum += ans;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	sum = (sum &gt;&gt; 16) + (sum &amp; 0xFFFF);</span><br><span class="line">	sum += (sum &gt;&gt; 16);</span><br><span class="line">	ans = ~sum;</span><br><span class="line"></span><br><span class="line">	return (ans);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/*发送icmp包*/</span><br><span class="line">void send_pak(char *iplist)</span><br><span class="line">&#123;</span><br><span class="line">    struct protoent * p_prote;</span><br><span class="line">    p_prote= getprotobyname(&quot;ICMP&quot;);</span><br><span class="line"></span><br><span class="line">	//使用当前进程号作为唯一标识号</span><br><span class="line">    pid = getpid();</span><br><span class="line"></span><br><span class="line">	sockfd = socket(AF_INET,SOCK_RAW,p_prote-&gt;p_proto);</span><br><span class="line"></span><br><span class="line">    if(sockfd &lt; 0)</span><br><span class="line">    	exit_error(&quot;socket error &quot;);</span><br><span class="line"></span><br><span class="line">    // 初始化icmp数据结构</span><br><span class="line">    struct icmp s_icmp;</span><br><span class="line"></span><br><span class="line">    s_icmp.icmp_type = ICMP_ECHO;			//报头类型</span><br><span class="line">    s_icmp.icmp_code = 0;								 //代码</span><br><span class="line">    s_icmp.icmp_cksum = 0;				             //校验和</span><br><span class="line">   	s_icmp.icmp_id = pid;					             //标识</span><br><span class="line"> 	s_icmp.icmp_seq = 0;					            //顺序号</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">    s_icmp.icmp_cksum = check_sum((unsigned short *)&amp;s_icmp,64);</span><br><span class="line"></span><br><span class="line">	//初始化</span><br><span class="line">    struct sockaddr_in s_addr_in;</span><br><span class="line">    memset(&amp;s_addr_in,0,sizeof(s_addr_in));</span><br><span class="line">    s_addr_in.sin_family = AF_INET;</span><br><span class="line">    s_addr_in.sin_addr.s_addr = inet_addr(iplist);</span><br><span class="line"></span><br><span class="line">    int ret = sendto(sockfd,&amp;s_icmp,ICMPDATALEN+8,0,(struct sockaddr *)&amp;s_addr_in,sizeof(s_addr_in));</span><br><span class="line"></span><br><span class="line">    if(ret &lt; 0)&#123;</span><br><span class="line">        exit_error(&quot;sendto error &quot;);</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">			send_num++;</span><br><span class="line">        &#125;</span><br><span class="line">		</span><br><span class="line">	//收回root权限</span><br><span class="line">	setuid(getuid());</span><br><span class="line"></span><br><span class="line">	return ; </span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void unpack_pak(void )</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">#ifdef SELECT</span><br><span class="line">/* 超时实现由select() 实现*/</span><br><span class="line"></span><br><span class="line">	fd_set rset;</span><br><span class="line">	FD_ZERO(&amp;rset);</span><br><span class="line">	FD_SET(sockfd,&amp;rset);</span><br><span class="line"></span><br><span class="line">	//设置超时时间为5s</span><br><span class="line">	struct timeval time = &#123;5,0&#125;;</span><br><span class="line"></span><br><span class="line">	int ret = select(sockfds[i]+1,&amp;rset,NULL,NULL,&amp;time);</span><br><span class="line"></span><br><span class="line">	if(ret &lt; 0)</span><br><span class="line">		exit_error(&quot;select error &quot;);</span><br><span class="line">	else	if(ret != 0 )</span><br><span class="line">					if(FD_ISSET(sockfds[i--],&amp;rset))</span><br><span class="line">					&#123;</span><br><span class="line">						recv_num++;</span><br><span class="line">					&#125;</span><br><span class="line">&#125;</span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">#ifdef NORMAL</span><br><span class="line">/* 若recvfrom()一直收不到回复,将一直堵塞,无超时处理*/</span><br><span class="line"></span><br><span class="line">		struct sockaddr_in recv_in;</span><br><span class="line">		socklen_t len = sizeof(recv_in);</span><br><span class="line">		int recvlen ;</span><br><span class="line">		if((recvlen =  recvfrom(sockfd,buf,BUFLEN,0,(struct sockaddr *)&amp;recv_in,&amp;len)) &lt;0 )</span><br><span class="line">			exit_error(&quot;recv error &quot;);</span><br><span class="line"></span><br><span class="line">		 //若收到的报文长度小于最大ip报文部长度,则受到的不是所需数据</span><br><span class="line">		if(recvlen &gt; MAXIPLEN)&#123;</span><br><span class="line">				struct ip *p_ip = (struct ip *)buf;</span><br><span class="line">				int iplen =p_ip-&gt;ip_hl &lt;&lt; 2;				//首部长度以4字节为单位</span><br><span class="line"></span><br><span class="line">				struct icmp * p = (struct icmp *)(buf+iplen);		//跳过ip首部</span><br><span class="line"></span><br><span class="line">				//若收到的报文标识号不是发送程序的pid或报文类型不是 reply则不是想要的报文</span><br><span class="line">				if(p-&gt;icmp_id == pid  &amp;&amp; p-&gt;icmp_type == ICMP_ECHOREPLY)&#123;</span><br><span class="line">					recv_num++;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		else</span><br><span class="line">			printf(&quot;bad packet\n&quot;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#else</span><br><span class="line">/*信号*/</span><br><span class="line"></span><br><span class="line">	//超过3秒后即退出</span><br><span class="line">	signal(SIGALRM, ping_stat);</span><br><span class="line">	alarm(3);															//默认不处理超时信号则退出整个程序</span><br><span class="line"></span><br><span class="line">	while(1 )&#123;</span><br><span class="line">		struct sockaddr_in recv_in;</span><br><span class="line">		socklen_t len = sizeof(recv_in);</span><br><span class="line">		int recvlen ;</span><br><span class="line">		if((recvlen =  recvfrom(sockfd,buf,BUFLEN,0,(struct sockaddr *)&amp;recv_in,&amp;len)) &lt;0 )</span><br><span class="line">			exit_error(&quot;recv error &quot;);</span><br><span class="line"></span><br><span class="line">		if(recvlen &gt; MAXIPLEN)&#123;</span><br><span class="line">			struct ip *p_ip = (struct ip *)buf;</span><br><span class="line">			int iplen =p_ip-&gt;ip_hl &lt;&lt; 2;</span><br><span class="line"></span><br><span class="line">			struct icmp * p = (struct icmp *)(buf+iplen);</span><br><span class="line"></span><br><span class="line">			if(p-&gt;icmp_id == pid  &amp;&amp; p-&gt;icmp_type == ICMP_ECHOREPLY)&#123;</span><br><span class="line">				recv_num++;</span><br><span class="line">				break;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	return ;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#endif</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/*	该函数功能有两个,一为程序状态显示,二为信号处理*/</span><br><span class="line">void ping_stat(int foo)</span><br><span class="line">&#123;</span><br><span class="line">    if(recv_num &gt; 0)&#123;</span><br><span class="line">		printf(&quot;%s is live\n&quot;,iplist);</span><br><span class="line">		exit(0);</span><br><span class="line">	&#125;else&#123;</span><br><span class="line">		printf(&quot;%s is dead\n&quot;,iplist);</span><br><span class="line">		exit(1);</span><br><span class="line">	&#125;</span><br><span class="line">        </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void exit_error(char *p)&#123;</span><br><span class="line">    perror(p);</span><br><span class="line">    exit(1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/c/" rel="tag"># c</a>
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+            <a href="/tags/计算机网络/" rel="tag"># 计算机网络</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/01/31/利用systemd添加开机自启服务/" rel="next" title="利用systemd添加开机自启服务">
+                <i class="fa fa-chevron-left"></i> 利用systemd添加开机自启服务
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">oneto1</p>
+              <p class="site-description motion-element" itemprop="description">你说是梦所以才痛   睡醒了再说</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ip报头格式"><span class="nav-number">1.</span> <span class="nav-text">ip报头格式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ICMP报头格式"><span class="nav-number">2.</span> <span class="nav-text">ICMP报头格式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#发送icmp报文"><span class="nav-number">3.</span> <span class="nav-text">发送icmp报文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#接受报文"><span class="nav-number">4.</span> <span class="nav-text">接受报文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#完整版"><span class="nav-number">5.</span> <span class="nav-text">完整版</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">oneto1</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
