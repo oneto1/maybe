@@ -90,7 +90,7 @@
 <meta property="og:image" content="http://yoursite.com/images/20200115=2.png">
 <meta property="og:image" content="http://yoursite.com/images/20200115=4.png">
 <meta property="og:image" content="http://yoursite.com/images/20200115=3.png">
-<meta property="og:updated_time" content="2020-01-29T14:09:06.710Z">
+<meta property="og:updated_time" content="2020-02-14T03:31:04.338Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UNIX下套接字学习">
 <meta name="twitter:image" content="http://yoursite.com/images/20200115=0.png">
@@ -406,7 +406,7 @@
 <hr>
 <h1 id="bind"><a href="#bind" class="headerlink" title="bind()"></a>bind()</h1><p>用于将地址和套接字描述符绑定<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> #include &lt;sys/socket.h&gt;</span><br><span class="line"></span><br><span class="line">       int bind(int sockfd, const struct sockaddr *addr,</span><br><span class="line">                socklen_t addrlen);</span><br><span class="line"></span><br><span class="line">失败返回-1</span><br></pre></td></tr></table></figure></p>
 <ul>
-<li>从定义看出该函数用的是sockaddr结构,从sockaddr和sockaddr_in定义可以发现,这两个结构其<br>实是等价的,sockaddr_in中的sin_port占两字节,sin_addr占4字节,sin_zero[8]为8字节,加起来刚<br>好等于14字节对应sockaddr的sa_data[14]</li>
+<li>从定义看出该函数用的是sockaddr结构,从sockaddr和sockaddr_in定义可以发现,这两个结构其实是等价的,sockaddr_in中的sin_port占两字节,sin_addr占4字节,sin_zero[8]为8字节,加起来刚好等于14字节对应sockaddr的sa_data[14]</li>
 <li>所以我们可以通过sockaddr_in方便访问地址的每一部分,最后需要sockaddr的时候再进行类型转换就够了</li>
 <li><p>当然数据都必须是网络字节顺序</p>
 </li>

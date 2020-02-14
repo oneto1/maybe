@@ -99,7 +99,7 @@
 <meta property="og:image" content="http://yoursite.com/images/20191103=9.png">
 <meta property="og:image" content="http://yoursite.com/images/20191103=10.png">
 <meta property="og:image" content="http://yoursite.com/images/20191103=11.png">
-<meta property="og:updated_time" content="2019-12-01T15:00:38.624Z">
+<meta property="og:updated_time" content="2020-02-14T04:03:21.033Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UNIX下文件系统学习">
 <meta name="twitter:image" content="http://yoursite.com/images/20191103=0.png">
@@ -381,7 +381,7 @@
 <p>这种设计方式将文件系统代码分为文件系统相关和文件系统不相关两部分<br>两部分之间的接口则为一组通用函数，文件系统无关部分调用这些函数来执行不同的文件操作和访问，相关部分代码则与文件系统类型相关，提供对每种函数的实现</p>
 <p><strong>vnode/vfs接口使用了面向对象的编程概念设计</strong></p>
 <ul>
-<li>一般而言，我们用基类来简单表示一个抽象类或定义一个接口，用派生类来实现器成员函数的实现。由此文件类可以创建一个creat()的成员函数，但是当用户调用这个函数来处理任何文件时，将基于文件类型来调用不同的函数。 而实际上，没有通用的可以创建任何文件的通用函数实现，这样的函数叫虚函数</li>
+<li>一般而言，我们用基类来简单表示一个抽象类或定义一个接口，用派生类来实现其成员函数的实现。由此文件类可以创建一个creat()的成员函数，但是当用户调用这个函数来处理任何文件时，将基于文件类型来调用不同的函数。 而实际上，没有通用的可以创建任何文件的通用函数实现，这样的函数叫虚函数</li>
 <li>由于基类针对该函数没有具体的实现，因此该基类不能被实例化。 它仅可以被提供该虚函数特定实现的派生子类使用，但它可以被子类重写该函数，就叫面向对象的重载</li>
 <li>所有对象是派生类的一个实例，但用户可以使用一个指向基类的指针来操作对象，不需要知道该对象属于哪个子类。当对象调用一个虚函数时，实现将基于对象的实际类型自动决定调用哪个具体的函数</li>
 </ul>
@@ -398,7 +398,7 @@
 <li>另一个数据域为v_op,其指向一个vnoideops结构，该结构包含一个vnode虚拟接口的函数实现集合</li>
 </ul>
 <blockquote>
-<p>v-data和v_op域在vnode被初始化时赋值，一般实在open或create系统调用过程中。当文件系统无关的代码调用任意一个vnode的虚函数时，把内核解除v_op指针的引用并调用对应文件系统的实现函数。比如VOP_CLOSE操作允许调用者关闭域vnode关联的文件，其宏定义为<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#define VOP_CLOSE(vp,...) (*((vp)-&gt;v_op-&gt;vop_close))(vp,...)</span><br></pre></td></tr></table></figure></p>
+<p>v-data和v_op域在vnode被初始化时赋值，一般是在open或create系统调用过程中。当文件系统无关的代码调用任意一个vnode的虚函数时，把内核解除v_op指针的引用并调用对应文件系统的实现函数。比如VOP_CLOSE操作允许调用者关闭域vnode关联的文件，其宏定义为<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#define VOP_CLOSE(vp,...) (*((vp)-&gt;v_op-&gt;vop_close))(vp,...)</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <hr>
 <p><img src="/images/20191103=3.png" alt></p>
