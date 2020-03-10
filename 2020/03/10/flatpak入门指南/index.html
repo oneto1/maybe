@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="正则,">
+  <meta name="keywords" content="工具,flatpak,gnome-builder,">
 
 
 
@@ -79,15 +79,17 @@
 
 
 
-<meta name="keywords" content="正则">
+<meta name="keywords" content="工具,flatpak,gnome-builder">
 <meta property="og:type" content="article">
-<meta property="og:title" content="学习正则表达式">
-<meta property="og:url" content="http://yoursite.com/2019/08/02/“正则表达式学习笔记”/index.html">
+<meta property="og:title" content="flatpak入门指南">
+<meta property="og:url" content="http://yoursite.com/2020/03/10/flatpak入门指南/index.html">
 <meta property="og:site_name" content="oneto1">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-06T02:15:33.743Z">
+<meta property="og:image" content="http://yoursite.com/images/20200310=0.png">
+<meta property="og:updated_time" content="2020-03-10T15:11:17.156Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="学习正则表达式">
+<meta name="twitter:title" content="flatpak入门指南">
+<meta name="twitter:image" content="http://yoursite.com/images/20200310=0.png">
 
 
 
@@ -117,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/08/02/“正则表达式学习笔记”/">
+  <link rel="canonical" href="http://yoursite.com/2020/03/10/flatpak入门指南/">
 
 
 
 
 
-  <title>学习正则表达式 | oneto1</title>
+  <title>flatpak入门指南 | oneto1</title>
   
 
 
@@ -260,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/02/“正则表达式学习笔记”/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/10/flatpak入门指南/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="oneto1">
@@ -277,7 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">学习正则表达式</h1>
+          <h1 class="post-title" itemprop="name headline">flatpak入门指南</h1>
         
 
         <div class="post-meta">
@@ -289,8 +291,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-02T17:12:23+08:00">
-                2019-08-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-10T21:48:18+08:00">
+                2020-03-10
               </time>
             
 
@@ -329,142 +331,39 @@
       
         <hr>
 <a id="more"></a>
-<p>对于正则表达式，对它的第一印象是躺在书架上的一本又老又厚的《正则表达式》</p>
-<p>不知怎的，竟对其报其畏敬之心，便心想终有一天要学学看</p>
-<p>殊不知,早在日常使用中早已用到正则，如 *通配符</p>
-<h2 id="什么是正则"><a href="#什么是正则" class="headerlink" title="什么是正则"></a>什么是正则</h2><p>正则表达式是一种特殊的字符串模式，用于匹配一组字符串，换句话说，正则表达式就是记录文本规则的代码。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[1-9]([0-9]&#123;5,11&#125;)</span><br><span class="line">用于匹配qq号</span><br></pre></td></tr></table></figure>
-<h2 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h2><p>正则表达式中使用的 14 个元字符分别有相应的特殊含义。如果你想将这些字符作为字面值使用，必须在该字符前加一个反斜线将其转义。例如，你可以像这样 \$ 将美元符转义，或像这样 \ 将反斜线转义。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">符号</th>
-<th style="text-align:center">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">.</td>
-<td style="text-align:center">匹配任意字符</td>
-</tr>
-<tr>
-<td style="text-align:center">\</td>
-<td style="text-align:center">对字符转义</td>
-</tr>
-<tr>
-<td style="text-align:center">I</td>
-<td style="text-align:center">选择操作（或）</td>
-</tr>
-<tr>
-<td style="text-align:center">^</td>
-<td style="text-align:center">行起始锚位符</td>
-</tr>
-<tr>
-<td style="text-align:center">$</td>
-<td style="text-align:center">行结束锚位符</td>
-</tr>
-<tr>
-<td style="text-align:center">?</td>
-<td style="text-align:center">匹配零次或一次的量词</td>
-</tr>
-<tr>
-<td style="text-align:center">*</td>
-<td style="text-align:center">匹配零次或多次的量词</td>
-</tr>
-<tr>
-<td style="text-align:center">+</td>
-<td style="text-align:center">匹配一次或多次的量词</td>
-</tr>
-<tr>
-<td style="text-align:center">[</td>
-<td style="text-align:center">字符组起始</td>
-</tr>
-<tr>
-<td style="text-align:center">]</td>
-<td style="text-align:center">字符组结束</td>
-</tr>
-<tr>
-<td style="text-align:center">{</td>
-<td style="text-align:center">量词或代码块起始</td>
-</tr>
-<tr>
-<td style="text-align:center">}</td>
-<td style="text-align:center">量词或代码块结束</td>
-</tr>
-<tr>
-<td style="text-align:center">(</td>
-<td style="text-align:center">分组起始</td>
-</tr>
-<tr>
-<td style="text-align:center">)</td>
-<td style="text-align:center">分组结束</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">其他常用</th>
-<th style="text-align:center">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">\w</td>
-<td style="text-align:center">匹配字母或数字或下划线或汉字</td>
-</tr>
-<tr>
-<td style="text-align:center">\s</td>
-<td style="text-align:center">匹配任意的空白符</td>
-</tr>
-<tr>
-<td style="text-align:center">\d</td>
-<td style="text-align:center">匹配数字</td>
-</tr>
-<tr>
-<td style="text-align:center">\b</td>
-<td style="text-align:center">匹配单词的开始或结束</td>
-</tr>
-<tr>
-<td style="text-align:center">\D</td>
-<td style="text-align:center">匹配除数字外的字符</td>
-</tr>
-<tr>
-<td style="text-align:center">{n}</td>
-<td style="text-align:center">n 是一个非负整数，匹配确定的 n 次</td>
-</tr>
-<tr>
-<td style="text-align:center">{n,}</td>
-<td style="text-align:center">至少匹配n 次</td>
-</tr>
-<tr>
-<td style="text-align:center">{n,m}</td>
-<td style="text-align:center">最少匹配 n 次且最多匹配 m 次</td>
-</tr>
-</tbody>
-</table>
-<h2 id="贪婪和懒惰"><a href="#贪婪和懒惰" class="headerlink" title="贪婪和懒惰"></a>贪婪和懒惰</h2><p>当正则表达式中包含能接受重复的限定符时，通常的行为是（在使整个表达式能得到匹配的前提下）匹配尽可能多的字符。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">以这个表达式为例：a.*b，它将会匹配最长的以a开</span><br><span class="line">始，以b结束的字符串。如果用它来搜索aabab的话，</span><br><span class="line">它会匹配整个字符串aabab。这被称为贪婪匹配。</span><br></pre></td></tr></table></figure></p>
-<p>有时，我们更需要懒惰匹配，也就是匹配尽可能少的字符。前面给出的限定符都可以被转化为懒惰匹配模式，只要在它后面加上一个问号?。这样.*?就意味着匹配任意数量的重复，但是在能使整个匹配成功的前提下使用最少的重复。</p>
-<p>*、+限定符都是贪婪的，因为它们会尽可能多的匹配文字，只有在它们的后面加上一个?就可以实现非贪婪或最小匹配。</p>
-<h2 id="环视"><a href="#环视" class="headerlink" title="环视"></a>环视</h2><p>环视是一种非捕获分组，它根据某个模式之前或之后的内容匹配其他模式。环视也称为零宽度断言。</p>
-<p>环视包括：</p>
+<p>之所以会用到<code>flatpak</code>主要是突然想学学GTK,刚好有个亲生的IDE<code>gnome-builder</code>,安装有点小坑</p>
+<h1 id="flatpak"><a href="#flatpak" class="headerlink" title="flatpak"></a>flatpak</h1><blockquote>
+<p><a href="https://docs.flatpak.org/en/latest/introduction.html" target="_blank" rel="noopener">Flatpak</a> is a framework for distributing desktop applications on Linux. It has been created by developers who have a long history of working on the Linux desktop, and is run as an independent open source project.</p>
+</blockquote>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>几个概念需要了解一下<br><img src="/images/20200310=0.png" alt></p>
 <ul>
-<li>正前瞻；(?=  这意味着要匹配某个模式时，需要在它后面找到含有给定前瞻模式的内容</li>
-<li>反前瞻；(?!  这意味着要匹配某个模式时，需要在它后面找不到含有给定前瞻模式的内容</li>
-<li>正后顾；(?&lt;= 这意味着要匹配某个模式时，需要在它前面找到含有给定后顾模式的内容 </li>
-<li>反后顾。(?&lt;! 这意味着要匹配某个模式时，需要在它前面找不到含有给定后顾模式的内容</li>
+<li>最底层的是我们的操作系统,往上是由不同的仓库所提供的runtime,也就是打包好的依赖项加上软件,这样就能做到安装即使用,不依赖具体的发行版,这个概念类似与<code>snap</code>和<code>.appimage</code>了</li>
+<li>仓库就类似与git里的远程仓库,自带版本控制,可自由升级降级</li>
+<li>对于安装的应用本身是运行在应用独占的沙盒里的,很好的做到了权限的分离,也用不着<code>sudo apt *</code>一把嗦了</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">比如\b\w+(?=ing\b)，匹配以ing结尾的单词的前面部分</span><br><span class="line">(除了ing以外的部分)，如查找I&apos;m singing while you&apos;</span><br><span class="line">re dancing.时，它会匹配sing和danc。</span><br><span class="line"></span><br><span class="line">比如(?&lt;=\bre)\w+\b会匹配以re开头的单词的后半部分</span><br><span class="line">(除了re以外的部分)，例如在查找reading a book时，</span><br><span class="line">它匹配ading。</span><br></pre></td></tr></table></figure>
-<h2 id="坑"><a href="#坑" class="headerlink" title="坑"></a>坑</h2><ul>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">^([\d]&#123;1,3&#125;.)&#123;3&#125;[\d]&#123;3&#125;$</span><br><span class="line">匹配是***.***.***.***  (*为数字)</span><br></pre></td></tr></table></figure>
-<p> 在正则中有子表达式的概念，用()表示，(){3}则表示将()里的匹配3次</p>
-</li>
-<li><p>[ ]用于区分不同表达式或表示字符组，如[1-9]</p>
-</li>
-<li><p>| 为元字符中或的意思</p>
-</li>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>在mint19.2 上已经自带安装了，但默认是不可用的<a href="https://flatpak.org/setup/" target="_blank" rel="noopener">setup</a></p>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><p>查看当前仓库情况<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flatpak remotes</span><br></pre></td></tr></table></figure></p>
+<p>添加一个新的仓库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>语法也与git相似,<code>flathub</code>为给仓库取的别名,后面接的是相应url</li>
+<li><code>--if-not-exists</code>防止重复添加相同的仓库</li>
 </ul>
-<h2 id="大礼包解析"><a href="#大礼包解析" class="headerlink" title="大礼包解析"></a>大礼包解析</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;dd&gt;.*?board-index.*?&gt;(\d+)&lt;/i&gt;.*?data-src=&quot;(.*?)&quot;.*?name&quot;&gt;&lt;a</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">1. 从&lt;dd&gt;开始最小匹配到board-index</span><br><span class="line">2. 再继续最小匹配到&gt;</span><br><span class="line">3. 然后匹配一个或多个数字到&lt;/i&gt;</span><br><span class="line">4. 最小匹配到data-src= &quot;最小匹配&quot;</span><br><span class="line">5. 最小匹配到name&quot;&gt;&lt;a</span><br></pre></td></tr></table></figure>
+<p>删除一个仓库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flatpak remote-delete flathub</span><br></pre></td></tr></table></figure></p>
+<p>搜索新的软件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flatpak search name</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>将会返回<code>Application ID</code>,<code>Version Branch</code>, <code>Remotes</code>, <code>Description</code>,依次是应用的id(后面安装的时候会用到),版本,仓库别名,描述</li>
+</ul>
+<p>安装卸载新的软件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">flatpak install flathub(仓库别名) Application ID</span><br><span class="line"></span><br><span class="line">flatpak uninstall Application ID</span><br></pre></td></tr></table></figure></p>
+<p>查看已安装软件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flatpak lists</span><br></pre></td></tr></table></figure></p>
+<p>更新软件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flatpak update</span><br></pre></td></tr></table></figure></p>
+<p>至此已经可以愉快的玩耍了</p>
+<h1 id="gnome-builder"><a href="#gnome-builder" class="headerlink" title="gnome-builder"></a>gnome-builder</h1><p>抱着多学知识<del>瞎折腾</del>的心态一开始选择了编译源码</p>
+<p>然后成功见识到meson和ninja这套跨平台编译工具<del>下篇见</del>,折腾了一晚上后最终倒在不知名错误上</p>
+<p>尝试自带软件源的gnome-builder又是个半残废,最后使用flatpak安装成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flatpak install flathub org.gnome.Builder</span><br></pre></td></tr></table></figure>
+<h3 id="解决不能使用暗间模式的问题"><a href="#解决不能使用暗间模式的问题" class="headerlink" title="解决不能使用暗间模式的问题"></a>解决不能使用暗间模式的问题</h3><p>由于是基于沙箱运行的程序,导致不能正确识别到自身主题控件,需要单独安装相应黑暗主题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 查看主题</span><br><span class="line">neofetch | grep Theme</span><br><span class="line"></span><br><span class="line"># 搜索主题</span><br><span class="line">flatpak search name</span><br><span class="line"></span><br><span class="line"># 安装</span><br><span class="line">flatpak install * *</span><br></pre></td></tr></table></figure>
+<p>此时黑暗主题可用</p>
 
       
     </div>
@@ -482,7 +381,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/正则/" rel="tag"># 正则</a>
+            <a href="/tags/工具/" rel="tag"># 工具</a>
+          
+            <a href="/tags/flatpak/" rel="tag"># flatpak</a>
+          
+            <a href="/tags/gnome-builder/" rel="tag"># gnome-builder</a>
           
         </div>
       
@@ -495,8 +398,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/01/python-爬虫学习笔记-1/" rel="next" title="python 爬虫学习笔记(1)">
-                <i class="fa fa-chevron-left"></i> python 爬虫学习笔记(1)
+              <a href="/2020/03/07/关于c语言中一些疑难点的复习/" rel="next" title="关于c语言中一些疑难点的复习">
+                <i class="fa fa-chevron-left"></i> 关于c语言中一些疑难点的复习
               </a>
             
           </div>
@@ -504,10 +407,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/08/10/python-爬虫学习笔记-2/" rel="prev" title="python-爬虫学习笔记(2)">
-                python-爬虫学习笔记(2) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -639,7 +538,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是正则"><span class="nav-number">1.</span> <span class="nav-text">什么是正则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#元字符"><span class="nav-number">2.</span> <span class="nav-text">元字符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#贪婪和懒惰"><span class="nav-number">3.</span> <span class="nav-text">贪婪和懒惰</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环视"><span class="nav-number">4.</span> <span class="nav-text">环视</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#坑"><span class="nav-number">5.</span> <span class="nav-text">坑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大礼包解析"><span class="nav-number">6.</span> <span class="nav-text">大礼包解析</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#flatpak"><span class="nav-number">1.</span> <span class="nav-text">flatpak</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.0.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">1.0.2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用命令"><span class="nav-number">1.0.3.</span> <span class="nav-text">常用命令</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#gnome-builder"><span class="nav-number">2.</span> <span class="nav-text">gnome-builder</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决不能使用暗间模式的问题"><span class="nav-number">2.0.1.</span> <span class="nav-text">解决不能使用暗间模式的问题</span></a></li></ol></li></div>
             
 
           </div>
