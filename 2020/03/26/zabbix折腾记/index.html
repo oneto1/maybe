@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="工具,zabbix,监控,">
+
+
+
+
+
+
+
+
+
+
+<meta name="keywords" content="工具,zabbix,监控">
+<meta property="og:type" content="article">
+<meta property="og:title" content="zabbix折腾记-安装篇">
+<meta property="og:url" content="http://yoursite.com/2020/03/26/zabbix折腾记/index.html">
+<meta property="og:site_name" content="oneto1">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/images/20200326=0.png">
+<meta property="og:image" content="http://yoursite.com/images/20200326=1.png">
+<meta property="og:updated_time" content="2020-03-27T06:08:44.934Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="zabbix折腾记-安装篇">
+<meta name="twitter:image" content="http://yoursite.com/images/20200326=0.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/03/26/zabbix折腾记/">
+
+
+
+
+
+  <title>zabbix折腾记-安装篇 | oneto1</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">oneto1</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-坑">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            坑
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/26/zabbix折腾记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="oneto1">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="oneto1">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">zabbix折腾记-安装篇</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-26T20:51:08+08:00">
+                2020-03-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<a id="more"></a>
+<h1 id="源码安装"><a href="#源码安装" class="headerlink" title="源码安装"></a>源码安装</h1><p>要想服务跑起来看得见,就得安装自身服务端,MySQL,前端</p>
+<h3 id="服务端安装"><a href="#服务端安装" class="headerlink" title="服务端安装"></a>服务端安装</h3><p><a href="https://www.zabbix.com/documentation/current/manual/installation/install" target="_blank" rel="noopener">添加用户组</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">addgroup --system --quiet zabbix</span><br><span class="line">adduser --quiet --system --disabled-login --ingroup zabbix --home /var/lib/zabbix --no-create-home zabbix</span><br></pre></td></tr></table></figure></p>
+<p><a href="https://www.zabbix.com/cn/download_sources#tab:40LTS" target="_blank" rel="noopener">下载地址</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 查看编译的一些功能选项</span><br><span class="line">./configure --help</span><br><span class="line"></span><br><span class="line">./configure --prefix=/usr/local/zabbix --enable-server --enable-agent --enable-java </span><br><span class="line">--with-mysql --with-libxml2 --with-unixodbc --with-net-snmp --with-ssh2  --with-libcurl --with-iconv</span><br><span class="line"></span><br><span class="line">make install</span><br></pre></td></tr></table></figure></p>
+<h5 id="依赖问题"><a href="#依赖问题" class="headerlink" title="依赖问题"></a>依赖问题</h5><ul>
+<li>MySQL library not found <code>sudo apt install libmysqlclient-dev</code></li>
+<li>unixODBC <code>sudo apt install unixodbc-dev</code></li>
+<li>configure error: Invalid Net-SNMP directory - unable to find net-snmp-config <code>sudo apt install libsnmp-dev</code></li>
+<li>error: SSH2 library not found  <code>sudo apt install libssh2-1-dev</code></li>
+<li>Unable to find “javac” executable in path <code>sudo apt install openjdk-11-jdk</code></li>
+</ul>
+<p>经过大量搜索貌似找到了解决依赖的一个好办法</p>
+<ul>
+<li><code>apt search &#39;*软件名*&#39;</code></li>
+<li>一般安装那个带<code>-dev</code>的就OK了 </li>
+</ul>
+<h3 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h3><p>不知道为什么自带软件源安装的mysql、httpd、nginx都用不了，可能是因为用着ubuntu的源，而issue里写的是mint没直接写上基于ubuntu了 ┑(￣Д ￣)┍</p>
+<p>这里还是直接用了docker<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -id -name mysql -p3306:3306 -e  MYSQL_ROOT_PASSWORD=111111 mysql</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>不加MYSQL_ROOT_PASSWORD=111111 的话容器都不会开启</li>
+</ul>
+<p><a href="https://www.zabbix.com/documentation/current/manual/appendix/install/db_scripts" target="_blank" rel="noopener">创建数据库</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">shell&gt; mysql -uroot -p&lt;password&gt;</span><br><span class="line">mysql&gt; create database zabbix character set utf8 collate utf8_bin;</span><br><span class="line"></span><br><span class="line">mysql&gt; create user &apos;zabbix&apos;@&apos;%&apos; identified by &apos;&lt;password&gt;&apos;;</span><br><span class="line">mysql&gt; grant all privileges on *.* to &apos;zabbix&apos;@&apos;%&apos;;#需要加上这条授权参考下面第一个错误</span><br><span class="line"></span><br><span class="line">shell&gt; cd database/mysql</span><br><span class="line">shell&gt; mysql -uzabbix -p&lt;password&gt; zabbix &lt; schema.sql</span><br><span class="line"># stop here if you are creating database for Zabbix proxy</span><br><span class="line">shell&gt; mysql -uzabbix -p&lt;password&gt; zabbix &lt; images.sql</span><br><span class="line">shell&gt; mysql -uzabbix -p&lt;password&gt; zabbix &lt; data.sql</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><a href="https://www.cnblogs.com/B1ackWall/p/11643136.html" target="_blank" rel="noopener">ERROR 1410 (42000): You are not allowed to create a user with GRANT</a></li>
+</ul>
+<ul>
+<li><a href="https://stackoverflow.com/questions/10299148/mysql-error-1045-28000-access-denied-for-user-billlocalhost-using-passw" target="_blank" rel="noopener">MySQL ERROR 1045 (28000): Access denied for user ‘bill‘@’localhost’ (using password: YES)</a></li>
+</ul>
+<ul>
+<li>[Error connecting to database: The server requested authentication method unknow]<br>(<a href="https://learnku.com/articles/10736/some-craters-in-mysql-8011" target="_blank" rel="noopener">https://learnku.com/articles/10736/some-craters-in-mysql-8011</a>)</li>
+</ul>
+<h2 id="php"><a href="#php" class="headerlink" title="php"></a>php</h2><p>前端拿php写的,故需要安装php<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install php7.2-fpm</span><br></pre></td></tr></table></figure></p>
+<p>需要修改默认配置文件以满足zabbix需求<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/php/7.2/fpm/php.ini </span><br><span class="line"></span><br><span class="line">max_execution_time = 300 ##368行（执行时间）</span><br><span class="line">max_input_time = 300 ##378行（接收数据等待时间）</span><br><span class="line">memory_limit = 128M ##389行（每个脚本占用内存）</span><br><span class="line">post_max_size = 16M ##656行（POST数据大小）</span><br><span class="line">upload_max_filesize = 2M ##799行（下载文件大小）</span><br><span class="line">always_populate_raw_post_data = -1 ##800行</span><br><span class="line">date.timezone = Asia/Shanghai ##877行（时区</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>不改的话,后面也不会成功</li>
+</ul>
+<h2 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h2><p><a href="http://nginx.org/en/download.html" target="_blank" rel="noopener">下载</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./configure</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<ul>
+<li><del>配置不太熟还需仔细研究</del></li>
+</ul>
+<p>遇到的一个错误<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[error] 16119#0: *75 FastCGI sent in stderr: &quot;Primary script unknown&quot; </span><br><span class="line">while reading response header from upstream, client: 127.0.0.1, server: localhost, request:</span><br><span class="line"> &quot;GET / HTTP/1.1&quot;, upstream: &quot;fastcgi://unix:/run/php/php7.2-fpm.sock:&quot;, host: &quot;127.0.0.1&quot;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>参考<a href="https://serverfault.com/questions/517190/nginx-1-fastcgi-sent-in-stderr-primary-script-unknown" target="_blank" rel="noopener">这里</a> . 犯了两个错误 :</li>
+</ul>
+<ol>
+<li><code>/etc/php/7.2/fpm/pool.d/www.conf</code>   里设置的用户名和用户组与ngnix运行的不一致</li>
+<li>复制php前端文件时用的是root</li>
+</ol>
+<p>附上简单丑陋的配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">     listen       80;</span><br><span class="line">     server_name  localhost;</span><br><span class="line">     index index.php;</span><br><span class="line">     root /var/www/php/;</span><br><span class="line"></span><br><span class="line">     location ~* \.php$ &#123;</span><br><span class="line">         include fastcgi_params;</span><br><span class="line">         fastcgi_index  index.php;</span><br><span class="line">                     include      fastcgi_params;</span><br><span class="line">         set $path_info &quot;&quot;; </span><br><span class="line">         set $real_script_name $fastcgi_script_name;</span><br><span class="line">         if ($fastcgi_script_name ~ &quot;^(.+?\.php)(/.+)$&quot;) &#123;</span><br><span class="line">                 set $real_script_name $1; </span><br><span class="line">                 set $path_info $2; </span><br><span class="line">         &#125;</span><br><span class="line">         fastcgi_param SCRIPT_FILENAME /var/www/php/$real_script_name;</span><br><span class="line">         fastcgi_param SCRIPT_NAME $real_script_name;</span><br><span class="line">         fastcgi_param PATH_INFO $path_info;</span><br><span class="line"></span><br><span class="line">         //这里默认是127.0.0.1:9000;</span><br><span class="line">         //需要到/etc/php/7.2/fpm/pool.d/www.conf查看监听的地址</span><br><span class="line">         fastcgi_pass unix:/run/php/php7.2-fpm.sock;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>查看error日志可以快速定位问题</li>
+</ul>
+<h1 id="docker-install"><a href="#docker-install" class="headerlink" title="docker install"></a>docker install</h1><p><a href="https://www.zabbix.com/documentation/current/manual/installation/containers" target="_blank" rel="noopener">源自这里</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># docker run --name zabbix-appliance -t \</span><br><span class="line">      -p 10051:10051 \</span><br><span class="line">      -p 80:80 \</span><br><span class="line">      --restart unless-stopped \</span><br><span class="line">      -d zabbix/zabbix-appliance:latest</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>开箱可用,十分方便</li>
+</ul>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>都安装好之后,需要检查/etc/zabbix/zabbix_server.conf里的数据库账号名密码地址是否正确</p>
+<p>需要检查/etc/zabbix/zabbix_agent.conf里server名字地址是否正确</p>
+<p>真香<img src="/images/20200326=0.png" alt></p>
+<p>太香了<img src="/images/20200326=1.png" alt></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/工具/" rel="tag"># 工具</a>
+          
+            <a href="/tags/zabbix/" rel="tag"># zabbix</a>
+          
+            <a href="/tags/监控/" rel="tag"># 监控</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/10/flatpak入门指南/" rel="next" title="flatpak入门指南">
+                <i class="fa fa-chevron-left"></i> flatpak入门指南
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/04/01/linux-命令杂记/" rel="prev" title="linux 命令杂记">
+                linux 命令杂记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">oneto1</p>
+              <p class="site-description motion-element" itemprop="description">你说是梦所以才痛   睡醒了再说</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#源码安装"><span class="nav-number">1.</span> <span class="nav-text">源码安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务端安装"><span class="nav-number">1.0.1.</span> <span class="nav-text">服务端安装</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#依赖问题"><span class="nav-number">1.0.1.0.1.</span> <span class="nav-text">依赖问题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql"><span class="nav-number">1.0.2.</span> <span class="nav-text">mysql</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#php"><span class="nav-number">1.1.</span> <span class="nav-text">php</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nginx"><span class="nav-number">1.2.</span> <span class="nav-text">nginx</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#docker-install"><span class="nav-number">2.</span> <span class="nav-text">docker install</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最后"><span class="nav-number">3.</span> <span class="nav-text">最后</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">oneto1</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
