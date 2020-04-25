@@ -88,7 +88,7 @@
 <meta property="og:image" content="http://yoursite.com/images/20190922=0.png">
 <meta property="og:image" content="http://yoursite.com/images/20190922=1.png">
 <meta property="og:image" content="http://yoursite.com/images/20190922=2.png">
-<meta property="og:updated_time" content="2020-02-02T07:14:58.000Z">
+<meta property="og:updated_time" content="2020-04-25T02:22:04.661Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UNIX下文件I&#x2F;O学习">
 <meta name="twitter:image" content="http://yoursite.com/images/20190922=0.png">
@@ -101,7 +101,7 @@
     root: '/',
     scheme: 'Pisces',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -132,6 +132,15 @@
 
 
 
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', '[object Object]', 'auto');
+  ga('send', 'pageview');
+</script>
 
 
 
@@ -202,16 +211,6 @@
         </li>
       
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
-            
-            分类
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -233,9 +232,41 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
   
 </nav>
 
@@ -371,7 +402,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="open"><a href="#open" class="headerlink" title="open()"></a>open()</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#include&quot;fcntl.h&quot;</span><br><span class="line"></span><br><span class="line">int open(const char *__file, int __oflag, ...)</span><br><span class="line"></span><br><span class="line">成功返回文件描述符，失败返回-1</span><br></pre></td></tr></table></figure>
+<h3 id="open"><a href="#open" class="headerlink" title="open()"></a>open()</h3><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">"fcntl.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> <span class="built_in">open</span>(<span class="keyword">const</span> <span class="keyword">char</span> *__file, <span class="keyword">int</span> __oflag, ...)</span><br><span class="line"></span><br><span class="line">成功返回文件描述符，失败返回<span class="number">-1</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>常用flag<br>  O_RDONLY只读模式<br>  O_WRONLY只写模式<br>  O_RDWR读写模式<br>  O_APPEND每次写操作都写入文件的末尾<br>  O_CREAT如果指定文件不存在，则创建这个文件<br>  O_EXCL如果要创建的文件已存在，则返回-1，并且修改errno的值<br>  O_TRUNC如果文件存在，以只写/读写方式打开，并清空文件全部内容(即将其长度截短为0)</p>
 </li>
@@ -379,18 +410,18 @@
 </li>
 <li>open返回的文件描述符一定是最小的未被使用的描述符</li>
 </ul>
-<h3 id="craet"><a href="#craet" class="headerlink" title="craet()"></a>craet()</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int creat(const char *__file, mode_t __mode)</span><br><span class="line"></span><br><span class="line">成功返回!!只写!!的文件描述符，失败返回-1</span><br></pre></td></tr></table></figure>
+<h3 id="craet"><a href="#craet" class="headerlink" title="craet()"></a>craet()</h3><figure class="highlight erlang-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int creat(const char *__file, mode_t __mode)</span><br><span class="line"></span><br><span class="line">成功返回!!只写!!的文件描述符，失败返回-<span class="number">1</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>等效于open(path,O_WRONLY|O_CREAT|O_TRUNK,node)</li>
 </ul>
-<h3 id="close"><a href="#close" class="headerlink" title="close()"></a>close()</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#include&quot;unistd.h&quot;</span><br><span class="line"></span><br><span class="line">int close(int fd)</span><br><span class="line"></span><br><span class="line">成功返回0，失败返回-1</span><br></pre></td></tr></table></figure>
+<h3 id="close"><a href="#close" class="headerlink" title="close()"></a>close()</h3><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">"unistd.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> <span class="built_in">close</span>(<span class="keyword">int</span> fd)</span><br><span class="line"></span><br><span class="line">成功返回<span class="number">0</span>，失败返回<span class="number">-1</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>当进程关闭时，内核会自动关闭打开的文件，即不需要调用close()</li>
 </ul>
-<h3 id="write"><a href="#write" class="headerlink" title="write()"></a>write()</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssize_t write(int __fd, const void *__buf, size_t __n)</span><br><span class="line"></span><br><span class="line">成功返回写入的字节数,失败返回-1</span><br></pre></td></tr></table></figure>
-<h3 id="read"><a href="#read" class="headerlink" title="read()"></a>read()</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#include&quot;unistd.h&quot;</span><br><span class="line"></span><br><span class="line">ssize_t read(int __fd, void *__buf, size_t __nbytes)</span><br><span class="line"></span><br><span class="line">成功返回读到的字节数，到文件尾返回0，失败返回-1</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">#include&quot;fcntl.h&quot;</span><br><span class="line">#include&quot;stdio.h&quot;</span><br><span class="line">#include&quot;unistd.h&quot;</span><br><span class="line">#include&quot;stdlib.h&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int main(int argc, char const *argv[])</span><br><span class="line">&#123;</span><br><span class="line">    char buf[6]=&quot;123456&quot;;</span><br><span class="line">    void *Rbuf=malloc(10);</span><br><span class="line">    int pi;</span><br><span class="line">    </span><br><span class="line">    //创建文件并写入字符串</span><br><span class="line">    //creat()返回的文件描述符是只写的     </span><br><span class="line">    if(write(creat(&quot;test&quot;,S_IRWXU),buf,6)==-1)</span><br><span class="line">        printf(&quot;write error!&quot;);</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        printf(&quot;write success!\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    //获得文件描述符</span><br><span class="line">    pi=open(&quot;test&quot;,O_RDONLY);</span><br><span class="line">    </span><br><span class="line">    //读并打印</span><br><span class="line">    if(read(pi,Rbuf,sizeof(buf))!=-1)</span><br><span class="line">        printf(&quot;read : %s&quot;,Rbuf);</span><br><span class="line">    else </span><br><span class="line">        printf(&quot;read error!&quot;);</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&gt; write success!</span><br><span class="line">  read : 123456</span><br></pre></td></tr></table></figure>
-<h3 id="lseek"><a href="#lseek" class="headerlink" title="lseek()"></a>lseek()</h3><p>通常文件读写从当前文件偏移量开始，并使偏移量增加所读写量<br>默认情况下偏移量被设为0，除了O_APPEND追加模式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#include&quot;unistd.h&quot;</span><br><span class="line"></span><br><span class="line">__off_t lseek(int __fd, __off_t __offset, int __whence)</span><br><span class="line"></span><br><span class="line">成功返回新的偏移量,失败返回-1</span><br></pre></td></tr></table></figure></p>
+<h3 id="write"><a href="#write" class="headerlink" title="write()"></a>write()</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ssize_t</span> write(<span class="keyword">int</span> __fd, <span class="keyword">const</span> <span class="keyword">void</span> *__buf, <span class="keyword">size_t</span> __n)</span><br><span class="line"></span><br><span class="line">成功返回写入的字节数,失败返回<span class="number">-1</span></span><br></pre></td></tr></table></figure>
+<h3 id="read"><a href="#read" class="headerlink" title="read()"></a>read()</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">"unistd.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">ssize_t</span> read(<span class="keyword">int</span> __fd, <span class="keyword">void</span> *__buf, <span class="keyword">size_t</span> __nbytes)</span><br><span class="line"></span><br><span class="line">成功返回读到的字节数，到文件尾返回<span class="number">0</span>，失败返回<span class="number">-1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">"fcntl.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">"stdio.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">"unistd.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">"stdlib.h"</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> buf[<span class="number">6</span>]=<span class="string">"123456"</span>;</span><br><span class="line">    <span class="keyword">void</span> *Rbuf=<span class="built_in">malloc</span>(<span class="number">10</span>);</span><br><span class="line">    <span class="keyword">int</span> pi;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//创建文件并写入字符串</span></span><br><span class="line">    <span class="comment">//creat()返回的文件描述符是只写的     </span></span><br><span class="line">    <span class="keyword">if</span>(write(creat(<span class="string">"test"</span>,S_IRWXU),buf,<span class="number">6</span>)==<span class="number">-1</span>)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"write error!"</span>);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"write success!\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//获得文件描述符</span></span><br><span class="line">    pi=open(<span class="string">"test"</span>,O_RDONLY);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//读并打印</span></span><br><span class="line">    <span class="keyword">if</span>(read(pi,Rbuf,<span class="keyword">sizeof</span>(buf))!=<span class="number">-1</span>)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"read : %s"</span>,Rbuf);</span><br><span class="line">    <span class="keyword">else</span> </span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"read error!"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&gt; write success!</span><br><span class="line">  read : <span class="number">123456</span></span><br></pre></td></tr></table></figure>
+<h3 id="lseek"><a href="#lseek" class="headerlink" title="lseek()"></a>lseek()</h3><p>通常文件读写从当前文件偏移量开始，并使偏移量增加所读写量<br>默认情况下偏移量被设为0，除了O_APPEND追加模式<br><figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">"unistd.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="variable">__off_t</span> lseek(int <span class="variable">__fd</span>, <span class="variable">__off_t</span> <span class="variable">__offset</span>, int <span class="variable">__whence</span>)</span><br><span class="line"></span><br><span class="line">成功返回新的偏移量,失败返回-<span class="number">1</span></span><br></pre></td></tr></table></figure></p>
 <table>
 <thead>
 <tr>
@@ -434,13 +465,13 @@
 </ul>
 </li>
 </ol>
-<h3 id="dup-dup2"><a href="#dup-dup2" class="headerlink" title="dup() dup2()"></a>dup() dup2()</h3><p>用于复制文件描述符<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#include&quot;unistd.h&quot;</span><br><span class="line"></span><br><span class="line">int dup(int __fd)</span><br><span class="line"></span><br><span class="line">int dup2(int __fd, int __fd2)</span><br></pre></td></tr></table></figure></p>
+<h3 id="dup-dup2"><a href="#dup-dup2" class="headerlink" title="dup() dup2()"></a>dup() dup2()</h3><p>用于复制文件描述符<br><figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="string">"unistd.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> dup(<span class="built_in">int</span> __fd)</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> dup2(<span class="built_in">int</span> __fd, <span class="built_in">int</span> __fd2)</span><br></pre></td></tr></table></figure></p>
 <ul>
 <li>文件描述符0、1、2默认由shell打开，dup(1)得到的是立即可用的最小描述符即3</li>
 <li>dup2() 中fd2用于指定新的文件描述符,若fd等于fd2，则返回fd2</li>
 <li>dup2()是一个原子操作，不会出现任务进行中进程切换导致前后状态不一致</li>
 </ul>
-<h3 id="sync"><a href="#sync" class="headerlink" title="sync()"></a>sync()</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#include&quot;unistd.h&quot;</span><br><span class="line"></span><br><span class="line">int sync(void)</span><br><span class="line"></span><br><span class="line">int fsync(int __fd)</span><br><span class="line"></span><br><span class="line">int fdatesync(int __fd)</span><br></pre></td></tr></table></figure>
+<h3 id="sync"><a href="#sync" class="headerlink" title="sync()"></a>sync()</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">"unistd.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sync</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fsync</span><span class="params">(<span class="keyword">int</span> __fd)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fdatesync</span><span class="params">(<span class="keyword">int</span> __fd)</span></span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>sync()将修改过的块缓存区排入写队列，然后返回，不等待实际磁盘I/O结束</li>
 <li>fsync()指定文件作用，等待实际磁盘I/O结束才返回</li>
@@ -465,7 +496,7 @@
 <ul>
 <li>shell从左到右执行</li>
 <li>2 指向 1，于是stdout有了输出，然后 1 指向 outfile ，这时的1由于编译失败是没有的，所以outfile为空</li>
-<li>gcc test.c &gt;outlfile 2&gt;&amp;1  可简写为<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gcc test.c &amp;&gt;outlfile    </span><br><span class="line"></span><br><span class="line">gcc test.c &gt;&amp;outlfile</span><br></pre></td></tr></table></figure>
+<li>gcc test.c &gt;outlfile 2&gt;&amp;1  可简写为<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gcc test<span class="selector-class">.c</span> &amp;&gt;outlfile    </span><br><span class="line"></span><br><span class="line">gcc test<span class="selector-class">.c</span> &gt;&amp;outlfile</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <hr>
@@ -590,7 +621,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">49</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -654,6 +685,11 @@
       
 
       
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
 
     </div>
   </aside>
@@ -665,7 +701,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -697,11 +733,6 @@
     </footer>
 
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
 
     
 
@@ -725,8 +756,6 @@
 
   
 
-
-  
 
 
 
@@ -766,11 +795,6 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 
@@ -840,6 +864,323 @@
 
 
   
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
 
 
 

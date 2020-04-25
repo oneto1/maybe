@@ -85,7 +85,7 @@
 <meta property="og:url" content="http://yoursite.com/2019/08/01/python-爬虫学习笔记-1/index.html">
 <meta property="og:site_name" content="oneto1">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-20T03:23:39.000Z">
+<meta property="og:updated_time" content="2020-04-25T02:22:04.664Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python 爬虫学习笔记(1)">
 
@@ -97,7 +97,7 @@
     root: '/',
     scheme: 'Pisces',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -128,6 +128,15 @@
 
 
 
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', '[object Object]', 'auto');
+  ga('send', 'pageview');
+</script>
 
 
 
@@ -198,16 +207,6 @@
         </li>
       
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
-            
-            分类
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -229,9 +228,41 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
   
 </nav>
 
@@ -330,9 +361,9 @@
         <hr>
 <a id="more"></a>
 <p>看到的一个较简明的关于类属性方法的说明</p>
-<p>比如我们定义所有的猫为一类那么我们就有了代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class 猫&#123;</span><br><span class="line">      颜色</span><br><span class="line">      品种</span><br><span class="line">      ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>然后，我们想获得一只猫来养那么需要一句代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">猫 小白 = new 猫（）；</span><br></pre></td></tr></table></figure></p>
-<p>我们养的猫肯定有颜色和花纹之分，比如雪白：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">小白.颜色 = 白；</span><br></pre></td></tr></table></figure></p>
+<p>比如我们定义所有的猫为一类那么我们就有了代码<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> 猫</span>&#123;</span><br><span class="line">      颜色</span><br><span class="line">      品种</span><br><span class="line">      ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后，我们想获得一只猫来养那么需要一句代码：<br><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">猫 小白 = <span class="keyword">new</span> <span class="type"></span>猫（）；</span><br></pre></td></tr></table></figure></p>
+<p>我们养的猫肯定有颜色和花纹之分，比如雪白：<br><figure class="highlight fix"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">小白.颜色 </span>=<span class="string"> 白；</span></span><br></pre></td></tr></table></figure></p>
 <p>刚养的猫一般都怕生且爱叫唤：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">小白.叫（）；</span><br></pre></td></tr></table></figure></p>
 <p><strong>上面的 猫就是类 小白是猫这个类的实例也叫对象 小白的颜色就是属性 而叫（）就是猫的方法</strong></p>
 <blockquote>
@@ -340,51 +371,51 @@
 </blockquote>
 <hr>
 <h1 id="urllib的使用"><a href="#urllib的使用" class="headerlink" title="urllib的使用"></a>urllib的使用</h1><h3 id="request"><a href="#request" class="headerlink" title="request"></a>request</h3><p>提供了最基本的http请求方法，利用它可以模拟浏览器的一个请求发起过程</p>
-<h5 id="1-urlopen"><a href="#1-urlopen" class="headerlink" title="1.urlopen()"></a>1.urlopen()</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">urlopen(url, data=None, timeout)</span><br></pre></td></tr></table></figure>
-<h6 id="url"><a href="#url" class="headerlink" title="url"></a>url</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request</span><br><span class="line"></span><br><span class="line">a=urllib.request.urlopen(&quot;http://www.python.org&quot;)</span><br><span class="line">print(type(a)) #输出类型</span><br><span class="line">print(a.read().decode(&quot;utf-8&quot;))   #其网页源代码</span><br><span class="line">print(a.status) # 返回结果的代码</span><br><span class="line">print(a.getheaders) #返回请求头部</span><br><span class="line">print(a.getheader(&apos;Date&apos;)) #返回请求的时间</span><br><span class="line">print(a.__dir__()) #通过 __dir__ 查看当前实例的所有的方法和属性。</span><br></pre></td></tr></table></figure>
-<h6 id="data"><a href="#data" class="headerlink" title="data"></a>data</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request</span><br><span class="line">import urllib.parse</span><br><span class="line"></span><br><span class="line">data=bytes(urllib.parse.urlencode(&#123;&quot;hi&quot;:&quot;hi&quot;&#125;),encoding=&apos;utf-8&apos;)</span><br><span class="line">a=urllib.request.urlopen(&quot;http://www.httpbin.org/post&quot;,data=data)</span><br><span class="line">print(a.read())</span><br></pre></td></tr></table></figure>
+<h5 id="1-urlopen"><a href="#1-urlopen" class="headerlink" title="1.urlopen()"></a>1.urlopen()</h5><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">urlopen</span><span class="params">(url, data=None, timeout)</span></span></span><br></pre></td></tr></table></figure>
+<h6 id="url"><a href="#url" class="headerlink" title="url"></a>url</h6><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request</span><br><span class="line"></span><br><span class="line">a=urllib.request.<span class="built_in">urlopen</span>(<span class="string">"http://www.python.org"</span>)</span><br><span class="line"><span class="keyword">print</span>(<span class="built_in">type</span>(a)) <span class="meta">#输出类型</span></span><br><span class="line"><span class="keyword">print</span>(a.<span class="built_in">read</span>().<span class="built_in">decode</span>(<span class="string">"utf-8"</span>))   <span class="meta">#其网页源代码</span></span><br><span class="line"><span class="keyword">print</span>(a.status) <span class="meta"># 返回结果的代码</span></span><br><span class="line"><span class="keyword">print</span>(a.getheaders) <span class="meta">#返回请求头部</span></span><br><span class="line"><span class="keyword">print</span>(a.<span class="built_in">getheader</span>('<span class="built_in">Date</span>')) <span class="meta">#返回请求的时间</span></span><br><span class="line"><span class="keyword">print</span>(a.<span class="built_in">__dir__</span>()) <span class="meta">#通过 __dir__ 查看当前实例的所有的方法和属性。</span></span><br></pre></td></tr></table></figure>
+<h6 id="data"><a href="#data" class="headerlink" title="data"></a>data</h6><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request</span><br><span class="line">import urllib.parse</span><br><span class="line"></span><br><span class="line">data=bytes(urllib<span class="selector-class">.parse</span><span class="selector-class">.urlencode</span>(&#123;<span class="string">"hi"</span>:<span class="string">"hi"</span>&#125;),encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">a=urllib<span class="selector-class">.request</span><span class="selector-class">.urlopen</span>(<span class="string">"http://www.httpbin.org/post"</span>,data=data)</span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(a.read()</span></span>)</span><br></pre></td></tr></table></figure>
 <h6 id="timeout"><a href="#timeout" class="headerlink" title="timeout"></a>timeout</h6><p>用于设置超时时间，超过则抛出异常</p>
-<h5 id="2-Ruquest"><a href="#2-Ruquest" class="headerlink" title="2.Ruquest"></a>2.Ruquest</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Request(self, url, data=None, headers=&#123;&#125;,</span><br><span class="line">origin_req_host=None, unverifiable=False,method=None)</span><br></pre></td></tr></table></figure>
-<p>从定义可见Ruquest又比openurl强大，使用方法同上,<strong>传data时必须将str转化为bytes</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request,urllib.parse</span><br><span class="line"></span><br><span class="line">data_str=&#123;</span><br><span class="line">    &apos;123&apos;:&apos;123&apos;</span><br><span class="line">&#125;</span><br><span class="line">data=bytes(urllib.parse.encode(data_str),encoding=&apos;utf-8&apos;)</span><br><span class="line">url= &quot;http://www.httpbin.org/post&quot;</span><br><span class="line">headers= &#123;</span><br><span class="line">    &apos;User-Agent&apos;: &apos;Mozilla/5.0 (Windows NT 6.1; WOW64; rv:33.0) Gecko/20120101 Firefox/33.0&apos;,</span><br><span class="line">    &apos;Host&apos;: &apos;httpbin.org&apos;</span><br><span class="line">&#125;</span><br><span class="line">method= &apos;POST&apos;</span><br><span class="line">b=urllib.request.Request(url=url,data=data,headers=headers,method=method)</span><br><span class="line">response=urllib.request.urlopen(b)</span><br><span class="line">print(response.read().decode(&apos;utf-8&apos;))</span><br></pre></td></tr></table></figure></p>
+<h5 id="2-Ruquest"><a href="#2-Ruquest" class="headerlink" title="2.Ruquest"></a>2.Ruquest</h5><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Request(<span class="keyword">self</span>, url, data=None, headers=<span class="comment">&#123;&#125;</span>,</span><br><span class="line">origin_req_host=None, unverifiable=<span class="keyword">False</span>,<span class="function"><span class="keyword">method</span>=<span class="title">None</span>)</span></span><br></pre></td></tr></table></figure>
+<p>从定义可见Ruquest又比openurl强大，使用方法同上,<strong>传data时必须将str转化为bytes</strong><br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import urllib<span class="selector-class">.request</span>,urllib.parse</span><br><span class="line"></span><br><span class="line">data_str=&#123;</span><br><span class="line">    <span class="string">'123'</span>:<span class="string">'123'</span></span><br><span class="line">&#125;</span><br><span class="line">data=bytes(urllib<span class="selector-class">.parse</span><span class="selector-class">.encode</span>(data_str),encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">url= <span class="string">"http://www.httpbin.org/post"</span></span><br><span class="line">headers= &#123;</span><br><span class="line">    <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:33.0) Gecko/20120101 Firefox/33.0'</span>,</span><br><span class="line">    <span class="string">'Host'</span>: <span class="string">'httpbin.org'</span></span><br><span class="line">&#125;</span><br><span class="line">method= <span class="string">'POST'</span></span><br><span class="line">b=urllib<span class="selector-class">.request</span><span class="selector-class">.Request</span>(url=url,data=data,headers=headers,method=method)</span><br><span class="line">response=urllib<span class="selector-class">.request</span><span class="selector-class">.urlopen</span>(b)</span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(response.read()</span></span>.decode(<span class="string">'utf-8'</span>))</span><br></pre></td></tr></table></figure></p>
 <ul>
 <li><p>代理的使用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">from urllib.request import ProxyHandler,build_opener</span><br><span class="line"></span><br><span class="line">proxy_handler= ProxyHandler(&#123;</span><br><span class="line">    &apos;http&apos;: &apos;127.0.0.1:1080&apos;,</span><br><span class="line">    &apos;https&apos;: &apos;127.0.0.1:1080&apos;</span><br><span class="line">&#125;)</span><br><span class="line">opener= build_opener(proxy_handler)</span><br><span class="line">respense= opener.open(&apos;http://httpbin.org&apos;)</span><br><span class="line">print(respense.read().decode(&apos;utf-8&apos;))</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">from urllib<span class="selector-class">.request</span> import ProxyHandler,build_opener</span><br><span class="line"></span><br><span class="line">proxy_handler= ProxyHandler(&#123;</span><br><span class="line">    <span class="string">'http'</span>: <span class="string">'127.0.0.1:1080'</span>,</span><br><span class="line">    <span class="string">'https'</span>: <span class="string">'127.0.0.1:1080'</span></span><br><span class="line">&#125;)</span><br><span class="line">opener= build_opener(proxy_handler)</span><br><span class="line">respense= opener.open(<span class="string">'http://httpbin.org'</span>)</span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(respense.read()</span></span>.decode(<span class="string">'utf-8'</span>))</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>cookie获取及使用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#保存</span><br><span class="line">import http.cookiejar,urllib.request</span><br><span class="line"></span><br><span class="line">filename=&apos;cookie.txt&apos;</span><br><span class="line">cookie=http.cookiejar.MozillaCookieJar(filename)         ##</span><br><span class="line">handle=urllib.request.HTTPCookieProcessor(cookie)</span><br><span class="line">opener=urllib.request.build_opener(handle)</span><br><span class="line">response=opener.open(&apos;http://a.jd.com&apos;)</span><br><span class="line">cookie.save(ignore_discard=True,ignore_expires=True)       ## </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#使用</span><br><span class="line">import http.cookiejar,urllib.request</span><br><span class="line"></span><br><span class="line">cookie=http.cookiejar.MozillaCookieJar()</span><br><span class="line">cookie.load(&apos;cookie.txt&apos;)                       ##</span><br><span class="line">handle=urllib.request.HTTPCookieProcessor(cookie)</span><br><span class="line">opener=urllib.request.build_opener(handle)</span><br><span class="line">response=opener.open(&apos;http://a.jd.com&apos;)</span><br><span class="line">print(response.read())</span><br></pre></td></tr></table></figure>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#保存</span></span><br><span class="line">import http.cookiejar,urllib.request</span><br><span class="line"></span><br><span class="line">filename='cookie.txt'</span><br><span class="line">cookie=http.cookiejar.MozillaCookieJar(filename)         <span class="comment">##</span></span><br><span class="line">handle=urllib.request.HTTPCookieProcessor(cookie)</span><br><span class="line">opener=urllib.request.build_opener(handle)</span><br><span class="line">response=opener.open('http://a.jd.com')</span><br><span class="line">cookie.save(ignore_discard=True,ignore_expires=True)       <span class="comment">## </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#使用</span></span><br><span class="line">import http.cookiejar,urllib.request</span><br><span class="line"></span><br><span class="line">cookie=http.cookiejar.MozillaCookieJar()</span><br><span class="line">cookie.load('cookie.txt')                       <span class="comment">##</span></span><br><span class="line">handle=urllib.request.HTTPCookieProcessor(cookie)</span><br><span class="line">opener=urllib.request.build_opener(handle)</span><br><span class="line">response=opener.open('http://a.jd.com')</span><br><span class="line">print(response.read())</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <hr>
-<h3 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h3><p>错误处理可使程序报错时不退出程序<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">from urllib import error,request</span><br><span class="line"></span><br><span class="line">try: </span><br><span class="line">    a=request.urlopen(&apos;http://4399.com/qaz.htm&apos;)</span><br><span class="line">except error.URLError as b:</span><br><span class="line">    print(b.reason)</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Not Found</span><br></pre></td></tr></table></figure>
-<p>HTTPerror是URLerror的子类<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">from urllib import error,request</span><br><span class="line"></span><br><span class="line">try: </span><br><span class="line">    a=request.urlopen(&apos;http://4399.com/qaz.htm&apos;)</span><br><span class="line">except error.HTTPError as b:</span><br><span class="line">    print(b.reason,b.url,b.code)</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Not Found http://www.4399.com/qaz.htm 404</span><br></pre></td></tr></table></figure>
+<h3 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h3><p>错误处理可使程序报错时不退出程序<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> urllib <span class="keyword">import</span> error,request</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>: </span><br><span class="line">    a=request.urlopen(<span class="string">'http://4399.com/qaz.htm'</span>)</span><br><span class="line"><span class="keyword">except</span> error.URLError <span class="keyword">as</span> b:</span><br><span class="line">    print(b.reason)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Not</span> Found</span><br></pre></td></tr></table></figure>
+<p>HTTPerror是URLerror的子类<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">from urllib import error,request</span><br><span class="line"></span><br><span class="line">try: </span><br><span class="line">    a=request.urlopen(<span class="string">'http://4399.com/qaz.htm'</span>)</span><br><span class="line">except error<span class="selector-class">.HTTPError</span> as <span class="selector-tag">b</span>:</span><br><span class="line">    print(<span class="selector-tag">b</span><span class="selector-class">.reason</span>,<span class="selector-tag">b</span><span class="selector-class">.url</span>,<span class="selector-tag">b</span>.code)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Not</span> Found http:<span class="comment">//www.4399.com/qaz.htm 404</span></span><br></pre></td></tr></table></figure>
 <hr>
-<h3 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h3><h5 id="urlparse"><a href="#urlparse" class="headerlink" title="urlparse()"></a>urlparse()</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">urlparse(url, scheme=&apos;&apos;, allow_fragments=True)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import urllib.parse</span><br><span class="line"></span><br><span class="line">a=urllib.parse.urlparse(&apos;http://4399.com/index.html;user?id=1#comment&apos;)</span><br><span class="line">print(a)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ParseResult(scheme=&apos;http&apos;, netloc=&apos;4399.com&apos;, path=&apos;/index.html&apos;</span><br><span class="line">, params=&apos;user&apos;, query=&apos;id=1&apos;, fragment=&apos;comment&apos;)</span><br></pre></td></tr></table></figure>
+<h3 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h3><h5 id="urlparse"><a href="#urlparse" class="headerlink" title="urlparse()"></a>urlparse()</h5><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">urlparse(url, <span class="attribute">scheme</span>=<span class="string">''</span>, <span class="attribute">allow_fragments</span>=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import urllib.parse</span><br><span class="line"></span><br><span class="line">a=urllib<span class="selector-class">.parse</span><span class="selector-class">.urlparse</span>(<span class="string">'http://4399.com/index.html;user?id=1#comment'</span>)</span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(a)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ParseResult(<span class="attribute">scheme</span>=<span class="string">'http'</span>, <span class="attribute">netloc</span>=<span class="string">'4399.com'</span>, <span class="attribute">path</span>=<span class="string">'/index.html'</span></span><br><span class="line">, <span class="attribute">params</span>=<span class="string">'user'</span>, <span class="attribute">query</span>=<span class="string">'id=1'</span>, <span class="attribute">fragment</span>=<span class="string">'comment'</span>)</span><br></pre></td></tr></table></figure>
 <h5 id="urlunparse"><a href="#urlunparse" class="headerlink" title="urlunparse()"></a>urlunparse()</h5><p>与urlparse()对立的方法，传入参数必须为6个</p>
-<h5 id="urlencode"><a href="#urlencode" class="headerlink" title="urlencode()"></a>urlencode()</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import urllib.parse</span><br><span class="line"></span><br><span class="line">p=&#123;</span><br><span class="line">    &apos;aa&apos;:&apos;aa&apos;,</span><br><span class="line">    &apos;bb&apos;:&apos;bb&apos;</span><br><span class="line">&#125;</span><br><span class="line">print(&apos;http://4399.com?&apos;+urllib.parse.urlencode(p))</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://4399.com?aa=aa&amp;bb=bb</span><br></pre></td></tr></table></figure>
+<h5 id="urlencode"><a href="#urlencode" class="headerlink" title="urlencode()"></a>urlencode()</h5><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import urllib.parse</span><br><span class="line"></span><br><span class="line">p=&#123;</span><br><span class="line">    <span class="string">'aa'</span>:<span class="string">'aa'</span>,</span><br><span class="line">    <span class="string">'bb'</span>:<span class="string">'bb'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(<span class="string">'http://4399.com?'</span>+urllib.parse.urlencode(p)</span></span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">http:</span>//<span class="number">4399.</span><span class="keyword">com</span>?aa=aa&amp;bb=bb</span><br></pre></td></tr></table></figure>
 <p>可以用字典来生成get的参数</p>
 <h5 id="parse-qs"><a href="#parse-qs" class="headerlink" title="parse_qs()"></a>parse_qs()</h5><p>与urlencode()相反，将参数转化为字典</p>
-<h5 id="quote"><a href="#quote" class="headerlink" title="quote()"></a>quote()</h5><p>将内容转化为url编码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import urllib.parse</span><br><span class="line"></span><br><span class="line">a=&apos;紫电&apos;</span><br><span class="line">b=urllib.parse.quote(a)</span><br><span class="line">print(b)</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%E7%B4%AB%E7%94%B5</span><br></pre></td></tr></table></figure>
+<h5 id="quote"><a href="#quote" class="headerlink" title="quote()"></a>quote()</h5><p>将内容转化为url编码<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import urllib.parse</span><br><span class="line"></span><br><span class="line">a=<span class="string">'紫电'</span></span><br><span class="line">b=urllib<span class="selector-class">.parse</span><span class="selector-class">.quote</span>(a)</span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(b)</span></span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span>E<span class="number">7</span><span class="meta">%</span>B<span class="number">4</span><span class="meta">%</span>AB<span class="meta">%</span>E<span class="number">7</span><span class="meta">%</span><span class="number">94</span><span class="meta">%</span>B<span class="number">5</span></span><br></pre></td></tr></table></figure>
 <h5 id="unpuote"><a href="#unpuote" class="headerlink" title="unpuote()"></a>unpuote()</h5><p>与quote()相反</p>
 <hr>
-<h2 id="requests使用"><a href="#requests使用" class="headerlink" title="requests使用"></a>requests使用</h2><h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">def get(url, params=None, **kwargs)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">a=requests.get(&apos;http://4399.com&apos;)</span><br><span class="line">print(a.text)</span><br></pre></td></tr></table></figure>
+<h2 id="requests使用"><a href="#requests使用" class="headerlink" title="requests使用"></a>requests使用</h2><h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">def <span class="builtin-name">get</span>(url, <span class="attribute">params</span>=None, **kwargs)</span><br></pre></td></tr></table></figure>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">a=requests.<span class="built_in">get</span>(<span class="string">'http://4399.com'</span>)</span><br><span class="line"><span class="built_in">print</span>(a.<span class="built_in">text</span>)</span><br></pre></td></tr></table></figure>
 <p>若想用post、put、del则直接将get置换之</p>
-<p>json()可将json格式的数据转换为字典<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">## 简易ip地址查看</span><br><span class="line">import requests</span><br><span class="line"></span><br><span class="line">a=requests.get(&apos;http://httpbin.org/get&apos;)</span><br><span class="line">print(a.json()[&apos;origin&apos;])</span><br></pre></td></tr></table></figure></p>
-<p>params参数则是传入一个字典转化为参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">a=&#123;</span><br><span class="line">    &apos;as&apos;:&apos;sa&apos;</span><br><span class="line">&#125;</span><br><span class="line">a=requests.get(&apos;http://httpbin.org/get&apos;,params=a)</span><br><span class="line">print(a.json()[&apos;url&apos;])</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://httpbin.org/get?as=sa</span><br></pre></td></tr></table></figure>
+<p>json()可将json格式的数据转换为字典<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 简易ip地址查看</span></span><br><span class="line">import requests</span><br><span class="line"></span><br><span class="line"><span class="keyword">a</span>=requests.<span class="built_in">get</span>(<span class="string">'http://httpbin.org/get'</span>)</span><br><span class="line">print(<span class="keyword">a</span>.json()[<span class="string">'origin'</span>])</span><br></pre></td></tr></table></figure></p>
+<p>params参数则是传入一个字典转化为参数<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">a=&#123;</span><br><span class="line">    <span class="string">'as'</span>:<span class="string">'sa'</span></span><br><span class="line">&#125;</span><br><span class="line">a=requests.<span class="built_in">get</span>(<span class="string">'http://httpbin.org/get'</span>,params=a)</span><br><span class="line"><span class="built_in">print</span>(a.json()[<span class="string">'url'</span>])</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">http</span>://httpbin.org/<span class="built_in">get</span>?<span class="keyword">as</span>=sa</span><br></pre></td></tr></table></figure>
 <p>添加header与urllib.request.Request()一样,传data不需将其转为bytes</p>
-<h3 id="高级用法"><a href="#高级用法" class="headerlink" title="高级用法"></a>高级用法</h3><h4 id="文件下载"><a href="#文件下载" class="headerlink" title="文件下载"></a>文件下载</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">a=requests.get(&apos;http://github.com/favicon.ico&apos;)</span><br><span class="line">with open(&apos;favicon.ico&apos;,&apos;wb&apos;) as f:</span><br><span class="line">    f.write(a.content)</span><br></pre></td></tr></table></figure>
-<h4 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">file=&#123;</span><br><span class="line">    &apos;file&apos;: open(&apos;favicon.ico&apos;,&apos;rb&apos;)</span><br><span class="line">&#125;</span><br><span class="line">a=requests.post(&apos;http://httpbin.org/post&apos;,files=file)</span><br><span class="line">print(a.text)</span><br></pre></td></tr></table></figure>
-<h4 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h4><p>将cookie添加入头部引用即可<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">headers=&#123;</span><br><span class="line">    &apos;cookie&apos;: &apos;cookie&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="requests下cookie保存"><a href="#requests下cookie保存" class="headerlink" title="requests下cookie保存"></a>requests下cookie保存</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">a=requests.get(&apos;http://a.jd.com&apos;)</span><br><span class="line">b=requests.utils.dict_from_cookiejar(a.cookies)    # cookiejar转dict</span><br><span class="line">c=str(b)         # dict转str</span><br><span class="line">with open(&quot;cookies.txt&quot;,&quot;w&quot;) as d:</span><br><span class="line">    d.write(c)</span><br></pre></td></tr></table></figure>
-<h4 id="会话维持"><a href="#会话维持" class="headerlink" title="会话维持"></a>会话维持</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">a=requests.Session()</span><br><span class="line">a.get(&apos;http://httpbin.org/cookies/set/number/99965&apos;)</span><br><span class="line">r=a.get(&apos;http://httpbin.org/cookies&apos;)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;cookies&quot;: &#123;</span><br><span class="line">    &quot;number&quot;: &quot;99965&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="高级用法"><a href="#高级用法" class="headerlink" title="高级用法"></a>高级用法</h3><h4 id="文件下载"><a href="#文件下载" class="headerlink" title="文件下载"></a>文件下载</h4><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line"><span class="keyword">a</span>=requests.<span class="built_in">get</span>(<span class="string">'http://github.com/favicon.ico'</span>)</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">'favicon.ico'</span>,<span class="string">'wb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.<span class="built_in">write</span>(<span class="keyword">a</span>.content)</span><br></pre></td></tr></table></figure>
+<h4 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h4><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line"><span class="keyword">file</span>=&#123;</span><br><span class="line">    <span class="string">'file'</span>: <span class="keyword">open</span>(<span class="string">'favicon.ico'</span>,<span class="string">'rb'</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">a</span>=requests.post(<span class="string">'http://httpbin.org/post'</span>,<span class="keyword">files</span>=<span class="keyword">file</span>)</span><br><span class="line"><span class="keyword">print</span>(<span class="keyword">a</span>.text)</span><br></pre></td></tr></table></figure>
+<h4 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h4><p>将cookie添加入头部引用即可<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">headers</span>=&#123;</span><br><span class="line">    <span class="string">'cookie'</span>: <span class="string">'cookie'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="requests下cookie保存"><a href="#requests下cookie保存" class="headerlink" title="requests下cookie保存"></a>requests下cookie保存</h4><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line"><span class="keyword">a</span>=requests.<span class="built_in">get</span>(<span class="string">'http://a.jd.com'</span>)</span><br><span class="line">b=requests.utils.dict_from_cookiejar(<span class="keyword">a</span>.cookies)    <span class="comment"># cookiejar转dict</span></span><br><span class="line">c=str(b)         <span class="comment"># dict转str</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">"cookies.txt"</span>,<span class="string">"w"</span>) <span class="keyword">as</span> d:</span><br><span class="line">    d.<span class="built_in">write</span>(c)</span><br></pre></td></tr></table></figure>
+<h4 id="会话维持"><a href="#会话维持" class="headerlink" title="会话维持"></a>会话维持</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">a=requests.Session()</span><br><span class="line"><span class="selector-tag">a</span>.get(<span class="string">'http://httpbin.org/cookies/set/number/99965'</span>)</span><br><span class="line">r=<span class="selector-tag">a</span>.get(<span class="string">'http://httpbin.org/cookies'</span>)</span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(r.text)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"cookies"</span>: &#123;</span><br><span class="line">    <span class="attr">"number"</span>: <span class="string">"99965"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
 <p><a href="https://www.cnblogs.com/khaha/p/8629565.html" target="_blank" rel="noopener">dict字典与str字符串互转</a></p>
 
@@ -508,7 +539,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">49</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -572,6 +603,11 @@
       
 
       
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
 
     </div>
   </aside>
@@ -583,7 +619,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -615,11 +651,6 @@
     </footer>
 
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
 
     
 
@@ -643,8 +674,6 @@
 
   
 
-
-  
 
 
 
@@ -684,11 +713,6 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 
@@ -758,6 +782,323 @@
 
 
   
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
 
 
 

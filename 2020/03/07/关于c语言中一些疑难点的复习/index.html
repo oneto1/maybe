@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="oneto1">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/images/20200307=0.png">
-<meta property="og:updated_time" content="2020-03-08T13:22:28.000Z">
+<meta property="og:updated_time" content="2020-04-25T02:22:04.664Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于c语言中一些疑难点的复习">
 <meta name="twitter:image" content="http://yoursite.com/images/20200307=0.png">
@@ -99,7 +99,7 @@
     root: '/',
     scheme: 'Pisces',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -130,6 +130,15 @@
 
 
 
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', '[object Object]', 'auto');
+  ga('send', 'pageview');
+</script>
 
 
 
@@ -200,16 +209,6 @@
         </li>
       
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
-            
-            分类
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -231,9 +230,41 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
   
 </nav>
 
@@ -345,16 +376,16 @@
 </tr>
 </tbody>
 </table>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int i = 0;  // 既是声明也是定义</span><br><span class="line">extern int i; // 为声明,表示在其他地方有定义</span><br><span class="line">extern int i = 0; // 既是声明也是定义</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>;  <span class="comment">// 既是声明也是定义</span></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">int</span> i; <span class="comment">// 为声明,表示在其他地方有定义</span></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">int</span> i = <span class="number">0</span>; <span class="comment">// 既是声明也是定义</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>对于函数,结构体同样适用</li>
 </ul>
 <hr>
-<h1 id="指针和数组名一样么"><a href="#指针和数组名一样么" class="headerlink" title="指针和数组名一样么"></a>指针和数组名一样么</h1><p>首先看一个例子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int pp[]= &#123;1,2,3&#125;;</span><br><span class="line">int * p = pp ;</span><br><span class="line"></span><br><span class="line">printf(&quot;%d %d&quot;,pp[0],p[0]);</span><br><span class="line"></span><br><span class="line">&gt; 1 1</span><br></pre></td></tr></table></figure></p>
+<h1 id="指针和数组名一样么"><a href="#指针和数组名一样么" class="headerlink" title="指针和数组名一样么"></a>指针和数组名一样么</h1><p>首先看一个例子<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int pp[]= &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">int * p = pp ;</span><br><span class="line"></span><br><span class="line">printf(<span class="string">"%d %d"</span>,pp[<span class="number">0</span>],p[<span class="number">0</span>]);</span><br><span class="line"></span><br><span class="line">&gt; <span class="number">1</span> <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
 <ul>
 <li>毫无疑问,这是没有问题的</li>
 </ul>
-<p>但是如果是这样的呢<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">extern int pp[3] = &#123;1,2,3&#125;;  //假设在文件A</span><br><span class="line">extern int *pp;  //假设在文件B</span><br><span class="line"></span><br><span class="line">//在文件B中</span><br><span class="line">printf(&quot;%d&quot;,pp[0]);</span><br></pre></td></tr></table></figure></p>
+<p>但是如果是这样的呢<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> <span class="keyword">int</span> pp[<span class="number">3</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;  <span class="comment">//假设在文件A</span></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">int</span> *pp;  <span class="comment">//假设在文件B</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//在文件B中</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%d"</span>,pp[<span class="number">0</span>]);</span><br></pre></td></tr></table></figure></p>
 <ul>
 <li>能正确输出<code>1</code>吗,答案是<strong>不能</strong></li>
 <li><code>int pp[]</code>是一个数组,<code>int *pp</code>是一个指针,不能因为变量名一样而将指针和数组名混为一谈</li>
@@ -369,7 +400,7 @@
 </ul>
 <hr>
 <h1 id="如何在-main-执行之前先运行其它函数"><a href="#如何在-main-执行之前先运行其它函数" class="headerlink" title="如何在 main() 执行之前先运行其它函数"></a>如何在 main() 执行之前先运行其它函数</h1><p>刚学c语言的时候,相信对main()函数的印象都是它是程序运行时第一个运行的函数,其实不然</p>
-<p>先写个简单小程序<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">int main(int agrc, char **argv)</span><br><span class="line">&#123;</span><br><span class="line">    printf(&quot;Hello world!&quot;);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>先写个简单小程序<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> agrc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Hello world!"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <ul>
 <li>运行编译毫无疑问是<code>Hello world!</code></li>
 </ul>
@@ -381,14 +412,14 @@
 <li><code>data</code> 保存的是被初始化的全局变量和静态变量</li>
 <li><code>bss</code> 保存的是未初始化的保存的是未被初始化额全局变量和静态变量，及被初始化为0的初始变量</li>
 </ul>
-<p>而这里想看是<code>.systab</code>保存的是在程序中定义或者引用的函数、全局变量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"># readelf - Displays information about ELF files.</span><br><span class="line"></span><br><span class="line">readelf -s a.out</span><br><span class="line"></span><br><span class="line"> &gt;    2: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND puts@GLIBC_2.2.5 (2)</span><br><span class="line">     3: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __libc_start_main@GLIBC_2.2.5 (2)</span><br><span class="line">     6: 0000000000000000     0 FUNC    WEAK   DEFAULT  UND __cxa_finalize@GLIBC_2.2.5 (2)</span><br><span class="line">    27: 0000000000000560     0 FUNC    LOCAL  DEFAULT   14 deregister_tm_clones</span><br><span class="line">    28: 00000000000005a0     0 FUNC    LOCAL  DEFAULT   14 register_tm_clones</span><br><span class="line">    29: 00000000000005f0     0 FUNC    LOCAL  DEFAULT   14 __do_global_dtors_aux</span><br><span class="line">    32: 0000000000000630     0 FUNC    LOCAL  DEFAULT   14 frame_dummy</span><br><span class="line">    43: 00000000000006d0     2 FUNC    GLOBAL DEFAULT   14 __libc_csu_fini</span><br><span class="line">    46: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND puts@@GLIBC_2.2.5</span><br><span class="line">    48: 00000000000006d4     0 FUNC    GLOBAL DEFAULT   15 _fini</span><br><span class="line">    49: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __libc_start_main@@GLIBC_</span><br><span class="line">    54: 0000000000000660   101 FUNC    GLOBAL DEFAULT   14 __libc_csu_init</span><br><span class="line">    56: 0000000000000530    43 FUNC    GLOBAL DEFAULT   14 _start</span><br><span class="line">    58: 000000000000063a    34 FUNC    GLOBAL DEFAULT   14 main</span><br><span class="line">    61: 0000000000000000     0 FUNC    WEAK   DEFAULT  UND __cxa_finalize@@GLIBC_2.2</span><br><span class="line">    62: 00000000000004e8     0 FUNC    GLOBAL DEFAULT   11 _init</span><br></pre></td></tr></table></figure></p>
+<p>而这里想看是<code>.systab</code>保存的是在程序中定义或者引用的函数、全局变量<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># readelf - Displays information about ELF files.</span></span><br><span class="line"></span><br><span class="line">readelf -s a.out</span><br><span class="line"></span><br><span class="line"> &gt;    2: 0000000000000000     0 FUNC    GLOBAL<span class="built_in"> DEFAULT </span> UND puts@GLIBC_2.2.5 (2)</span><br><span class="line">     3: 0000000000000000     0 FUNC    GLOBAL<span class="built_in"> DEFAULT </span> UND __libc_start_main@GLIBC_2.2.5 (2)</span><br><span class="line">     6: 0000000000000000     0 FUNC    WEAK  <span class="built_in"> DEFAULT </span> UND __cxa_finalize@GLIBC_2.2.5 (2)</span><br><span class="line">    27: 0000000000000560     0 FUNC    LOCAL <span class="built_in"> DEFAULT </span>  14 deregister_tm_clones</span><br><span class="line">    28: 00000000000005a0     0 FUNC    LOCAL <span class="built_in"> DEFAULT </span>  14 register_tm_clones</span><br><span class="line">    29: 00000000000005f0     0 FUNC    LOCAL <span class="built_in"> DEFAULT </span>  14 __do_global_dtors_aux</span><br><span class="line">    32: 0000000000000630     0 FUNC    LOCAL <span class="built_in"> DEFAULT </span>  14 frame_dummy</span><br><span class="line">    43: 00000000000006d0     2 FUNC    GLOBAL<span class="built_in"> DEFAULT </span>  14 __libc_csu_fini</span><br><span class="line">    46: 0000000000000000     0 FUNC    GLOBAL<span class="built_in"> DEFAULT </span> UND puts@@GLIBC_2.2.5</span><br><span class="line">    48: 00000000000006d4     0 FUNC    GLOBAL<span class="built_in"> DEFAULT </span>  15 _fini</span><br><span class="line">    49: 0000000000000000     0 FUNC    GLOBAL<span class="built_in"> DEFAULT </span> UND __libc_start_main@@GLIBC_</span><br><span class="line">    54: 0000000000000660   101 FUNC    GLOBAL<span class="built_in"> DEFAULT </span>  14 __libc_csu_init</span><br><span class="line">    56: 0000000000000530    43 FUNC    GLOBAL<span class="built_in"> DEFAULT </span>  14 _start</span><br><span class="line">    58: 000000000000063a    34 FUNC    GLOBAL<span class="built_in"> DEFAULT </span>  14 main</span><br><span class="line">    61: 0000000000000000     0 FUNC    WEAK  <span class="built_in"> DEFAULT </span> UND __cxa_finalize@@GLIBC_2.2</span><br><span class="line">    62: 00000000000004e8     0 FUNC    GLOBAL<span class="built_in"> DEFAULT </span>  11 _init</span><br></pre></td></tr></table></figure></p>
 <ul>
 <li>从这里看我们所写的main函数排在了58位,可见实际在mian()运行前确实运行了很多函数</li>
 <li>在编译链接时,第一个入口函数地址是<code>_start</code></li>
 </ul>
-<p>借此我们可以编写一个自己的<code>_start</code>函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt; </span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line"></span><br><span class="line">//main()放前面是因为入口函数为自己定义的_start,这里的main()相当于一个子函数</span><br><span class="line">int main(void )</span><br><span class="line">&#123;</span><br><span class="line">	printf(&quot;hello world 1 !\n&quot;);</span><br><span class="line"></span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 这里必须调用exit()来善后,否则会core dump</span><br><span class="line">int _start(void) </span><br><span class="line">&#123; </span><br><span class="line">    printf(&quot;hello world 2 !\n&quot;);</span><br><span class="line">	main();</span><br><span class="line">	exit(0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>编译链接时不使用标准开始文件,而是使用自己写的<code>_start</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/*gcc        -nostartfiles</span><br><span class="line">                    Do not use the standard system startup files when linking.  The standard system</span><br><span class="line">                    libraries are used normally, unless -nostdlib or -nodefaultlibs is used.</span><br><span class="line">*/</span><br><span class="line">gcc test.c -nostartfiles  &amp;&amp; ./a.out</span><br><span class="line"></span><br><span class="line">&gt;   hello world 2 !</span><br><span class="line">     hello world 1 !</span><br></pre></td></tr></table></figure></p>
-<p>再查看二进制文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">readelf -s a.out | grep FUNC</span><br><span class="line">   </span><br><span class="line">&gt;   1: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND puts@GLIBC_2.2.5 (2)</span><br><span class="line">     2: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND exit@GLIBC_2.2.5 (2)</span><br><span class="line">    22: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND puts@@GLIBC_2.2.5</span><br><span class="line">    25: 00000000000003a7    31 FUNC    GLOBAL DEFAULT   10 _start</span><br><span class="line">    27: 0000000000000390    23 FUNC    GLOBAL DEFAULT   10 main</span><br><span class="line">    28: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND exit@@GLIBC_2.2.5</span><br></pre></td></tr></table></figure></p>
+<p>借此我们可以编写一个自己的<code>_start</code>函数<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;stdio.h&gt; </span></span><br><span class="line"><span class="comment">#include &lt;stdlib.h&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="regexp">//m</span>ain()放前面是因为入口函数为自己定义的_start,这里的main()相当于一个子函数</span><br><span class="line">int main(void )</span><br><span class="line">&#123;</span><br><span class="line">	printf(<span class="string">"hello world 1 !\n"</span>);</span><br><span class="line"></span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="regexp">//</span> 这里必须调用<span class="keyword">exit</span>()来善后,否则会core dump</span><br><span class="line">int _start(void) </span><br><span class="line">&#123; </span><br><span class="line">    printf(<span class="string">"hello world 2 !\n"</span>);</span><br><span class="line">	main();</span><br><span class="line">	<span class="keyword">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>编译链接时不使用标准开始文件,而是使用自己写的<code>_start</code><br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*gcc        -nostartfiles</span></span><br><span class="line"><span class="comment">                    Do not use the standard system startup files when linking.  The standard system</span></span><br><span class="line"><span class="comment">                    libraries are used normally, unless -nostdlib or -nodefaultlibs is used.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">gcc test<span class="selector-class">.c</span> -nostartfiles  &amp;&amp; ./<span class="selector-tag">a</span>.out</span><br><span class="line"></span><br><span class="line">&gt;   hello world <span class="number">2</span> !</span><br><span class="line">     hello world <span class="number">1</span> !</span><br></pre></td></tr></table></figure></p>
+<p>再查看二进制文件<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">readelf -s a.out | grep FUNC</span><br><span class="line">   </span><br><span class="line">&gt;   1: 0000000000000000     0 FUNC    GLOBAL<span class="built_in"> DEFAULT </span> UND puts@GLIBC_2.2.5 (2)</span><br><span class="line">     2: 0000000000000000     0 FUNC    GLOBAL<span class="built_in"> DEFAULT </span> UND exit@GLIBC_2.2.5 (2)</span><br><span class="line">    22: 0000000000000000     0 FUNC    GLOBAL<span class="built_in"> DEFAULT </span> UND puts@@GLIBC_2.2.5</span><br><span class="line">    25: 00000000000003a7    31 FUNC    GLOBAL<span class="built_in"> DEFAULT </span>  10 _start</span><br><span class="line">    27: 0000000000000390    23 FUNC    GLOBAL<span class="built_in"> DEFAULT </span>  10 main</span><br><span class="line">    28: 0000000000000000     0 FUNC    GLOBAL<span class="built_in"> DEFAULT </span> UND exit@@GLIBC_2.2.5</span><br></pre></td></tr></table></figure></p>
 <ul>
 <li>相对比使用标准开始文件这里少了很多函数</li>
 <li>由于链接时还是使用了系统库,所以程序还是能跑起来的</li>
@@ -397,8 +428,8 @@
 <blockquote>
 <p>关键字<code>__attribute__</code>可以为函数（Function Attributes），变量（Variable Attributes）和结构成员（Type Attributes）赋属性。具体可以查看gcc手册（<a href="http://gcc.gnu.org/onlinedocs/）" target="_blank" rel="noopener">http://gcc.gnu.org/onlinedocs/）</a></p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 关键字需要在定义之前</span><br><span class="line"></span><br><span class="line"> __attribute__((constructor))void before();</span><br><span class="line"></span><br><span class="line">__attribute__((destructor))void after();</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt; </span><br><span class="line"></span><br><span class="line">void m()__attribute__((constructor)) ;</span><br><span class="line">int main(void )</span><br><span class="line">&#123;</span><br><span class="line">	printf(&quot;hello world  !\n&quot;);</span><br><span class="line"></span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br><span class="line">/*int _start(void) </span><br><span class="line"></span><br><span class="line">void m()</span><br><span class="line">&#123;</span><br><span class="line">	printf(&quot;%d &quot;,666);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&gt; 666 hello world  !</span><br></pre></td></tr></table></figure>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 关键字需要在定义之前</span></span><br><span class="line"></span><br><span class="line"> __attribute__((<span class="function"><span class="keyword">constructor</span>))<span class="title">void</span> <span class="title">before</span><span class="params">()</span>;</span></span><br><span class="line"></span><br><span class="line">__attribute__((<span class="function"><span class="keyword">destructor</span>))<span class="title">void</span> <span class="title">after</span><span class="params">()</span>;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt; </span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">m</span><span class="params">()</span>__<span class="title">attribute__</span><span class="params">((constructor))</span> </span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span> )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"hello world  !\n"</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*int _start(void) </span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">void m()</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">	printf("%d ",666);</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">&gt; 666 hello world  !</span></span><br></pre></td></tr></table></figure>
 <p><a href="https://www.jianshu.com/p/4912a1dc8a50" target="_blank" rel="noopener">可执行文件格式说明</a><br><a href="https://www.jianshu.com/p/dda61084f9b5" target="_blank" rel="noopener">c语言中<strong>attribute</strong>的意义</a><br><a href="https://www.jb51.net/article/62360.htm" target="_blank" rel="noopener">C语言之没有main函数的helloworld示例</a><br><a href="https://bbs.csdn.net/topics/300103318#r_78088969" target="_blank" rel="noopener">一个c程序在执行main函数之前和main之后都做了那些事情啊？</a></p>
 
       
@@ -519,7 +550,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">49</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -583,6 +614,11 @@
       
 
       
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
 
     </div>
   </aside>
@@ -594,7 +630,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -626,11 +662,6 @@
     </footer>
 
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
 
     
 
@@ -654,8 +685,6 @@
 
   
 
-
-  
 
 
 
@@ -695,11 +724,6 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 
@@ -769,6 +793,323 @@
 
 
   
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
 
 
 

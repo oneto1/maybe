@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="oneto1">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/images/20200131=0.png">
-<meta property="og:updated_time" content="2020-02-01T03:05:00.000Z">
+<meta property="og:updated_time" content="2020-04-25T02:22:04.664Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用systemd添加开机自启服务">
 <meta name="twitter:image" content="http://yoursite.com/images/20200131=0.png">
@@ -99,7 +99,7 @@
     root: '/',
     scheme: 'Pisces',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -130,6 +130,15 @@
 
 
 
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', '[object Object]', 'auto');
+  ga('send', 'pageview');
+</script>
 
 
 
@@ -200,16 +209,6 @@
         </li>
       
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
-            
-            分类
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -231,9 +230,41 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
   
 </nav>
 
@@ -339,8 +370,8 @@
 <li>要注意添加文件的执行位</li>
 </ul>
 <h3 id="etc-init-d"><a href="#etc-init-d" class="headerlink" title="/etc/init.d"></a>/etc/init.d</h3><p><code>/etc/init.d/</code>目录下存放的是各种可执行文件,可直接运行关闭</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Usage: /etc/init.d/dbus &#123;start|stop|reload|restart|force-reload|status&#125;</span><br><span class="line"></span><br><span class="line"># 等同于</span><br><span class="line"></span><br><span class="line">service dbus &#123;start|stop|reload|restart|force-reload|status&#125;</span><br></pre></td></tr></table></figure>
-<p>需要新建自己的启动项也不难<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 需要写成符合LSB规范</span><br><span class="line">sudo vi /etc/init.d/mysh</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sudo chmod +x /etc/init.d/mysh</span><br><span class="line"></span><br><span class="line"># centos </span><br><span class="line"> sudo chkconfig --add(--remove) mysh</span><br><span class="line"># debian</span><br><span class="line"> sudo sudo update-rc.d mysh defaults 5</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Usage</span>: /etc/init.d/dbus &#123;start|stop|reload|restart|force-reload|status&#125;</span><br><span class="line"></span><br><span class="line"># 等同于</span><br><span class="line"></span><br><span class="line">service dbus &#123;start|stop|reload|restart|force-reload|status&#125;</span><br></pre></td></tr></table></figure>
+<p>需要新建自己的启动项也不难<br><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 需要写成符合LSB规范</span></span><br><span class="line">sudo vi <span class="string">/etc/init.d/mysh</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sudo chmod +x <span class="string">/etc/init.d/mysh</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># centos </span></span><br><span class="line"> sudo chkconfig <span class="params">--add</span><span class="params">(--remove)</span> mysh</span><br><span class="line"><span class="comment"># debian</span></span><br><span class="line"> sudo sudo update-rc.d mysh defaults 5</span><br></pre></td></tr></table></figure></p>
 <ul>
 <li><code>update-rc.d</code>类似于<code>chkconfig</code>,具体见<code>man update-rc.d</code><br><a href="https://zh.opensuse.org/openSUSE:Packaging_init_scripts" target="_blank" rel="noopener">openSUSE:How to write a sysvinit script</a><br><a href="https://blog.csdn.net/gu_87_2008/article/details/47185767" target="_blank" rel="noopener">LSB参考资料</a></li>
 </ul>
@@ -349,7 +380,7 @@
 <blockquote>
 <p><a href="https://zh.wikipedia.org/zh-cn/Systemd" target="_blank" rel="noopener">systemd</a>是Linux电脑操作系统之下的一套中央化系统及设置管理程序（init），包括有守护进程、程序库以及应用软件，由Lennart Poettering带头开发。其开发目标是提供更优秀的框架以表示系统服务间的依赖关系，并依此实现系统初始化时服务的并行启动，同时达到降低Shell的系统开销的效果，最终代替现在常用的System V与BSD风格init程序。</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 查看当前系统是以哪种启动方式启动的</span><br><span class="line">ps -p1 </span><br><span class="line"></span><br><span class="line">PID TTY          TIME CMD</span><br><span class="line">    1  ?        00:00:02 systemd</span><br></pre></td></tr></table></figure>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看当前系统是以哪种启动方式启动的</span></span><br><span class="line">ps -p1 </span><br><span class="line"></span><br><span class="line">PID TTY          TIME <span class="keyword">CMD</span><span class="bash"></span></span><br><span class="line"><span class="bash">    1  ?        00:00:02 systemd</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>可见当前系统是以systemd启动的,而不是sysV风格的init</p>
 <h3 id="什么是-Systemd-service？"><a href="#什么是-Systemd-service？" class="headerlink" title="什么是 Systemd service？"></a>什么是 Systemd service？</h3><blockquote>
@@ -377,7 +408,7 @@
 <li>自动挂载点</li>
 <li>等等</li>
 </ul>
-<p>那么在我们编写的这个.service单元,就应该最先申明这个单元<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Set brightness</span><br></pre></td></tr></table></figure></p>
+<p>那么在我们编写的这个.service单元,就应该最先申明这个单元<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Unit]</span></span><br><span class="line"><span class="attr">Description</span>=Set brightness</span><br></pre></td></tr></table></figure></p>
 <ul>
 <li>Description就是描述信息啦</li>
 </ul>
@@ -387,7 +418,7 @@
 <li>Wants：本单元启动了，它「想要」的单元也会被启动。但是启动不成功，对本单元没有影响</li>
 <li>Before/After: 用于控制启动顺序</li>
 </ul>
-<p>现在就可以写出一个相对完整的[Unit]定义了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[Ｕnit]</span><br><span class="line">Description = unit demo</span><br><span class="line">After = x11-common.service</span><br></pre></td></tr></table></figure></p>
+<p>现在就可以写出一个相对完整的[Unit]定义了<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Ｕnit]</span></span><br><span class="line"><span class="attr">Description</span> = unit demo</span><br><span class="line"><span class="attr">After</span> = x11-common.service</span><br></pre></td></tr></table></figure></p>
 <h3 id="service部分"><a href="#service部分" class="headerlink" title="service部分"></a>service部分</h3><p>[Unit]用于识别单元，那么[Service]就是定义服务自身了</p>
 <p>Tpye为设置进程的启动类型</p>
 <ul>
@@ -404,18 +435,18 @@
 <ul>
 <li>但ExecStart和ExecStop必须至少存在一个</li>
 </ul>
-<p>好了，现在可以完善[Service]部分了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[Service]</span><br><span class="line">Tpye=oneshot</span><br><span class="line">ExecStart=/home/user/brightness.sh</span><br></pre></td></tr></table></figure></p>
-<p>brightness.sh部分，记得加可执行权限<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#! /bin/bash </span><br><span class="line"></span><br><span class="line">sleep 1</span><br><span class="line"></span><br><span class="line">echo 75 &gt; /sys/class/backlight/nvidia_0/brightness</span><br><span class="line"># 这里我的显卡是nvdia的</span><br></pre></td></tr></table></figure></p>
+<p>好了，现在可以完善[Service]部分了<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Service]</span></span><br><span class="line"><span class="attr">Tpye</span>=<span class="literal">on</span>eshot</span><br><span class="line"><span class="attr">ExecStart</span>=/home/user/brightness.sh</span><br></pre></td></tr></table></figure></p>
+<p>brightness.sh部分，记得加可执行权限<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /bin/bash </span></span><br><span class="line"></span><br><span class="line">sleep 1</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> 75 &gt; /sys/class/backlight/nvidia_0/brightness</span><br><span class="line"><span class="comment"># 这里我的显卡是nvdia的</span></span><br></pre></td></tr></table></figure></p>
 <h3 id="install部分"><a href="#install部分" class="headerlink" title="install部分"></a>install部分</h3><p>[Install]用于解释systemd怎么装载服务</p>
 <ul>
 <li>WantedBy：设置服务被谁装载，一般设置为multi-user.target</li>
 <li>Alias：为service设置一个别名，可以使用多个名字来操作服务。</li>
 <li>Also：在安装这个服务时候还需要的其他服务</li>
 </ul>
-<p>至此一个完整的开机调节屏幕亮度就出现了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description = set brightness</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type = oneshot</span><br><span class="line">ExecStart = /etc/brightness.sh</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy = multi-user.target</span><br></pre></td></tr></table></figure></p>
+<p>至此一个完整的开机调节屏幕亮度就出现了<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Unit]</span></span><br><span class="line"><span class="attr">Description</span> = set brightness</span><br><span class="line"></span><br><span class="line"><span class="section">[Service]</span></span><br><span class="line"><span class="attr">Type</span> = <span class="literal">on</span>eshot</span><br><span class="line"><span class="attr">ExecStart</span> = /etc/brightness.sh</span><br><span class="line"></span><br><span class="line"><span class="section">[Install]</span></span><br><span class="line"><span class="attr">WantedBy</span> = multi-user.target</span><br></pre></td></tr></table></figure></p>
 <p>Ref:<a href="https://segmentfault.com/a/1190000014740871" target="_blank" rel="noopener">如何编写一个Systemd Service</a><br><a href="https://zh.opensuse.org/openSUSE:How_to_write_a_systemd_service" target="_blank" rel="noopener">openSUSE：如何编写 Systemd 服务文件</a><br><a href="http://www.jinbuguo.com/systemd/systemd.service.html" target="_blank" rel="noopener">systemd.service 中文手册</a><br><a href="https://wiki.ubuntu.com/SystemdForUpstartUsers" target="_blank" rel="noopener">SystemdForUpstartUsers</a></p>
 <p>更多复杂细节的参数就请翻看man了</p>
-<h3 id="最后添加启动项"><a href="#最后添加启动项" class="headerlink" title="最后添加启动项"></a>最后添加启动项</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 添加启动项</span><br><span class="line">sudo systemdctl enable brightness.service</span><br><span class="line"></span><br><span class="line"># 去除启动项</span><br><span class="line">sudo systemdctl disable brightness.service</span><br><span class="line"></span><br><span class="line"># 由于在这里并没有在service文件中写ExecStop、ExecReload等</span><br><span class="line"># 所以 systemdctl stop(reload) brightness.service  自然是无效的</span><br></pre></td></tr></table></figure>
+<h3 id="最后添加启动项"><a href="#最后添加启动项" class="headerlink" title="最后添加启动项"></a>最后添加启动项</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加启动项</span></span><br><span class="line">sudo systemdctl <span class="builtin-name">enable</span> brightness.service</span><br><span class="line"></span><br><span class="line"><span class="comment"># 去除启动项</span></span><br><span class="line">sudo systemdctl <span class="builtin-name">disable</span> brightness.service</span><br><span class="line"></span><br><span class="line"><span class="comment"># 由于在这里并没有在service文件中写ExecStop、ExecReload等</span></span><br><span class="line"><span class="comment"># 所以 systemdctl stop(reload) brightness.service  自然是无效的</span></span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -538,7 +569,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">49</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -602,6 +633,11 @@
       
 
       
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
 
     </div>
   </aside>
@@ -613,7 +649,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -645,11 +681,6 @@
     </footer>
 
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
 
     
 
@@ -673,8 +704,6 @@
 
   
 
-
-  
 
 
 
@@ -714,11 +743,6 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 
@@ -788,6 +812,323 @@
 
 
   
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
 
 
 

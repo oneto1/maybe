@@ -85,7 +85,7 @@
 <meta property="og:url" content="http://yoursite.com/2020/04/01/linux-命令杂记/index.html">
 <meta property="og:site_name" content="oneto1">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-01T14:59:57.000Z">
+<meta property="og:updated_time" content="2020-04-25T02:22:04.664Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux 命令杂记">
 
@@ -97,7 +97,7 @@
     root: '/',
     scheme: 'Pisces',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -128,6 +128,15 @@
 
 
 
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', '[object Object]', 'auto');
+  ga('send', 'pageview');
+</script>
 
 
 
@@ -198,16 +207,6 @@
         </li>
       
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
-            
-            分类
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -229,9 +228,41 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
   
 </nav>
 
@@ -340,7 +371,7 @@
 <li>实例：grep -10 -i ‘111’ catalina.out</li>
 </ul>
 <h1 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h1><p>mke2fs -t ext4 /dev/name</p>
-<p>mkfs<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkfs           mkfs.cramfs    mkfs.ext3      mkfs.hfs       mkfs.minix     mkfs.reiserfs</span><br><span class="line">mkfs.bfs       mkfs.exfat     mkfs.ext4      mkfs.hfsplus   mkfs.msdos     mkfs.vfat    </span><br><span class="line">mkfs.btrfs     mkfs.ext2      mkfs.fat       mkfs.jfs       mkfs.ntfs      mkfs.xfs</span><br></pre></td></tr></table></figure></p>
+<p>mkfs<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkfs           mkfs<span class="selector-class">.cramfs</span>    mkfs<span class="selector-class">.ext3</span>      mkfs<span class="selector-class">.hfs</span>       mkfs<span class="selector-class">.minix</span>     mkfs.reiserfs</span><br><span class="line">mkfs<span class="selector-class">.bfs</span>       mkfs<span class="selector-class">.exfat</span>     mkfs<span class="selector-class">.ext4</span>      mkfs<span class="selector-class">.hfsplus</span>   mkfs<span class="selector-class">.msdos</span>     mkfs<span class="selector-class">.vfat</span>    </span><br><span class="line">mkfs<span class="selector-class">.btrfs</span>     mkfs<span class="selector-class">.ext2</span>      mkfs<span class="selector-class">.fat</span>       mkfs<span class="selector-class">.jfs</span>       mkfs<span class="selector-class">.ntfs</span>      mkfs.xfs</span><br></pre></td></tr></table></figure></p>
 <h3 id="备份数据"><a href="#备份数据" class="headerlink" title="备份数据"></a>备份数据</h3><p>rsync </p>
 <blockquote>
 <p>  Transfer files either to or from a remote host (not between two remote hosts).<br>  Can transfer single files, or multiple files matching a pattern.</p>
@@ -353,9 +384,9 @@
 <li>a包含文件所有信息(This is equivalent to -rlptgoD),如原本权限,修改时间,子目录等等</li>
 <li>v为显示传输过程,P为更为详细的信息输出</li>
 </ul>
-<p>既可以拉取数据,也可以发送数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Pull: rsync [OPTION...] [USER@]HOST:SRC... [DEST]</span><br><span class="line">Push: rsync [OPTION...] SRC... [USER@]HOST:DEST</span><br></pre></td></tr></table></figure></p>
-<h3 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h3><p>查看分区信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fdisk -l</span><br><span class="line"></span><br><span class="line">df -h</span><br></pre></td></tr></table></figure></p>
-<p>具体分区操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fdisk /dev/设备名</span><br><span class="line"></span><br><span class="line">:p  查看设备分区情况</span><br><span class="line">:F  查看设备未分区的块</span><br><span class="line">:d  删除一个分区</span><br><span class="line">:n  建立一个分区</span><br></pre></td></tr></table></figure></p>
+<p>既可以拉取数据,也可以发送数据<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">Pull</span>: <span class="selector-tag">rsync</span> <span class="selector-attr">[OPTION...]</span> <span class="selector-attr">[USER@]</span><span class="selector-tag">HOST</span><span class="selector-pseudo">:SRC...</span> <span class="selector-attr">[DEST]</span></span><br><span class="line"><span class="selector-tag">Push</span>: <span class="selector-tag">rsync</span> <span class="selector-attr">[OPTION...]</span> <span class="selector-tag">SRC</span>... <span class="selector-attr">[USER@]</span><span class="selector-tag">HOST</span><span class="selector-pseudo">:DEST</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h3><p>查看分区信息<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">fdisk -l</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">df -h</span></span><br></pre></td></tr></table></figure></p>
+<p>具体分区操作<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fdisk /dev/设备名</span><br><span class="line"></span><br><span class="line"><span class="symbol">:p</span>  查看设备分区情况</span><br><span class="line"><span class="symbol">:F</span>  查看设备未分区的块</span><br><span class="line"><span class="symbol">:d</span>  删除一个分区</span><br><span class="line"><span class="symbol">:n</span>  建立一个分区</span><br></pre></td></tr></table></figure></p>
 <ul>
 <li>创建完分区记得创建文件系统</li>
 </ul>
@@ -363,27 +394,27 @@
 <h3 id="swap"><a href="#swap" class="headerlink" title="swap"></a>swap</h3><p><a href="https://www.cnblogs.com/FengGeBlog/p/10239067.html" target="_blank" rel="noopener">https://www.cnblogs.com/FengGeBlog/p/10239067.html</a></p>
 <h3 id="挂载"><a href="#挂载" class="headerlink" title="挂载"></a>挂载</h3><p>开机自动挂载需修改<code>/etc/fstab</code></p>
 <h3 id="uuid"><a href="#uuid" class="headerlink" title="uuid"></a>uuid</h3><p>blkid /dev/name</p>
-<h1 id="grub"><a href="#grub" class="headerlink" title="grub"></a>grub</h1><p>quit 为简单输出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRUB_CMDLINE_LINUX_DEFAULT=&quot;quiet splash&quot;</span><br></pre></td></tr></table></figure></p>
+<h1 id="grub"><a href="#grub" class="headerlink" title="grub"></a>grub</h1><p>quit 为简单输出<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">GRUB_CMDLINE_LINUX_DEFAULT</span>=<span class="string">"quiet splash"</span></span><br></pre></td></tr></table></figure></p>
 <ul>
 <li>为默认启动内核参数,一直有效(包括救援模式)</li>
 <li>splash 为显示linux发行版logo</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRUB_CMDLINE_LINUX=</span><br></pre></td></tr></table></figure>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">GRUB_CMDLINE_LINUX</span>=</span><br></pre></td></tr></table></figure>
 <ul>
 <li>为救援模式的启动参数</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/etc/default/grub</span><br><span class="line">update-grub</span><br></pre></td></tr></table></figure>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/etc/</span><span class="keyword">default</span>/grub</span><br><span class="line">update-grub</span><br></pre></td></tr></table></figure>
 <p>或在开机出现logo前按ESC再按e可修改启动参数(本次启动有效)</p>
-<h1 id="brightness"><a href="#brightness" class="headerlink" title="brightness"></a>brightness</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl list-units | grep backlight</span><br></pre></td></tr></table></figure>
+<h1 id="brightness"><a href="#brightness" class="headerlink" title="brightness"></a>brightness</h1><figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">sudo </span><span class="string">systemctl </span><span class="built_in">list-units</span> | <span class="string">grep </span><span class="string">backlight</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>发现一个启动失败,可能是发生了冲突</li>
 </ul>
-<p>禁用其一<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl mask systemd-backlight@backlight:acpi_video0.service </span><br><span class="line">Created symlink /etc/systemd/system/systemd-backlight@backlight:acpi_video0.service → /dev/</span><br><span class="line">null.</span><br></pre></td></tr></table></figure></p>
-<p>重启另外一个<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart systemd-backlight@backlight:nvidia_0.service</span><br></pre></td></tr></table></figure></p>
+<p>禁用其一<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl mask systemd-backlight<span class="meta">@backlight</span>:acpi_video0.service </span><br><span class="line">Created symlink <span class="regexp">/etc/</span>systemd<span class="regexp">/system/</span>systemd-backlight<span class="meta">@backlight</span>:acpi_video0.service → <span class="regexp">/dev/</span></span><br><span class="line"><span class="literal">null</span>.</span><br></pre></td></tr></table></figure></p>
+<p>重启另外一个<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart systemd-backlight<span class="variable">@backlight</span><span class="symbol">:nvidia_0</span>.service</span><br></pre></td></tr></table></figure></p>
 <ul>
 <li>重启机器发现亮度已经可以正常恢复</li>
 </ul>
-<h1 id="启动时间"><a href="#启动时间" class="headerlink" title="启动时间"></a>启动时间</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">systemd-analyze  </span><br><span class="line"></span><br><span class="line">systemd-analyze blame</span><br><span class="line"></span><br><span class="line">systemd-analyze critical-chain</span><br></pre></td></tr></table></figure>
+<h1 id="启动时间"><a href="#启动时间" class="headerlink" title="启动时间"></a>启动时间</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">systemd-<span class="keyword">analyze</span>  </span><br><span class="line"></span><br><span class="line">systemd-<span class="keyword">analyze</span> blame</span><br><span class="line"></span><br><span class="line">systemd-<span class="keyword">analyze</span> <span class="keyword">critical</span>-<span class="keyword">chain</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>可以根据以上命令输出关闭一些不常用服务以加速开机 `systemctl mask(disable)</li>
 <li>有些服务需要用但就是慢可以尝试手动修改 <code>服务名.service</code>文件,将其加上<code>After = graphical.target</code>,也就是在先等桌面加载玩再加载服务</li>
@@ -397,9 +428,9 @@
 <li><a href="http://www.net-snmp.org/wiki/index.php/Tutorials" target="_blank" rel="noopener">http://www.net-snmp.org/wiki/index.php/Tutorials</a></li>
 <li><a href="https://blog.csdn.net/bbwangj/article/details/80981098" target="_blank" rel="noopener">https://blog.csdn.net/bbwangj/article/details/80981098</a></li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">telnet 192.168.1.1 161 Connection refused</span><br><span class="line"></span><br><span class="line"># 指定用udp扫描端口161</span><br><span class="line">nmap -sU 192.168.1.1 -p161</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">telnet 192.168.1.1 161<span class="built_in"> Connection </span>refused</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定用udp扫描端口161</span></span><br><span class="line">nmap -sU 192.168.1.1 -p161</span><br></pre></td></tr></table></figure>
 <h1 id="lol安装"><a href="#lol安装" class="headerlink" title="lol安装"></a>lol安装</h1><p><a href="https://www.reddit.com/r/leagueoflinux/comments/alfbep/league_on_linux_mint_19/" target="_blank" rel="noopener">https://www.reddit.com/r/leagueoflinux/comments/alfbep/league_on_linux_mint_19/</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install snapd</span><br><span class="line"></span><br><span class="line">snap install leagueoflegends --edge --devmode</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt <span class="keyword">install</span> snapd</span><br><span class="line"></span><br><span class="line">snap <span class="keyword">install</span> leagueoflegends <span class="comment">--edge --devmode</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>很简单粗暴,没有国服</p>
 </li>
@@ -525,7 +556,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">49</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -589,6 +620,11 @@
       
 
       
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
 
     </div>
   </aside>
@@ -600,7 +636,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -632,11 +668,6 @@
     </footer>
 
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
 
     
 
@@ -660,8 +691,6 @@
 
   
 
-
-  
 
 
 
@@ -701,11 +730,6 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 
@@ -775,6 +799,323 @@
 
 
   
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
 
 
 
