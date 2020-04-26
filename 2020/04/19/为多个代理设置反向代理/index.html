@@ -85,7 +85,7 @@
 <meta property="og:url" content="http://yoursite.com/2020/04/19/为多个代理设置反向代理/index.html">
 <meta property="og:site_name" content="oneto1">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-25T02:22:04.661Z">
+<meta property="og:updated_time" content="2020-04-26T04:35:35.512Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="为多个代理设置反向代理">
 
@@ -386,9 +386,9 @@
 <h1 id="为多个代理设置反向代理"><a href="#为多个代理设置反向代理" class="headerlink" title="为多个代理设置反向代理"></a>为多个代理设置反向代理</h1><blockquote>
 <p>为什么需要这个?总有些代理不够稳定,这样就需要频繁更改应用的代理端口,如果能设置一个反向代理代理它们,就能以一个固定端口访问了</p>
 </blockquote>
-<p>这里用到的是<code>stream</code>模块而不是<code>http</code><br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">stream &#123;</span><br><span class="line">    upstream proxys &#123;</span><br><span class="line">       <span class="built_in"> server </span>127.0.0.1:1234 ;</span><br><span class="line">       <span class="built_in"> server </span>127.0.0.1:12345 backup;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   <span class="built_in"> server </span>&#123;</span><br><span class="line">        listen 127.0.0.1:12666;</span><br><span class="line">        # 不能出现server_name字段和其余默认http相关字段</span><br><span class="line"></span><br><span class="line">        proxy_pass proxys;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这里用到的是<code>stream</code>模块而不是<code>http</code><br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">stream &#123;</span><br><span class="line">    upstream proxys &#123;</span><br><span class="line">       <span class="built_in"> server </span>127.0.0.1:1234 <span class="attribute">max_fails</span>=2 <span class="attribute">fail_timeout</span>=1s;</span><br><span class="line">       <span class="built_in"> server </span>127.0.0.1:12345 backup;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   <span class="built_in"> server </span>&#123;</span><br><span class="line">        listen 127.0.0.1:12666;</span><br><span class="line">        # 不能出现server_name字段和其余默认http相关字段</span><br><span class="line"></span><br><span class="line">        proxy_pass proxys;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <ul>
-<li>这样就ok了,默认优先提供1234端口服务,除非服务不可用</li>
+<li>这样就ok了,默认优先提供1234端口服务,除非服务不可用超时</li>
 </ul>
 
       
