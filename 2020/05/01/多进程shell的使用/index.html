@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="c,leetcode,">
+  <meta name="keywords" content="linux,shell,">
 
 
 
@@ -79,15 +79,15 @@
 
 
 
-<meta name="keywords" content="c,leetcode">
+<meta name="keywords" content="linux,shell">
 <meta property="og:type" content="article">
-<meta property="og:title" content="刷题小总结之动态规划、双指针">
-<meta property="og:url" content="http://yoursite.com/2019/11/17/刷题小总结之动态规划、双指针/index.html">
+<meta property="og:title" content="多进程shell的使用">
+<meta property="og:url" content="http://yoursite.com/2020/05/01/多进程shell的使用/index.html">
 <meta property="og:site_name" content="oneto1">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-25T02:22:04.664Z">
+<meta property="og:updated_time" content="2020-05-01T12:26:20.008Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="刷题小总结之动态规划、双指针">
+<meta name="twitter:title" content="多进程shell的使用">
 
 
 
@@ -117,13 +117,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/11/17/刷题小总结之动态规划、双指针/">
+  <link rel="canonical" href="http://yoursite.com/2020/05/01/多进程shell的使用/">
 
 
 
 
 
-  <title>刷题小总结之动态规划、双指针 | oneto1</title>
+  <title>多进程shell的使用 | oneto1</title>
   
 
 
@@ -291,7 +291,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/17/刷题小总结之动态规划、双指针/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/01/多进程shell的使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="oneto1">
@@ -308,7 +308,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">刷题小总结之动态规划、双指针</h1>
+          <h1 class="post-title" itemprop="name headline">多进程shell的使用</h1>
         
 
         <div class="post-meta">
@@ -320,8 +320,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-17T12:47:19+08:00">
-                2019-11-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-01T18:55:28+08:00">
+                2020-05-01
               </time>
             
 
@@ -360,24 +360,18 @@
       
         <hr>
 <a id="more"></a>
-<p><del>发现自己好久没有碎碎念了，hhh，最近刷题的感觉也是神奇，百思不知其错在哪的代码放那呆一会过会就能过了？？？<br>有时把错了的实例输入测试区然后通过了执行也过了？？？</del></p>
-<h1 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h1><blockquote>
-<p><a href="https://zh.wikipedia.org/wiki/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92" target="_blank" rel="noopener">动态规划</a>（英语：Dynamic programming，简称DP）常常适用于有<strong>重叠子问题</strong>和<strong>最优子结构</strong>性质的问题，动态规划方法所耗时间往往远少于朴素解法。</p>
-</blockquote>
-<p>  动态规划背后的基本思想非常简单。大致上，若要解一个给定问题，我们需要解其不同部分（即子问题），再根据子问题的解以得出原问题的解。</p>
-<p>  通常许多子问题非常相似，为此动态规划法试图仅仅解决每个子问题一次，从而减少计算量：一旦某个给定子问题的解已经算出，则将其记忆化存储，以便下次需要同一个子问题解之时直接查表。这种做法在重复子问题的数目关于输入的规模呈指数增长时特别有用。</p>
-<p>个人总结：</p>
-<ol>
-<li>先想大问题能否化为小问题的组合</li>
-<li>想好存放历史值的数组所代表的意思</li>
-<li>找出状态方程（小问题之间与大问题的联系）</li>
-<li>初始化边界条件</li>
-</ol>
-<p><a href="https://mp.weixin.qq.com/s/pg-IJ8rA1duIzt5hW1Cycw" target="_blank" rel="noopener">告别动态规划，连刷40道动规算法题，我总结了动规的套路</a><br><a href="https://blog.csdn.net/yandaoqiusheng/article/details/84782655" target="_blank" rel="noopener">背包问题</a></p>
-<h1 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h1><p>典型：<br>移除元素</p>
-<figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">给定一个数组 nums 和一个值 <span class="keyword">val</span>，你需要原地移除所有数值等于 <span class="keyword">val</span> 的元素，返回移除后数组的新长度。</span><br><span class="line"></span><br><span class="line">不要使用额外的数组空间，你必须在原地修改输入数组并在使用 <span class="type">O</span>(<span class="number">1</span>) 额外空间的条件下完成。</span><br><span class="line"></span><br><span class="line">元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。</span><br><span class="line"></span><br><span class="line">核心思想：可以使用两个指针，一个遍历原数组，一个标记新数组，判断的条件就是元素时候和给定的<span class="keyword">val</span>相等。</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> removeElement(<span class="built_in">int</span>* nums, <span class="built_in">int</span> numsSize, <span class="built_in">int</span> <span class="keyword">val</span>)&#123;</span><br><span class="line">            <span class="built_in">int</span> i=<span class="number">0</span>;</span><br><span class="line">            <span class="built_in">int</span> j=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span>(i&lt;numsSize &amp;&amp; j&lt;numsSize) </span><br><span class="line">                &#123;</span><br><span class="line">                   <span class="keyword">if</span>(nums[i]!=<span class="keyword">val</span>)</span><br><span class="line">                        nums[j++]=nums[i];</span><br><span class="line">                </span><br><span class="line">                    i++; </span><br><span class="line">                &#125;</span><br><span class="line">            return j;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>感觉用了双指针就不用大量的套用for()来遍历了，快速排序也是双指针</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">void q_sort(int a[],int l,int n)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (l &lt; n)</span><br><span class="line">    &#123;</span><br><span class="line">        int <span class="built_in">i</span>=l,<span class="built_in">j</span>=n;</span><br><span class="line">        int val = a[l];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(<span class="built_in">i</span>&lt;<span class="built_in">j</span>)</span><br><span class="line">        &#123;   </span><br><span class="line">            </span><br><span class="line">            <span class="keyword">while</span>(<span class="built_in">i</span> &lt; <span class="built_in">j</span> &amp;&amp; a[<span class="built_in">j</span>] &lt; val )</span><br><span class="line">                <span class="built_in">j</span>--;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">i</span> &lt; <span class="built_in">j</span> )</span><br><span class="line">            &#123;</span><br><span class="line">                a[<span class="built_in">i</span>++] = a[<span class="built_in">j</span>];    </span><br><span class="line">            &#125;    </span><br><span class="line"></span><br><span class="line">            <span class="keyword">while</span>(<span class="built_in">i</span> &lt; <span class="built_in">j</span> &amp;&amp; a[<span class="built_in">i</span>] &gt;= val )</span><br><span class="line">                <span class="built_in">i</span>++;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">i</span> &lt; <span class="built_in">j</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                a[<span class="built_in">j</span>] = a[<span class="built_in">i</span>];</span><br><span class="line">            &#125;    </span><br><span class="line">        &#125;</span><br><span class="line">        a[<span class="built_in">i</span>] = val;</span><br><span class="line"></span><br><span class="line">        q_sort(a,l,<span class="built_in">i</span><span class="number">-1</span>);</span><br><span class="line">        q_sort(a,<span class="built_in">i</span>+<span class="number">1</span>,<span class="number">8</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在正常情况下，shell执行一个命令都是fork一个子进程再exec相应命令</p>
+<p>shell也可以实现多进程实现并发</p>
+<p>将要用到多进程的语句用<code>{  }</code>括起来，在最后加上<code>&amp;</code>，就会在运行时运行多个子shell实现多进程</p>
+<p>上面就类似于c语言中的<code>fork()</code>,那不得不说与之搭配的<code>wait（）</code>，shell里对应的是<code>wait</code></p>
+<ul>
+<li><code>wait</code> 默认是等待子进程全部退出，后接pid则为等待指定进程退出</li>
+</ul>
+<p>来一个批量ping的脚本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> ip <span class="keyword">in</span> &#123;1..254&#125;</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">&#123;</span><br><span class="line">    sleep 3</span><br><span class="line">    ping 192.168.1.<span class="variable">$ip</span> -c 3 &gt; /dev/null</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">if</span> [ $? -eq 0 ];</span><br><span class="line">    <span class="keyword">then</span></span><br><span class="line">        hostname=`nslookup 192.168.1.<span class="variable">$ip</span> | awk <span class="string">'&#123;print $4&#125;'</span>`</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> [ <span class="variable">$hostname</span> != <span class="string">"find"</span> ]; <span class="comment">#当没找到hostname时为“find”</span></span><br><span class="line">        <span class="keyword">then</span></span><br><span class="line">            <span class="built_in">echo</span> <span class="string">"192.168.1.<span class="variable">$ip</span> <span class="variable">$hostname</span> is up"</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="built_in">echo</span> <span class="string">"192.168.1.<span class="variable">$ip</span> is up"</span></span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">&#125;&amp;</span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">wait</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>使用<code>ps aux | grep ping | grep -v grep | wc -l</code>来验证，结果为254，也就是实实在在有254个进程在并发实行</li>
+</ul>
+
       
     </div>
     
@@ -394,9 +388,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/c/" rel="tag"># c</a>
+            <a href="/tags/linux/" rel="tag"># linux</a>
           
-            <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+            <a href="/tags/shell/" rel="tag"># shell</a>
           
         </div>
       
@@ -409,8 +403,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/11/09/数据结构之数组、链表、队列、栈/" rel="next" title="数据结构之数组、链表、队列、栈">
-                <i class="fa fa-chevron-left"></i> 数据结构之数组、链表、队列、栈
+              <a href="/2020/05/01/manjaro下解决蓝牙问题/" rel="next" title="manjaro解决xbox手柄蓝牙问题">
+                <i class="fa fa-chevron-left"></i> manjaro解决xbox手柄蓝牙问题
               </a>
             
           </div>
@@ -418,10 +412,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/12/01/我的第一个xshell自动化脚本/" rel="prev" title="我的第一个xshell自动化脚本">
-                我的第一个xshell自动化脚本 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -473,17 +463,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -543,22 +524,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#动态规划"><span class="nav-number">1.</span> <span class="nav-text">动态规划</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#双指针"><span class="nav-number">2.</span> <span class="nav-text">双指针</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       

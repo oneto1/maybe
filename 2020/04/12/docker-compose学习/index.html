@@ -85,7 +85,7 @@
 <meta property="og:url" content="http://yoursite.com/2020/04/12/docker-compose学习/index.html">
 <meta property="og:site_name" content="oneto1">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-30T13:20:56.645Z">
+<meta property="og:updated_time" content="2020-05-01T12:29:07.032Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker-compose学习">
 
@@ -392,7 +392,7 @@
 <li>格式与<code>RUN</code> 类似</li>
 <li>shell格式的命令会被解析为<code>sh -c command</code>格式，实际为`RUN [“sh”,”-c”,”command”],所以在命令中可用环境变量</li>
 <li>在运行容器时可手动覆盖<code>CMD</code>，如<code>docker run -it test /bin/bsah</code>，镜像名后接的命令即是覆盖后的命令</li>
-<li>需要注意一点，容器提供服务的只是一个进程，当进程退出了容器随即消亡，容器没有后台服务的概念，如果将<code>CMD</code>设置为一个shell命令，那么就是执行完命令容器就退出了，要让容器持续提供服务，<code>CMD</code>应为一个长久的前台命令，如<code>CMD [&quot;nginx&quot;,&quot;-g&quot;,&quot;daemon off&quot;]</code></li>
+<li>需要注意一点，容器提供服务的只是一个进程，容器的1号进程为自己指定的程序，所以当进程退出了容器随即消亡，容器没有后台服务的概念，如果将<code>CMD</code>设置为一个shell命令，那么就是执行完命令容器就退出了，要让容器持续提供服务，<code>CMD</code>应为一个长久的前台命令，如<code>CMD [&quot;nginx&quot;,&quot;-g&quot;,&quot;daemon off&quot;]</code></li>
 </ul>
 <p><strong>ENTRYPOINT</strong> 入口点</p>
 <ul>
@@ -569,7 +569,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-count">52</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -591,7 +591,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
