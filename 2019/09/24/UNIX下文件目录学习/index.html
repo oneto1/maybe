@@ -89,7 +89,7 @@
 <meta property="og:image" content="http://yoursite.com/images/20190924=1.png">
 <meta property="og:image" content="http://yoursite.com/images/20190924=2.png">
 <meta property="og:image" content="http://yoursite.com/images/20190924=3.png">
-<meta property="og:updated_time" content="2020-04-25T02:22:04.661Z">
+<meta property="og:updated_time" content="2020-05-11T08:36:22.131Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UNIX下文件目录学习">
 <meta name="twitter:image" content="http://yoursite.com/images/20190924=0.png">
@@ -472,11 +472,40 @@
 </ul>
 <h3 id="chmod"><a href="#chmod" class="headerlink" title="chmod()"></a>chmod()</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> “sys/stat.h” </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">chmod</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pathname,<span class="keyword">mode_t</span> mode)</span></span>; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fchmod</span><span class="params">(<span class="keyword">int</span> fd,<span class="keyword">mode_t</span> mode)</span></span>; </span><br><span class="line"></span><br><span class="line">成功返回<span class="number">0</span>，失败返回<span class="number">-1</span></span><br></pre></td></tr></table></figure>
 <ul>
-<li><p>node 除了基本的9个外，还可用 </p>
-<p>S_ISUID|设置用户id<br>:–:|:–:<br>S_ISGID|设置组id<br>S_ISVTX|保存粘着位(保存正文位)<br>S_IRWXU|用户读写执行<br>S_IRWXG|群组读写执行<br>S_IRWXO|其他读写执行</p>
-</li>
-<li><p>一个可执行文件的粘着位设置后，那么当它第一次被执行被终止的的时候，程序正文部分的一个副本会被保存在交换区，方便下次执行的时候快速载入内存</p>
-</li>
+<li>node 除了基本的9个外，还可用 </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">S_ISUID</th>
+<th style="text-align:center">设置用户id</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">S_ISGID</td>
+<td style="text-align:center">设置组id</td>
+</tr>
+<tr>
+<td style="text-align:center">S_ISVTX</td>
+<td style="text-align:center">保存粘着位(保存正文位)</td>
+</tr>
+<tr>
+<td style="text-align:center">S_IRWXU</td>
+<td style="text-align:center">用户读写执行</td>
+</tr>
+<tr>
+<td style="text-align:center">S_IRWXG</td>
+<td style="text-align:center">群组读写执行</td>
+</tr>
+<tr>
+<td style="text-align:center">S_IRWXO</td>
+<td style="text-align:center">其他读写执行</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>一个可执行文件的粘着位设置后，那么当它第一次被执行被终止的的时候，程序正文部分的一个副本会被保存在交换区，方便下次执行的时候快速载入内存</li>
 <li>也允许对一个目录设置粘着位，如/var/tmp、/tmp，必须对该目录有写权限且拥有该目录或文件才能删除或重命名文件，当然root是全能的</li>
 </ul>
 <h3 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h3><p><img src="/images/20190924=1.png" alt></p>
@@ -545,8 +574,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/09/22/UNIX下文件I-O与标准I-O/" rel="next" title="UNIX下文件I/O与标准I/O">
-                <i class="fa fa-chevron-left"></i> UNIX下文件I/O与标准I/O
+              <a href="/2019/09/22/UNIX下文件I-O学习/" rel="next" title="UNIX下文件I/O学习">
+                <i class="fa fa-chevron-left"></i> UNIX下文件I/O学习
               </a>
             
           </div>
@@ -634,7 +663,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-count">55</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
