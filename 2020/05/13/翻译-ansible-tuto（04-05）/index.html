@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="linux,vagrant,">
+  <meta name="keywords" content="linux,ansible,翻译,">
 
 
 
@@ -79,15 +79,15 @@
 
 
 
-<meta name="keywords" content="linux,vagrant">
+<meta name="keywords" content="linux,ansible,翻译">
 <meta property="og:type" content="article">
-<meta property="og:title" content="vagrant学习">
-<meta property="og:url" content="http://yoursite.com/2020/05/06/vagrant学习/index.html">
+<meta property="og:title" content="翻译: ansible-tuto（04-05）">
+<meta property="og:url" content="http://yoursite.com/2020/05/13/翻译-ansible-tuto（04-05）/index.html">
 <meta property="og:site_name" content="oneto1">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-06T14:02:27.285Z">
+<meta property="og:updated_time" content="2020-05-13T03:38:40.917Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="vagrant学习">
+<meta name="twitter:title" content="翻译: ansible-tuto（04-05）">
 
 
 
@@ -117,13 +117,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/05/06/vagrant学习/">
+  <link rel="canonical" href="http://yoursite.com/2020/05/13/翻译-ansible-tuto（04-05）/">
 
 
 
 
 
-  <title>vagrant学习 | oneto1</title>
+  <title>翻译: ansible-tuto（04-05） | oneto1</title>
   
 
 
@@ -291,7 +291,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/06/vagrant学习/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/13/翻译-ansible-tuto（04-05）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="oneto1">
@@ -308,7 +308,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">vagrant学习</h1>
+          <h1 class="post-title" itemprop="name headline">翻译: ansible-tuto（04-05）</h1>
         
 
         <div class="post-meta">
@@ -320,8 +320,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-06T12:36:14+08:00">
-                2020-05-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-13T09:13:42+08:00">
+                2020-05-13
               </time>
             
 
@@ -360,104 +360,36 @@
       
         <hr>
 <a id="more"></a>
-<h1 id="什么是vagrant"><a href="#什么是vagrant" class="headerlink" title="什么是vagrant"></a>什么是vagrant</h1><blockquote>
-<p>Vagrant is a tool for building and managing virtual machine environments in a single workflow. With an easy-to-use workflow and focus on automation, Vagrant lowers development environment setup time, increases production parity, and makes the “works on my machine” excuse a relic of the past.</p>
-<ul>
-<li>简而言之，即是一次打包，随处使用</li>
-</ul>
-</blockquote>
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>vagrant 支持多种虚拟化软件</p>
-<ul>
-<li>VirualBox</li>
-<li>Vmware(付费)</li>
-<li>KVM</li>
-<li>Hyper-v</li>
-</ul>
-<p>这里用到的是 virtualbox（默认支持），注意需先安装 virtualbox，再安装 vagrant，否则会出现找不到 virualbox 的错误，需重新安装</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">sudo pacman -S virualbox</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>安装后还需加载相应内核模块<code>modprobe -a vboxdrv</code></li>
-</ul>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">sudo pacman -S vagrant</span></span><br></pre></td></tr></table></figure>
-<h1 id="什么是box"><a href="#什么是box" class="headerlink" title="什么是box"></a>什么是box</h1><p>box 是vagrant环境的一种打包格式，在所有vagrant支持的操作系统上是通用的，而后面所有进行的操作都与box息息相关（类似于docker中的镜像）</p>
-<p>这是box商店 —&gt; <a href="https://app.vagrantup.com/boxes/search" target="_blank" rel="noopener">door</a></p>
-<ul>
-<li>在这里可以找到各种想要发行版或服务</li>
-</ul>
-<p>每个box以 <code>作者名/box名</code>加以区分</p>
-<p>添加一个box<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">vagrant</span> <span class="keyword">box </span><span class="keyword">add </span>ubuntu/trusty64</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li><p>可以是本地文件，也可以是一个下载地址</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">vagrant</span> <span class="keyword">box </span><span class="keyword">add </span>\</span><br><span class="line"><span class="symbol">https</span>://mirrors.tuna.tsinghua.edu.cn/ubuntu-cloud-images/<span class="keyword">bionic/current/bionic-server-cloudimg-amd64-vagrant.box </span>\</span><br><span class="line">--name ubuntu/<span class="keyword">bionic</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>就像这样</p>
-</li>
-</ul>
-<p>查看刚刚添加的box<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vagrant box <span class="built_in">list</span></span><br></pre></td></tr></table></figure></p>
-<p>删除<br><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vagrant <span class="built_in">box</span> <span class="built_in">remove</span> name</span><br></pre></td></tr></table></figure></p>
-<h1 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world"></a>hello world</h1><p>了解了box，就可以正式开始了</p>
-<p>先新建一个文件夹，作为本次的大本营,初始化<br><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mkdir</span> <span class="keyword">my</span>-vagrant</span><br><span class="line">cd <span class="keyword">my</span>-vagrant</span><br><span class="line"></span><br><span class="line">vagrant init ubuntu/trusty64</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>init 指定一个box，也可以是一个url</li>
-</ul>
-<p>这样在当前目录就生成了一个Vagrantfile，作为我们的初始配置文件<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- mode: ruby -*-</span></span><br><span class="line"><span class="comment"># vi: set ft=ruby :</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># All Vagrant configuration is done below. The "2" in Vagrant.configure</span></span><br><span class="line"><span class="comment"># configures the configuration version (we support older styles for</span></span><br><span class="line"><span class="comment"># backwards compatibility). Please don't change it unless you know what</span></span><br><span class="line"><span class="comment"># you're doing.</span></span><br><span class="line">Vagrant.configure(<span class="string">"2"</span>) <span class="keyword">do</span> |config|</span><br><span class="line">  <span class="comment"># The most common configuration options are documented and commented below.</span></span><br><span class="line">  <span class="comment"># For a complete reference, please see the online documentation at</span></span><br><span class="line">  <span class="comment"># https://docs.vagrantup.com.</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Every Vagrant development environment requires a box. You can search for</span></span><br><span class="line">  <span class="comment"># boxes at https://vagrantcloud.com/search.</span></span><br><span class="line">  config.vm.box = <span class="string">"ubuntu/trusty64"</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Disable automatic box update checking. If you disable this, then</span></span><br><span class="line">  <span class="comment"># boxes will only be checked for updates when the user runs</span></span><br><span class="line">  <span class="comment"># `vagrant box outdated`. This is not recommended.</span></span><br><span class="line">  <span class="comment"># config.vm.box_check_update = false</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Create a forwarded port mapping which allows access to a specific port</span></span><br><span class="line">  <span class="comment"># within the machine from a port on the host machine. In the example below,</span></span><br><span class="line">  <span class="comment"># accessing "localhost:8080" will access port 80 on the guest machine.</span></span><br><span class="line">  <span class="comment"># <span class="doctag">NOTE:</span> This will enable public access to the opened port</span></span><br><span class="line">  <span class="comment"># config.vm.network "forwarded_port", guest: 80, host: 8080</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Create a forwarded port mapping which allows access to a specific port</span></span><br><span class="line">  <span class="comment"># within the machine from a port on the host machine and only allow access</span></span><br><span class="line">  <span class="comment"># via 127.0.0.1 to disable public access</span></span><br><span class="line">  <span class="comment"># config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Create a private network, which allows host-only access to the machine</span></span><br><span class="line">  <span class="comment"># using a specific IP.</span></span><br><span class="line">  <span class="comment"># config.vm.network "private_network", ip: "192.168.33.10"</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Create a public network, which generally matched to bridged network.</span></span><br><span class="line">  <span class="comment"># Bridged networks make the machine appear as another physical device on</span></span><br><span class="line">  <span class="comment"># your network.</span></span><br><span class="line">  <span class="comment"># config.vm.network "public_network"</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Share an additional folder to the guest VM. The first argument is</span></span><br><span class="line">  <span class="comment"># the path on the host to the actual folder. The second argument is</span></span><br><span class="line">  <span class="comment"># the path on the guest to mount the folder. And the optional third</span></span><br><span class="line">  <span class="comment"># argument is a set of non-required options.</span></span><br><span class="line">  <span class="comment"># config.vm.synced_folder "../data", "/vagrant_data"</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Provider-specific configuration so you can fine-tune various</span></span><br><span class="line">  <span class="comment"># backing providers for Vagrant. These expose provider-specific options.</span></span><br><span class="line">  <span class="comment"># Example for VirtualBox:</span></span><br><span class="line">  <span class="comment">#</span></span><br><span class="line">  <span class="comment"># config.vm.provider "virtualbox" do |vb|</span></span><br><span class="line">  <span class="comment">#   # Display the VirtualBox GUI when booting the machine</span></span><br><span class="line">  <span class="comment">#   vb.gui = true</span></span><br><span class="line">  <span class="comment">#</span></span><br><span class="line">  <span class="comment">#   # Customize the amount of memory on the VM:</span></span><br><span class="line">  <span class="comment">#   vb.memory = "1024"</span></span><br><span class="line">  <span class="comment"># end</span></span><br><span class="line">  <span class="comment">#</span></span><br><span class="line">  <span class="comment"># View the documentation for the provider you are using for more</span></span><br><span class="line">  <span class="comment"># information on available options.</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Enable provisioning with a shell script. Additional provisioners such as</span></span><br><span class="line">  <span class="comment"># Ansible, Chef, Docker, Puppet and Salt are also available. Please see the</span></span><br><span class="line">  <span class="comment"># documentation for more information about their specific syntax and use.</span></span><br><span class="line">  <span class="comment"># config.vm.provision "shell", inline: &lt;&lt;-SHELL</span></span><br><span class="line">  <span class="comment">#   apt-get update</span></span><br><span class="line">  <span class="comment">#   apt-get install -y apache2</span></span><br><span class="line">  <span class="comment"># SHELL</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>配置文件的语法格式为ruby</li>
-</ul>
-<p>相关配置块共有5种：</p>
-<ul>
-<li>config.vm 与虚拟机相关配置</li>
-<li>config.ssh 与ssh相关配置</li>
-<li>config.vagrant 与vagrant自身相关配置</li>
-<li>config.winrm 与Windows远程管理相关配置</li>
-<li>config.winssh 与Windows平台上ssh相关配置</li>
-</ul>
-<p>最常用的还是config.vm</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">config.vm.box</th>
-<th style="text-align:center">指定一个box（初始化时就已经自动填好）</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">config.vm.box_version</td>
-<td style="text-align:center">指定一个box的版本</td>
-</tr>
-<tr>
-<td style="text-align:center">comfig.vm.define</td>
-<td style="text-align:center">为这个虚拟机取个名（默认为default）</td>
-</tr>
-</tbody>
-</table>
-<p><a href="https://www.vagrantup.com/docs/vagrantfile/machine_settings.html" target="_blank" rel="noopener">更多设置</a></p>
-<p>开始启动<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">vagrant up</span></span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>这样过一会虚拟机就会启动完成了</li>
-</ul>
-<p>关机、重启<br><figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vagrant <span class="built_in">halt</span></span><br><span class="line"></span><br><span class="line">vagrant <span class="built_in">reload</span></span><br></pre></td></tr></table></figure></p>
-<h1 id="ssh管理"><a href="#ssh管理" class="headerlink" title="ssh管理"></a>ssh管理</h1><p>创建完成后已经自动设置好了ssh，查看配置<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">vagrant ssh-config</span><br><span class="line"></span><br><span class="line">&gt;</span><br><span class="line">Host default</span><br><span class="line">HostName 127.0.0.1</span><br><span class="line">User vagrant</span><br><span class="line">Port 2222</span><br><span class="line">UserKnownHostsFile /dev/<span class="literal">null</span></span><br><span class="line">StrictHostKeyChecking <span class="literal">no</span></span><br><span class="line">PasswordAuthentication <span class="literal">no</span></span><br><span class="line">IdentityFile /home/test/my-vagrant/.vagrant/machines/default/virtualbox/private_key</span><br><span class="line">IdentitiesOnly <span class="literal">yes</span></span><br><span class="line">LogLevel FATAL</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>可以得到几个重要信息：ip、端口、用户名、密钥地址</li>
-</ul>
-<p>连接虚拟机<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vagrant ssh </span><br><span class="line"></span><br><span class="line"># 等同于 ssh vagrant@<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> -p <span class="number">2222</span> -i ~/my—vagrant/.vagrant/machines/<span class="section">default</span>/virtualbox/private_key</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>若有多个虚拟机，则在ssh 后接名字即可</li>
-</ul>
-<h1 id="Provisioning-预配置"><a href="#Provisioning-预配置" class="headerlink" title="Provisioning 预配置"></a>Provisioning 预配置</h1><p>要使用Preovision 须在Vagrantfile里配置，这样在在虚拟机开启时会自动运行这些预先配置</p>
-<p>配置语法其一为内联<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config<span class="selector-class">.vm</span><span class="selector-class">.provision</span> <span class="string">"shell"</span>, inline: <span class="string">"echo hello"</span></span><br></pre></td></tr></table></figure></p>
-<ul>
-<li><code>config.vm.provision</code> 后接的是预配置的提供者类型 </li>
-</ul>
-<p>其二以配置块的方式出现<br><figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">config.vm.provision <span class="string">"shell"</span> <span class="built_in">do</span> |<span class="type">s</span>|<span class="type"></span></span><br><span class="line"><span class="type">  s</span>.inline = <span class="string">"echo hello"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">或先为其起个名字</span><br><span class="line"> config.vm.provision <span class="string">"ansibbbble"</span>,type: <span class="string">"ansible"</span>  <span class="built_in">do</span> |<span class="type">ansible</span>|<span class="type"></span></span><br><span class="line"><span class="type">  ansible</span>.playbook = <span class="string">"./playbook.yml"</span></span><br><span class="line">  <span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>后者的”ansibbbble” 则为预配置的一个名字，这样的话输出会更加直白</li>
-</ul>
-<p>若是在启动后还想再次运行预配置<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">vagrant provision</span></span><br></pre></td></tr></table></figure></p>
-<h1 id="同步文件"><a href="#同步文件" class="headerlink" title="同步文件"></a>同步文件</h1><p>在虚拟机开启时，会自动将当前目录与虚拟机中的 <code>/vagrant</code> 文件夹进行同步，实则自动将当前目录挂载了</p>
-<hr>
-<p><a href="https://www.vagrantup.com/docs/" target="_blank" rel="noopener">更多文档</a></p>
+<h1 id="step04-Ansible-playbooks"><a href="#step04-Ansible-playbooks" class="headerlink" title="step04 Ansible playbooks"></a>step04 Ansible playbooks</h1><p>Playbook 的概念非常简单: 它只是一系列可接受的命令(tasks) ，就像我们使用 <code>ansible</code> CLI 工具时所使用的那样。 这些任务针对一组特定的主机/组。</p>
+<p>这个步骤所需的文件应该已经神奇地出现(自带有)，甚至不需要输入它们</p>
+<h3 id="Apache-示例-也就是-Ansible-的“-Hello-World-”"><a href="#Apache-示例-也就是-Ansible-的“-Hello-World-”" class="headerlink" title="Apache 示例(也就是 Ansible 的“ Hello World! ”)"></a>Apache 示例(也就是 Ansible 的“ Hello World! ”)</h3><p>我们假设我们有以下库存文件(让我们把它命名为<code>hosts</code>) :<br><figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">[web]</span></span><br><span class="line">host1</span><br></pre></td></tr></table></figure></p>
+<p>所有的主机都是基于 debian 的</p>
+<p><strong>注意</strong>: 请记住您可以(在我们的练习中我们这样做)使用 <code>ansible_host</code> 来设置主机的真实 IP。 您还可以更改库存并使用真正的主机名。 在任何情况下，使用一个非关键的机器测试！ 在真正的主机文件中，我们还有<code>ansible_user=root</code> 来处理潜在的不同的ansible 默认配置(ansible.cfg的默认用户为root,但可能被修改过)</p>
+<p>让我们构建一个将在 <code>web</code> 组中的机器上安装 apache 的剧本。</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- hosts: web</span><br><span class="line">  tasks:</span><br><span class="line">    - name: Installs apache web server</span><br><span class="line">      apt:</span><br><span class="line">        pkg: apache2</span><br><span class="line">        state: present</span><br><span class="line">        update_cache: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>我们只需要使用 <code>apt</code> 模块正确说出我们想要做什么。 这里，我们使用 <a href="https://docs.ansible.com/ansible/latest/modules/apt_module.html" target="_blank" rel="noopener">apt</a> 模块来安装 debian 软件包。 我们还要求此模块更新包缓存。</p>
+<p>我们还为这个任务添加了一个名称。 虽然这是不必要的，但是在剧本运行时它提供了很多信息，所以强烈推荐使用。</p>
+<p>总而言之，这是相当容易的！</p>
+<p>您现在可以运行 playbook (让我们称之为 <code>apache.yml</code>) :<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ansible-playbook -i <span class="built_in">step</span><span class="number">-04</span>/hosts -l host1 <span class="built_in">step</span><span class="number">-04</span>/apache.yml</span><br></pre></td></tr></table></figure></p>
+<p>在这里，<code>step-04/hosts</code> 是库存文件,<code>-l</code> 将限制只在主机 <code>host1</code>上运行，<code>apache.yml</code> 是我们的剧本。</p>
+<p>当你运行上面的命令时，你应该会看到这样的东西:<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">PLAY [web] <span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>*</span><br><span class="line"></span><br><span class="line">GATHERING FACTS <span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>*</span><br><span class="line">ok: [host1]</span><br><span class="line"></span><br><span class="line">TASK: [Installs apache web server] <span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>*</span><br><span class="line">changed: [host1]</span><br><span class="line"></span><br><span class="line">PLAY RECAP <span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>*</span><br><span class="line">host1              : ok=2    changed=1    unreachable=0    failed=0</span><br></pre></td></tr></table></figure></p>
+<p>让我们分析一次一行的输出<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PLAY [web] <span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>*</span><br></pre></td></tr></table></figure></p>
+<p>告诉我们它正在主机<code>web</code>上运行。 <code>playbook</code>是一套与<code>hosts</code>有关的可接受的指令。 如果我们有另一个<code>- host: blah</code>: 在我们的剧本中，它也会运行(但是只会在第一个剧本结束之后，一个剧本文件可以有包含多个剧本)</p>
+<p>还记得我们使用 <code>setup</code> 模块的时候吗？ 每次运行之前，ansible 都在指定的主机上运行它，以收集事实。 如果因为不需要主机提供任何信息而不需要这样做，那么您可以添加 <code>gather_facts: no</code> 语段在主机条目的下面(与 <code>tasks:</code>相同缩进长度)。</p>
+<p>接下来，是真正的任务: 我们的(第一个也是唯一的)任务正在运行，因为它表示<code>changed</code>，所以我们知道它改变了 host1上的某些内容。</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PLAY RECAP *********************</span><br><span class="line">host1              : <span class="attribute">ok</span>=2    <span class="attribute">changed</span>=1    <span class="attribute">unreachable</span>=0    <span class="attribute">failed</span>=0</span><br></pre></td></tr></table></figure>
+<p>最后，ansible 输出发生了什么: 两个任务已经运行，其中一个在主机上改变了一些东西(我们的 apache 任务，setup 模块没有改变任何东西)。</p>
+<p>现在让我们再运行一次，看看会发生什么:<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ ansible-playbook -i step-04/hosts -l host1 step-04/apache.yml</span><br><span class="line"></span><br><span class="line">PLAY [web] <span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>*</span><br><span class="line"></span><br><span class="line">GATHERING FACTS <span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>*</span><br><span class="line">ok: [host1]</span><br><span class="line"></span><br><span class="line">TASK: [Installs apache web server] <span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>*</span><br><span class="line">ok: [host1]</span><br><span class="line"></span><br><span class="line">PLAY RECAP <span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>*</span><br><span class="line">host1              : ok=2    changed=0    unreachable=0    failed=0</span><br></pre></td></tr></table></figure></p>
+<p>现在‘ changed’是‘0’。 这是绝对正常的，也是 <code>ansible</code> 的核心特征之一: 只有在有事情可做的时候，剧本才会采取行动。这就是所谓的幂等性，也就是说你可以随心所欲地运行你的剧本，你最终总是会处于相同的状态(当然，除非你用 shell 模块做了一些疯狂的事情，但这超出了 ansible 的控制范围)</p>
+<h3 id="完善剧本"><a href="#完善剧本" class="headerlink" title="完善剧本"></a>完善剧本</h3><p>当然，我们的剧本可以安装 apache 服务器，但它可以更完整一点。它可以添加一个虚拟主机，确保重新启动 apache。它甚至可以从 git 仓库部署我们的网站</p>
+<h1 id="step-05-完善-apache-设置"><a href="#step-05-完善-apache-设置" class="headerlink" title="step-05 完善 apache 设置"></a>step-05 完善 apache 设置</h1><p>我们已经安装了 apache，现在让我们设置虚拟主机。</p>
+<h3 id="完善剧本-1"><a href="#完善剧本-1" class="headerlink" title="完善剧本"></a>完善剧本</h3><p>我们的服务器上只需要一个虚拟主机，但我们希望用更具体的东西替换默认主机。因此，我们必须移除当前(可能是默认的)虚拟主机，发送至虚拟机，激活它并重新启动 apache。</p>
+<p>让我们创建一个名为 <code>files</code> 的目录，并为 host1添加虚拟主机配置，我们称之为 <code>awesome-app</code>:<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;VirtualHost *:80&gt;</span><br><span class="line">  DocumentRoot /<span class="keyword">var</span>/www/awesome-<span class="keyword">app</span></span><br><span class="line"></span><br><span class="line">  Options -Indexes</span><br><span class="line"></span><br><span class="line">  ErrorLog /<span class="keyword">var</span>/<span class="keyword">log</span>/apache2/<span class="keyword">error</span>.<span class="built_in">log</span></span><br><span class="line">  TransferLog /<span class="keyword">var</span>/<span class="keyword">log</span>/apache2/access.<span class="built_in">log</span></span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure></p>
+<p>现在，快速更新一下我们的 apache 剧本，我们准备好了:</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">- hosts: web</span><br><span class="line">  tasks:</span><br><span class="line">    - name: Installs apache web server</span><br><span class="line">      apt:</span><br><span class="line">        pkg: apache2</span><br><span class="line">        state: present</span><br><span class="line">        update_cache: <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">    - name: Push<span class="built_in"> default </span>virtual host configuration</span><br><span class="line">      copy:</span><br><span class="line">        src: files/awesome-app</span><br><span class="line">        dest: /etc/apache2/sites-available/awesome-app</span><br><span class="line">        mode: 0640</span><br><span class="line"></span><br><span class="line">    - name: <span class="builtin-name">Disable</span> the<span class="built_in"> default </span>virtualhost</span><br><span class="line">      file:</span><br><span class="line">        dest: /etc/apache2/sites-enabled/default</span><br><span class="line">        state: absent</span><br><span class="line">      notify:</span><br><span class="line">        - restart apache</span><br><span class="line"></span><br><span class="line">    - name: <span class="builtin-name">Disable</span> the<span class="built_in"> default </span>ssl virtualhost</span><br><span class="line">      file:</span><br><span class="line">        dest: /etc/apache2/sites-enabled/default-ssl</span><br><span class="line">        state: absent</span><br><span class="line">      notify:</span><br><span class="line">        - restart apache</span><br><span class="line"></span><br><span class="line">    - name: Activates our virtualhost</span><br><span class="line">      file:</span><br><span class="line">        src: /etc/apache2/sites-available/awesome-app</span><br><span class="line">        dest: /etc/apache2/sites-enabled/awesome-app</span><br><span class="line">        state: link</span><br><span class="line">      notify:</span><br><span class="line">        - restart apache</span><br><span class="line"></span><br><span class="line">  handlers:</span><br><span class="line">    - name: restart apache</span><br><span class="line">      service:</span><br><span class="line">        name: apache2</span><br><span class="line">        state: restarted</span><br></pre></td></tr></table></figure>
+<p>我们开始吧:</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">$ ansible-playbook -i step-05/hosts -l host1 step-05/apache.yml</span><br><span class="line"></span><br><span class="line">PLAY [web] *********************</span><br><span class="line"></span><br><span class="line">GATHERING FACTS *********************</span><br><span class="line">ok: [host1]</span><br><span class="line"></span><br><span class="line">TASK: [Installs apache web server] *********************</span><br><span class="line">ok: [host1]</span><br><span class="line"></span><br><span class="line">TASK: [Push<span class="built_in"> default </span>virtual host configuration] *********************</span><br><span class="line">changed: [host1]</span><br><span class="line"></span><br><span class="line">TASK: [<span class="builtin-name">Disable</span> the<span class="built_in"> default </span>virtualhost] *********************</span><br><span class="line">changed: [host1]</span><br><span class="line"></span><br><span class="line">TASK: [<span class="builtin-name">Disable</span> the<span class="built_in"> default </span>ssl virtualhost] *********************</span><br><span class="line">changed: [host1]</span><br><span class="line"></span><br><span class="line">TASK: [Activates our virtualhost] *********************</span><br><span class="line">changed: [host1]</span><br><span class="line"></span><br><span class="line">NOTIFIED: [restart apache] *********************</span><br><span class="line">changed: [host1]</span><br><span class="line"></span><br><span class="line">PLAY RECAP *********************</span><br><span class="line">host1              : <span class="attribute">ok</span>=7    <span class="attribute">changed</span>=5    <span class="attribute">unreachable</span>=0    <span class="attribute">failed</span>=0</span><br></pre></td></tr></table></figure>
+<p>太酷了！好吧，想想看，我们有点操之过急了。在重新启动 apache 之前，我们是否应该检查一下配置是否正常？这样，如果配置文件不正确，我们就不会中断服务。</p>
 
       
     </div>
@@ -477,7 +409,9 @@
           
             <a href="/tags/linux/" rel="tag"># linux</a>
           
-            <a href="/tags/vagrant/" rel="tag"># vagrant</a>
+            <a href="/tags/ansible/" rel="tag"># ansible</a>
+          
+            <a href="/tags/翻译/" rel="tag"># 翻译</a>
           
         </div>
       
@@ -490,8 +424,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/05/01/多进程shell的使用/" rel="next" title="多进程shell的使用">
-                <i class="fa fa-chevron-left"></i> 多进程shell的使用
+              <a href="/2020/05/10/翻译-ansible-tuto（02-03）/" rel="next" title="翻译: ansible-tuto（02-03）">
+                <i class="fa fa-chevron-left"></i> 翻译: ansible-tuto（02-03）
               </a>
             
           </div>
@@ -499,10 +433,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/05/08/翻译-ansible-tuto（00-01）/" rel="prev" title="翻译: ansible-tuto（00-01）">
-                翻译: ansible-tuto（00-01） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -634,7 +564,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是vagrant"><span class="nav-number">1.</span> <span class="nav-text">什么是vagrant</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是box"><span class="nav-number">3.</span> <span class="nav-text">什么是box</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hello-world"><span class="nav-number">4.</span> <span class="nav-text">hello world</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ssh管理"><span class="nav-number">5.</span> <span class="nav-text">ssh管理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Provisioning-预配置"><span class="nav-number">6.</span> <span class="nav-text">Provisioning 预配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#同步文件"><span class="nav-number">7.</span> <span class="nav-text">同步文件</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#step04-Ansible-playbooks"><span class="nav-number">1.</span> <span class="nav-text">step04 Ansible playbooks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Apache-示例-也就是-Ansible-的“-Hello-World-”"><span class="nav-number">1.0.1.</span> <span class="nav-text">Apache 示例(也就是 Ansible 的“ Hello World! ”)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完善剧本"><span class="nav-number">1.0.2.</span> <span class="nav-text">完善剧本</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#step-05-完善-apache-设置"><span class="nav-number">2.</span> <span class="nav-text">step-05 完善 apache 设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#完善剧本-1"><span class="nav-number">2.0.1.</span> <span class="nav-text">完善剧本</span></a></li></ol></li></div>
             
 
           </div>
