@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="linux,ansible,翻译,">
+
+
+
+
+
+
+
+
+
+
+<meta name="keywords" content="linux,ansible,翻译">
+<meta property="og:type" content="article">
+<meta property="og:title" content="翻译: ansible-tuto（08-09）">
+<meta property="og:url" content="http://yoursite.com/2020/05/16/翻译-ansible-tuto（08-09）/index.html">
+<meta property="og:site_name" content="oneto1">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-05-16T09:33:52.590Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="翻译: ansible-tuto（08-09）">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/05/16/翻译-ansible-tuto（08-09）/">
+
+
+
+
+
+  <title>翻译: ansible-tuto（08-09） | oneto1</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', '[object Object]', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">oneto1</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-坑">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            坑
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/16/翻译-ansible-tuto（08-09）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="oneto1">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="oneto1">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">翻译: ansible-tuto（08-09）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-16T10:26:11+08:00">
+                2020-05-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<a id="more"></a>
+<h1 id="step08-从-git-部署我们的网站"><a href="#step08-从-git-部署我们的网站" class="headerlink" title="step08 从 git 部署我们的网站"></a>step08 从 git 部署我们的网站</h1><p>我们已经安装了 apache，设置了虚拟主机，并安全地重新启动了服务器。 现在我们将使用 git 模块来部署我们的应用程序。</p>
+<h3 id="Git-模块"><a href="#Git-模块" class="headerlink" title="Git 模块"></a>Git 模块</h3><p>这是一个小放松，没有什么新的东西。<code>git</code> 模块只是另一个模块。 尽管我们只是为了好玩而尝试。当它涉及 <code>ansible-pull</code>以后，我们将更加熟悉它，</p>
+<p>我们的虚拟机已经设置好了，但是我们需要一些更改来完成部署。 首先，我们正在部署一个 PHP 应用程序。 因此，我们需要安装 <code>libapache2-mod-php</code> 包。 其次，我们必须安装 git，因为 <code>git</code> 模块(用于克隆我们应用程序的 git 存储库)将使用它。</p>
+<p>我们可以这样做:<br><figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">- name: Installs apache web server</span><br><span class="line">  apt:</span><br><span class="line">    pkg: apache2</span><br><span class="line">    <span class="keyword">state</span>: present</span><br><span class="line">    update_cache: true</span><br><span class="line"></span><br><span class="line">- name: Installs php module</span><br><span class="line">  apt:</span><br><span class="line">    pkg: libapache2-mod-php</span><br><span class="line">    <span class="keyword">state</span>: present</span><br><span class="line"></span><br><span class="line">- name: Installs git</span><br><span class="line">  apt:</span><br><span class="line">    pkg: git</span><br><span class="line">    <span class="keyword">state</span>: present</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>但是 ansible 提供了一种更易读的编写方式。 Ansible 可以在一系列 <code>items</code> 上循环遍历，并在一个动作中使用每个 <code>item</code> :<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">- hosts:</span> <span class="string">web</span></span><br><span class="line"><span class="attr">  tasks:</span></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">Installs</span> <span class="string">necessary</span> <span class="string">packages</span></span><br><span class="line"><span class="attr">      apt:</span></span><br><span class="line"><span class="attr">        pkg:</span> <span class="string">"<span class="template-variable">&#123;&#123; item &#125;&#125;</span>"</span></span><br><span class="line"><span class="attr">        state:</span> <span class="string">latest</span></span><br><span class="line"><span class="attr">        update_cache:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">      with_items:</span></span><br><span class="line"><span class="bullet">        -</span> <span class="string">apache2</span></span><br><span class="line"><span class="bullet">        -</span> <span class="string">libapache2-mod-php</span></span><br><span class="line"><span class="bullet">        -</span> <span class="string">git</span></span><br><span class="line"></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">Push</span> <span class="string">future</span> <span class="string">default</span> <span class="string">virtual</span> <span class="string">host</span> <span class="string">configuration</span></span><br><span class="line"><span class="attr">      copy:</span></span><br><span class="line"><span class="attr">        src:</span> <span class="string">files/awesome-app</span></span><br><span class="line"><span class="attr">        dest:</span> <span class="string">/etc/apache2/sites-available/</span></span><br><span class="line"><span class="attr">        mode:</span> <span class="number">0640</span></span><br><span class="line"></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">Activates</span> <span class="string">our</span> <span class="string">virtualhost</span></span><br><span class="line"><span class="attr">      command:</span> <span class="string">a2ensite</span> <span class="string">awesome-app</span></span><br><span class="line"></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">Check</span> <span class="string">that</span> <span class="string">our</span> <span class="string">config</span> <span class="string">is</span> <span class="string">valid</span></span><br><span class="line"><span class="attr">      command:</span> <span class="string">apache2ctl</span> <span class="string">configtest</span></span><br><span class="line"><span class="attr">      register:</span> <span class="string">result</span></span><br><span class="line"><span class="attr">      ignore_errors:</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">Rolling</span> <span class="string">back</span> <span class="bullet">-</span> <span class="string">Restoring</span> <span class="string">old</span> <span class="string">default</span> <span class="string">virtualhost</span></span><br><span class="line"><span class="attr">      command:</span> <span class="string">a2ensite</span> <span class="string">default</span></span><br><span class="line"><span class="attr">      when:</span> <span class="string">result</span> <span class="string">is</span> <span class="string">failed</span></span><br><span class="line"></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">Rolling</span> <span class="string">back</span> <span class="bullet">-</span> <span class="string">Removing</span> <span class="string">out</span> <span class="string">virtualhost</span></span><br><span class="line"><span class="attr">      command:</span> <span class="string">a2dissite</span> <span class="string">awesome-app</span></span><br><span class="line"><span class="attr">      when:</span> <span class="string">result</span> <span class="string">is</span> <span class="string">failed</span></span><br><span class="line"></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">Rolling</span> <span class="string">back</span> <span class="bullet">-</span> <span class="string">Ending</span> <span class="string">playbook</span></span><br><span class="line"><span class="attr">      fail:</span></span><br><span class="line"><span class="attr">        msg:</span> <span class="string">"Configuration file is not valid. Please check that before re-running the playbook."</span></span><br><span class="line"><span class="attr">      when:</span> <span class="string">result</span> <span class="string">is</span> <span class="string">failed</span></span><br><span class="line"></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">Deploy</span> <span class="string">our</span> <span class="string">awesome</span> <span class="string">application</span></span><br><span class="line"><span class="attr">      git:</span></span><br><span class="line"><span class="attr">        repo:</span> <span class="attr">https://github.com/leucos/ansible-tuto-demosite.git</span></span><br><span class="line"><span class="attr">        dest:</span> <span class="string">/var/www/awesome-app</span></span><br><span class="line"><span class="attr">      tags:</span> <span class="string">deploy</span></span><br><span class="line"></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">Deactivates</span> <span class="string">the</span> <span class="string">default</span> <span class="string">virtualhost</span></span><br><span class="line"><span class="attr">      command:</span> <span class="string">a2dissite</span> <span class="string">default</span></span><br><span class="line"></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">Deactivates</span> <span class="string">the</span> <span class="string">default</span> <span class="string">ssl</span> <span class="string">virtualhost</span></span><br><span class="line"><span class="attr">      command:</span> <span class="string">a2dissite</span> <span class="string">default-ssl</span></span><br><span class="line"><span class="attr">      notify:</span></span><br><span class="line"><span class="bullet">        -</span> <span class="string">restart</span> <span class="string">apache</span></span><br><span class="line"></span><br><span class="line"><span class="attr">  handlers:</span></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">restart</span> <span class="string">apache</span></span><br><span class="line"><span class="attr">      service:</span></span><br><span class="line"><span class="attr">        name:</span> <span class="string">apache2</span></span><br><span class="line"><span class="attr">        state:</span> <span class="string">restarted</span></span><br></pre></td></tr></table></figure></p>
+<p>接下来开始吧：<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">$ ansible-playbook -i step-08/hosts -l host1 step-08/apache.yml</span><br><span class="line"></span><br><span class="line">PLAY [web] <span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>*</span><br><span class="line"></span><br><span class="line">GATHERING FACTS <span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>*</span><br><span class="line">ok: [host1]</span><br><span class="line"></span><br><span class="line">TASK: [Updates apt cache] <span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>*</span><br><span class="line">ok: [host1]</span><br><span class="line"></span><br><span class="line">TASK: [Installs necessary packages] <span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>*</span><br><span class="line">changed: [host1] =&gt; (item=apache2,libapache2-mod-php,git)</span><br><span class="line"></span><br><span class="line">TASK: [Push future default virtual host configuration] <span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>*</span><br><span class="line">changed: [host1]</span><br><span class="line"></span><br><span class="line">TASK: [Activates our virtualhost] <span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>*</span><br><span class="line">changed: [host1]</span><br><span class="line"></span><br><span class="line">TASK: [Check that our config is valid] <span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>*</span><br><span class="line">changed: [host1]</span><br><span class="line"></span><br><span class="line">TASK: [Rolling back - Restoring old default virtualhost] <span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>*</span><br><span class="line">skipping: [host1]</span><br><span class="line"></span><br><span class="line">TASK: [Rolling back - Removing out virtualhost] <span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>*</span><br><span class="line">skipping: [host1]</span><br><span class="line"></span><br><span class="line">TASK: [Rolling back - Ending playbook] <span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>*</span><br><span class="line">skipping: [host1]</span><br><span class="line"></span><br><span class="line">TASK: [Deploy our awesome application] <span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>*</span><br><span class="line">changed: [host1]</span><br><span class="line"></span><br><span class="line">TASK: [Deactivates the default virtualhost] <span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>*</span><br><span class="line">changed: [host1]</span><br><span class="line"></span><br><span class="line">TASK: [Deactivates the default ssl virtualhost] <span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>*</span><br><span class="line">changed: [host1]</span><br><span class="line"></span><br><span class="line">NOTIFIED: [restart apache] <span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>*</span><br><span class="line">changed: [host1]</span><br><span class="line"></span><br><span class="line">PLAY RECAP <span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>*</span><br><span class="line">host1              : ok=10   changed=8    unreachable=0    failed=0</span><br></pre></td></tr></table></figure></p>
+<p>你现在可以浏览 <a href="http://192.168.33.11，它应该会显示一张图片和服务器的主机名。" target="_blank" rel="noopener">http://192.168.33.11，它应该会显示一张图片和服务器的主机名。</a></p>
+<p><strong>注意</strong> <code>tags: deploy</code>  这一行允许您只执行 playbook 的一部分。 比如说你为你的网站推出了一个新版本。 您希望加快处理速度，只执行处理 <code>deploy</code> 的部分。 标签允许你这样做。 当然，<code>deploy</code> 只是一个字符串，它没有任何特定的含义，可以是任何东西。 让我们来看看如何使用它:</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ ansible-playbook -i step-08/hosts -l host1 step-08/apache.yml -t deploy</span><br><span class="line">X11 forwarding request failed on channel 0</span><br><span class="line"></span><br><span class="line">PLAY [web] <span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>*</span><br><span class="line"></span><br><span class="line">GATHERING FACTS <span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>*</span><br><span class="line">ok: [host1]</span><br><span class="line"></span><br><span class="line">TASK: [Deploy our awesome application] <span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>*</span><br><span class="line">changed: [host1]</span><br><span class="line"></span><br><span class="line">PLAY RECAP <span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>*</span><br><span class="line">host1              : ok=2    changed=1    unreachable=0    failed=0</span><br></pre></td></tr></table></figure>
+<p>让我们在 <code>step-09</code> 中部署另一个 web 服务器。</p>
+<h1 id="step-09-添加另外一个-webserver"><a href="#step-09-添加另外一个-webserver" class="headerlink" title="step-09 添加另外一个 webserver"></a>step-09 添加另外一个 webserver</h1><p>我们已经有了一个 webserver，让我们添加另外一个</p>
+<h3 id="更新库存文件"><a href="#更新库存文件" class="headerlink" title="更新库存文件"></a>更新库存文件</h3><p>由于我们对此抱有有很大的期望，我们将添加另一个 web 服务器和一个负载均衡器，我们将在下一步配置它。让我们完成它。</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[web]</span><br><span class="line">host1 <span class="attribute">ansible_host</span>=192.168.33.11 <span class="attribute">ansible_user</span>=root</span><br><span class="line">host2 <span class="attribute">ansible_host</span>=192.168.33.12 <span class="attribute">ansible_user</span>=root</span><br><span class="line"></span><br><span class="line">[haproxy]</span><br><span class="line">host0 <span class="attribute">ansible_host</span>=192.168.33.10 <span class="attribute">ansible_user</span>=root</span><br></pre></td></tr></table></figure>
+<p>请记住，<code>ansible_host</code> 在这里指定可接受的主机，因为主机的 IP 与预期的不同(或者无法解析)。 您可以将这些主机添加到您的 <code>/etc/hosts</code> 中，而不必担心，或者使用真正的主机名(这是典型情况下应该做的)。</p>
+<h3 id="部署另一个-webserver"><a href="#部署另一个-webserver" class="headerlink" title="部署另一个 webserver"></a>部署另一个 webserver</h3><p>部署另一个 webserver 很简单</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">$ ansible-playbook -i step-09/hosts step-09/apache.yml</span><br><span class="line"></span><br><span class="line">PLAY [web] *********************</span><br><span class="line"></span><br><span class="line">GATHERING FACTS *********************</span><br><span class="line">ok: [host2]</span><br><span class="line">ok: [host1]</span><br><span class="line"></span><br><span class="line">TASK: [Updates apt cache] *********************</span><br><span class="line">ok: [host1]</span><br><span class="line">ok: [host2]</span><br><span class="line"></span><br><span class="line">TASK: [Installs necessary packages] *********************</span><br><span class="line">ok: [host1] =&gt; (<span class="attribute">item</span>=apache2,libapache2-mod-php,git)</span><br><span class="line">changed: [host2] =&gt; (<span class="attribute">item</span>=apache2,libapache2-mod-php,git)</span><br><span class="line"></span><br><span class="line">TASK: [Push future<span class="built_in"> default </span>virtual host configuration] *********************</span><br><span class="line">ok: [host1]</span><br><span class="line">changed: [host2]</span><br><span class="line"></span><br><span class="line">TASK: [Activates our virtualhost] *********************</span><br><span class="line">changed: [host2]</span><br><span class="line">changed: [host1]</span><br><span class="line"></span><br><span class="line">TASK: [Check that our<span class="built_in"> config </span>is valid] *********************</span><br><span class="line">changed: [host2]</span><br><span class="line">changed: [host1]</span><br><span class="line"></span><br><span class="line">TASK: [Rolling back - Restoring old<span class="built_in"> default </span>virtualhost] *********************</span><br><span class="line">skipping: [host1]</span><br><span class="line">skipping: [host2]</span><br><span class="line"></span><br><span class="line">TASK: [Rolling back - Removing out virtualhost] *********************</span><br><span class="line">skipping: [host1]</span><br><span class="line">skipping: [host2]</span><br><span class="line"></span><br><span class="line">TASK: [Rolling back - Ending playbook] *********************</span><br><span class="line">skipping: [host1]</span><br><span class="line">skipping: [host2]</span><br><span class="line"></span><br><span class="line">TASK: [Deploy our awesome application] *********************</span><br><span class="line">ok: [host1]</span><br><span class="line">changed: [host2]</span><br><span class="line"></span><br><span class="line">TASK: [Deactivates the<span class="built_in"> default </span>virtualhost] *********************</span><br><span class="line">changed: [host1]</span><br><span class="line">changed: [host2]</span><br><span class="line"></span><br><span class="line">TASK: [Deactivates the<span class="built_in"> default </span>ssl virtualhost] *********************</span><br><span class="line">changed: [host2]</span><br><span class="line">changed: [host1]</span><br><span class="line"></span><br><span class="line">NOTIFIED: [restart apache] *********************</span><br><span class="line">changed: [host1]</span><br><span class="line">changed: [host2]</span><br><span class="line"></span><br><span class="line">PLAY RECAP *********************</span><br><span class="line">host1              : <span class="attribute">ok</span>=10   <span class="attribute">changed</span>=5    <span class="attribute">unreachable</span>=0    <span class="attribute">failed</span>=0</span><br><span class="line">host2              : <span class="attribute">ok</span>=10   <span class="attribute">changed</span>=8    <span class="attribute">unreachable</span>=0    <span class="attribute">failed</span>=0</span><br></pre></td></tr></table></figure>
+<p>我们所要做的就是从命令行中移除 <code>-l host1</code>。 记住 <code>-l</code> 是一个参数，它限制了 playbook 在特定主机上运行。 现在我们不再限制，它将运行在所有的主机上，在这些主机上的剧本打算运行(即 web组)。</p>
+<p>如果我们在 group <code>web</code> 中有其他服务器，但是希望将 playbook 限制为一个子集，我们可以使用，例如:<code>-l firstthost: secondhost:...</code></p>
+<p>现在我们已经有了这个不错的 web 服务器组，让我们通过在 <code>step-10</code> 中在它们前面放置一个负载均衡器，将它变成为一个集群。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+            <a href="/tags/ansible/" rel="tag"># ansible</a>
+          
+            <a href="/tags/翻译/" rel="tag"># 翻译</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/15/翻译-ansible-tuto（06-07）/" rel="next" title="翻译: ansible-tuto（06-07）">
+                <i class="fa fa-chevron-left"></i> 翻译: ansible-tuto（06-07）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/05/17/翻译-ansible-tuto（10-11）/" rel="prev" title="翻译: ansible-tuto（10-11) ">
+                翻译: ansible-tuto（10-11)  <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">oneto1</p>
+              <p class="site-description motion-element" itemprop="description">你说是梦所以才痛   睡醒了再说</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#step08-从-git-部署我们的网站"><span class="nav-number">1.</span> <span class="nav-text">step08 从 git 部署我们的网站</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Git-模块"><span class="nav-number">1.0.1.</span> <span class="nav-text">Git 模块</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#step-09-添加另外一个-webserver"><span class="nav-number">2.</span> <span class="nav-text">step-09 添加另外一个 webserver</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#更新库存文件"><span class="nav-number">2.0.1.</span> <span class="nav-text">更新库存文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部署另一个-webserver"><span class="nav-number">2.0.2.</span> <span class="nav-text">部署另一个 webserver</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">oneto1</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
