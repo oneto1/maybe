@@ -74,6 +74,8 @@
 
 
 
+  <link rel="alternate" href="/atom.xml" title="oneto1" type="application/atom+xml">
+
 
 
 
@@ -131,15 +133,6 @@
 
 
 
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', '[object Object]', 'auto');
-  ga('send', 'pageview');
-</script>
 
 
 
@@ -220,12 +213,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-坑">
+        <li class="menu-item menu-item-杂物堆">
           <a href="/about/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
-            坑
+            杂物堆
           </a>
         </li>
       
@@ -497,13 +490,13 @@
 <li><figure class="highlight ceylon"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">html=BeautifulSoup(html<span class="number">_</span><span class="meta">doc</span>,<span class="string">'lxml'</span>)</span><br><span class="line"><span class="string">'lxml'</span>为手动选择的解释器</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h2 id="常用"><a href="#常用" class="headerlink" title="常用"></a>常用</h2><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">soup.title</span><br><span class="line"># &lt;title&gt;<span class="type">The</span> <span class="type">Dormouse</span><span class="symbol">'s</span> story&lt;/title&gt;  提取title节点</span><br><span class="line"></span><br><span class="line">soup.title.name</span><br><span class="line"># u<span class="symbol">'titl</span>e'  提取title节点名字</span><br><span class="line"></span><br><span class="line">soup.title.string</span><br><span class="line"># u<span class="symbol">'The</span> <span class="type">Dormouse</span><span class="symbol">'s</span> story'   提取titlenei文字</span><br><span class="line"></span><br><span class="line">soup.title.parent.name </span><br><span class="line"># u<span class="symbol">'hea</span>d'  title父节点名字</span><br><span class="line"></span><br><span class="line">soup.p</span><br><span class="line"># &lt;p <span class="class"><span class="keyword">class</span></span>=<span class="string">"title"</span>&gt;&lt;b&gt;<span class="type">The</span> <span class="type">Dormouse</span><span class="symbol">'s</span> story&lt;/b&gt;&lt;/p&gt;</span><br><span class="line"></span><br><span class="line"><span class="number">7.</span>  soup.p[<span class="symbol">'clas</span>s']</span><br><span class="line">    # u<span class="symbol">'titl</span>e'  提取p节点属性<span class="class"><span class="keyword">class</span><span class="title">的值</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"><span class="title">soup</span>.<span class="title">a</span></span></span><br><span class="line"><span class="class"><span class="title">#</span> <span class="title">&lt;a</span> <span class="title">class=</span>"<span class="title">sister</span>" <span class="title">href=</span>"<span class="title">http</span></span>:<span class="comment">//example.com/elsie" id="link1"&gt;Elsie&lt;/a&gt;</span></span><br><span class="line"></span><br><span class="line">soup.find_all('a')</span><br><span class="line"># [&lt;a <span class="class"><span class="keyword">class</span></span>=<span class="string">"sister"</span> href=<span class="string">"http://example.com/elsie"</span> id=<span class="string">"link1"</span>&gt;<span class="type">Elsie</span>&lt;/a&gt;,</span><br><span class="line">#  &lt;a <span class="class"><span class="keyword">class</span></span>=<span class="string">"sister"</span> href=<span class="string">"http://example.com/lacie"</span> id=<span class="string">"link2"</span>&gt;<span class="type">Lacie</span>&lt;/a&gt;,</span><br><span class="line">#  &lt;a <span class="class"><span class="keyword">class</span></span>=<span class="string">"sister"</span> href=<span class="string">"http://example.com/tillie"</span> id=<span class="string">"link3"</span>&gt;<span class="type">Tillie</span>&lt;/a&gt;]</span><br><span class="line"></span><br><span class="line">soup.find(id=<span class="string">"link3"</span>)</span><br><span class="line"># &lt;a <span class="class"><span class="keyword">class</span></span>=<span class="string">"sister"</span> href=<span class="string">"http://example.com/tillie"</span> id=<span class="string">"link3"</span>&gt;<span class="type">Tillie</span>&lt;/a&gt; </span><br><span class="line"></span><br><span class="line">soup.get_text()</span><br><span class="line">#  从文档中获取所有文字内容</span><br></pre></td></tr></table></figure>
+<h2 id="常用"><a href="#常用" class="headerlink" title="常用"></a>常用</h2><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">soup.title</span><br><span class="line"># &lt;title&gt;The Dormous<span class="string">e's story&lt;/title&gt;  提取title节点</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">soup.title.name</span></span><br><span class="line"><span class="string"># u'</span>titl<span class="string">e'  提取title节点名字</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">soup.title.string</span></span><br><span class="line"><span class="string"># u'</span>The Dormous<span class="string">e's story'</span>   提取titlenei文字</span><br><span class="line"></span><br><span class="line">soup.title.parent.name </span><br><span class="line"># u<span class="string">'head'</span>  title父节点名字</span><br><span class="line"></span><br><span class="line">soup.p</span><br><span class="line"># &lt;p <span class="keyword">class</span>="title"&gt;&lt;b&gt;The Dormous<span class="string">e's story&lt;/b&gt;&lt;/p&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">7.  soup.p['</span><span class="keyword">class</span><span class="string">']</span></span><br><span class="line"><span class="string">    # u'</span>titl<span class="string">e'  提取p节点属性class的值</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">soup.a</span></span><br><span class="line"><span class="string"># &lt;a class="sister" href="http://example.com/elsie" id="link1"&gt;Elsie&lt;/a&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">soup.find_all('</span>a<span class="string">')</span></span><br><span class="line"><span class="string"># [&lt;a class="sister" href="http://example.com/elsie" id="link1"&gt;Elsie&lt;/a&gt;,</span></span><br><span class="line"><span class="string">#  &lt;a class="sister" href="http://example.com/lacie" id="link2"&gt;Lacie&lt;/a&gt;,</span></span><br><span class="line"><span class="string">#  &lt;a class="sister" href="http://example.com/tillie" id="link3"&gt;Tillie&lt;/a&gt;]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">soup.find(id="link3")</span></span><br><span class="line"><span class="string"># &lt;a class="sister" href="http://example.com/tillie" id="link3"&gt;Tillie&lt;/a&gt; </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">soup.get_text()</span></span><br><span class="line"><span class="string">#  从文档中获取所有文字内容</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>前7种方法只能找到匹配的第一条，要搜索全部需用find_all</li>
 </ul>
 <h1 id="python相关补充"><a href="#python相关补充" class="headerlink" title="python相关补充"></a>python相关补充</h1><h3 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">get</span>(url, <span class="attribute">params</span>=None, **kwargs)</span><br></pre></td></tr></table></figure>
 <p>函数定义中参数前的<em>表示的是将调用时的多个参数放入元组中,\</em>*则表示将调用函数时的关键字参数放入一个字典中<br>2**4 代表2的4次方</p>
-<h3 id="2-对for语句的理解"><a href="#2-对for语句的理解" class="headerlink" title="2. 对for语句的理解"></a>2. 对for语句的理解</h3><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> apple <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">    <span class="built_in">print</span>(apple)</span><br></pre></td></tr></table></figure>
+<h3 id="2-对for语句的理解"><a href="#2-对for语句的理解" class="headerlink" title="2. 对for语句的理解"></a>2. 对for语句的理解</h3><figure class="highlight isbl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">for</span> <span class="variable">apple</span> <span class="variable"><span class="keyword">in</span></span> <span class="function"><span class="title">range</span>(<span class="number">10</span>):</span></span><br><span class="line"><span class="function">    <span class="title">print</span>(<span class="variable">apple</span>)</span></span><br></pre></td></tr></table></figure>
 <p><strong>这里的apple代表的是一个可以迭代[dié dài]的叫apple的对象</strong>，range(10)则是一个最先被计算的表达式</p>
 
       
@@ -626,7 +619,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-count">61</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -656,6 +649,13 @@
 
           </nav>
 
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
           
 
           
@@ -1206,5 +1206,5 @@
 
   
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</body>
 </html>

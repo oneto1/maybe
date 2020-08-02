@@ -74,6 +74,8 @@
 
 
 
+  <link rel="alternate" href="/atom.xml" title="oneto1" type="application/atom+xml">
+
 
 
 
@@ -130,15 +132,6 @@
 
 
 
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', '[object Object]', 'auto');
-  ga('send', 'pageview');
-</script>
 
 
 
@@ -219,12 +212,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-坑">
+        <li class="menu-item menu-item-杂物堆">
           <a href="/about/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
-            坑
+            杂物堆
           </a>
         </li>
       
@@ -395,7 +388,7 @@
 </ul>
 <p>也可以在一个表达式中执行多个命令,用；分开<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sed -e 's/<span class="number">123</span>/!/;p'</span><br><span class="line"></span><br><span class="line">$ ! <span class="number">123</span> <span class="number">123</span></span><br><span class="line">$ ! <span class="number">123</span> <span class="number">123</span></span><br></pre></td></tr></table></figure></p>
 <ul>
-<li>样例分析<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">原始数据:</span><br><span class="line">74<span class="string">-67</span>-F7<span class="string">-53</span><span class="string">-8</span>A-A4 NY6<span class="string">-416</span><span class="string">-538</span>AA4       ap6522   v4022                6 days, 0:30:23</span><br><span class="line">74<span class="string">-67</span>-F7-BE-C5<span class="string">-38</span> BJ9<span class="string">-510</span>-BEC538       ap6522   v4018                2 days, 1:15:39</span><br><span class="line">74<span class="string">-67</span>-F7-AC-BA-BC BJ8<span class="string">-523</span>-ACBABC       ap6522   v4017                unknown              None</span><br><span class="line">74<span class="string">-67</span>-F7<span class="string">-52</span><span class="string">-3</span>E-F8 NY6<span class="string">-406</span><span class="string">-523</span>EF8       ap6522   v4022                6 days, 0:29:38</span><br><span class="line">74<span class="string">-67</span>-F7-B7-C1<span class="string">-8</span>C BJ9<span class="string">-421</span>-B7C18C       ap6522   v4018                2 days, 1:15:39</span><br><span class="line">74<span class="string">-67</span>-F7-AF-B2-C4 BJ8<span class="string">-508</span>-AFB2C4       ap6522   v4017                unknown              None</span><br><span class="line">74<span class="string">-67</span>-F7<span class="string">-53</span><span class="string">-87</span><span class="string">-28</span> NY6<span class="string">-402</span><span class="string">-538728</span>       ap6522   v4022                6 days, 0:30:08</span><br><span class="line">74<span class="string">-67</span>-F7<span class="string">-52</span>-CC<span class="string">-98</span> NY6<span class="string">-407</span><span class="string">-52</span>CC98       ap6522   v4022                6 days, 0:30:23</span><br><span class="line"></span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+<li>样例分析<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">原始数据:</span><br><span class="line"><span class="number">74</span><span class="number">-67</span>-F7<span class="number">-53</span><span class="number">-8</span>A-A4 NY6<span class="number">-416</span><span class="number">-538</span>AA4       ap6522   v4022                <span class="number">6</span> days, <span class="number">0</span>:<span class="number">30</span>:<span class="number">23</span></span><br><span class="line"><span class="number">74</span><span class="number">-67</span>-F7-BE-C5<span class="number">-38</span> BJ9<span class="number">-510</span>-BEC538       ap6522   v4018                <span class="number">2</span> days, <span class="number">1</span>:<span class="number">15</span>:<span class="number">39</span></span><br><span class="line"><span class="number">74</span><span class="number">-67</span>-F7-AC-BA-BC BJ8<span class="number">-523</span>-ACBABC       ap6522   v4017                unknown              None</span><br><span class="line"><span class="number">74</span><span class="number">-67</span>-F7<span class="number">-52</span><span class="number">-3</span>E-F8 NY6<span class="number">-406</span><span class="number">-523</span>EF8       ap6522   v4022                <span class="number">6</span> days, <span class="number">0</span>:<span class="number">29</span>:<span class="number">38</span></span><br><span class="line"><span class="number">74</span><span class="number">-67</span>-F7-B7-C1<span class="number">-8</span>C BJ9<span class="number">-421</span>-B7C18C       ap6522   v4018                <span class="number">2</span> days, <span class="number">1</span>:<span class="number">15</span>:<span class="number">39</span></span><br><span class="line"><span class="number">74</span><span class="number">-67</span>-F7-AF-B2-C4 BJ8<span class="number">-508</span>-AFB2C4       ap6522   v4017                unknown              None</span><br><span class="line"><span class="number">74</span><span class="number">-67</span>-F7<span class="number">-53</span><span class="number">-87</span><span class="number">-28</span> NY6<span class="number">-402</span><span class="number">-538728</span>       ap6522   v4022                <span class="number">6</span> days, <span class="number">0</span>:<span class="number">30</span>:<span class="number">08</span></span><br><span class="line"><span class="number">74</span><span class="number">-67</span>-F7<span class="number">-52</span>-CC<span class="number">-98</span> NY6<span class="number">-407</span><span class="number">-52</span>CC98       ap6522   v4022                <span class="number">6</span> days, <span class="number">0</span>:<span class="number">30</span>:<span class="number">23</span></span><br><span class="line"></span><br><span class="line">......</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>刚开始干这个的时候需要复制到word里一个一个查找出需要的信息并手动排版，虽然不难，但心累啊</p>
@@ -517,7 +510,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-count">61</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -547,6 +540,13 @@
 
           </nav>
 
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
           
 
           
@@ -1081,5 +1081,5 @@
 
   
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</body>
 </html>

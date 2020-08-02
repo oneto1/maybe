@@ -74,6 +74,8 @@
 
 
 
+  <link rel="alternate" href="/atom.xml" title="oneto1" type="application/atom+xml">
+
 
 
 
@@ -131,15 +133,6 @@
 
 
 
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', '[object Object]', 'auto');
-  ga('send', 'pageview');
-</script>
 
 
 
@@ -220,12 +213,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-坑">
+        <li class="menu-item menu-item-杂物堆">
           <a href="/about/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
-            坑
+            杂物堆
           </a>
         </li>
       
@@ -383,7 +376,7 @@
 <ul>
 <li>不加MYSQL_ROOT_PASSWORD=111111 的话容器都不会开启</li>
 </ul>
-<p><a href="https://www.zabbix.com/documentation/current/manual/appendix/install/db_scripts" target="_blank" rel="noopener">创建数据库</a><br><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">shell</span><span class="bash">&gt; mysql -uroot -p&lt;password&gt;</span></span><br><span class="line">mysql&gt; create database zabbix character set utf8 collate utf8_bin;</span><br><span class="line"></span><br><span class="line">mysql&gt; create <span class="keyword">user</span> <span class="string">'zabbix'</span>@<span class="string">'%'</span> identified by <span class="string">'&lt;password&gt;'</span>;</span><br><span class="line">mysql&gt; grant all privileges on *.* to <span class="string">'zabbix'</span>@<span class="string">'%'</span>;<span class="comment">#需要加上这条授权参考下面第一个错误</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">shell</span><span class="bash">&gt; <span class="built_in">cd</span> database/mysql</span></span><br><span class="line"><span class="keyword">shell</span><span class="bash">&gt; mysql -uzabbix -p&lt;password&gt; zabbix &lt; schema.sql</span></span><br><span class="line"><span class="comment"># stop here if you are creating database for Zabbix proxy</span></span><br><span class="line"><span class="keyword">shell</span><span class="bash">&gt; mysql -uzabbix -p&lt;password&gt; zabbix &lt; images.sql</span></span><br><span class="line"><span class="keyword">shell</span><span class="bash">&gt; mysql -uzabbix -p&lt;password&gt; zabbix &lt; data.sql</span></span><br></pre></td></tr></table></figure></p>
+<p><a href="https://www.zabbix.com/documentation/current/manual/appendix/install/db_scripts" target="_blank" rel="noopener">创建数据库</a><br><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">shell&gt; mysql -uroot -p&lt;<span class="keyword">password</span>&gt;</span><br><span class="line">mysql&gt; <span class="keyword">create</span> <span class="keyword">database</span> zabbix <span class="type">character</span> <span class="keyword">set</span> utf8 <span class="keyword">collate</span> utf8_bin;</span><br><span class="line"></span><br><span class="line">mysql&gt; <span class="keyword">create</span> <span class="keyword">user</span> <span class="string">'zabbix'</span>@<span class="string">'%'</span> identified <span class="keyword">by</span> <span class="string">'&lt;password&gt;'</span>;</span><br><span class="line">mysql&gt; <span class="keyword">grant</span> <span class="keyword">all</span> <span class="keyword">privileges</span> <span class="keyword">on</span> *.* <span class="keyword">to</span> <span class="string">'zabbix'</span>@<span class="string">'%'</span>;#需要加上这条授权参考下面第一个错误</span><br><span class="line"></span><br><span class="line">shell&gt; cd <span class="keyword">database</span>/mysql</span><br><span class="line">shell&gt; mysql -uzabbix -p&lt;<span class="keyword">password</span>&gt; zabbix &lt; <span class="keyword">schema</span>.<span class="keyword">sql</span></span><br><span class="line"># stop here <span class="keyword">if</span> you are creating <span class="keyword">database</span> <span class="keyword">for</span> Zabbix proxy</span><br><span class="line">shell&gt; mysql -uzabbix -p&lt;<span class="keyword">password</span>&gt; zabbix &lt; images.<span class="keyword">sql</span></span><br><span class="line">shell&gt; mysql -uzabbix -p&lt;<span class="keyword">password</span>&gt; zabbix &lt; data.<span class="keyword">sql</span></span><br></pre></td></tr></table></figure></p>
 <ul>
 <li><a href="https://www.cnblogs.com/B1ackWall/p/11643136.html" target="_blank" rel="noopener">ERROR 1410 (42000): You are not allowed to create a user with GRANT</a></li>
 </ul>
@@ -393,7 +386,7 @@
 <ul>
 <li>[Error connecting to database: The server requested authentication method unknow]<br>(<a href="https://learnku.com/articles/10736/some-craters-in-mysql-8011" target="_blank" rel="noopener">https://learnku.com/articles/10736/some-craters-in-mysql-8011</a>)</li>
 </ul>
-<h2 id="php"><a href="#php" class="headerlink" title="php"></a>php</h2><p>前端拿php写的,故需要安装php<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt <span class="keyword">install</span> php7.<span class="number">2</span>-fpm</span><br></pre></td></tr></table></figure></p>
+<h2 id="php"><a href="#php" class="headerlink" title="php"></a>php</h2><p>前端拿php写的,故需要安装php<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install php7<span class="number">.2</span>-fpm</span><br></pre></td></tr></table></figure></p>
 <p>需要修改默认配置文件以满足zabbix需求<br><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/php/7.2/fpm/php.ini </span><br><span class="line"></span><br><span class="line">max_execution_time = 300 <span class="comment">##368行（执行时间）</span></span><br><span class="line">max_input_time = 300 <span class="comment">##378行（接收数据等待时间）</span></span><br><span class="line">memory_limit = 128M <span class="comment">##389行（每个脚本占用内存）</span></span><br><span class="line">post_max_size = 16M <span class="comment">##656行（POST数据大小）</span></span><br><span class="line">upload_max_filesize = 2M <span class="comment">##799行（下载文件大小）</span></span><br><span class="line">always_populate_raw_post_data = -1 <span class="comment">##800行</span></span><br><span class="line">date.timezone = Asia/Shanghai <span class="comment">##877行（时区</span></span><br></pre></td></tr></table></figure></p>
 <ul>
 <li>不改的话,后面也不会成功</li>
@@ -546,7 +539,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-count">61</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -576,6 +569,13 @@
 
           </nav>
 
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
           
 
           
@@ -1126,5 +1126,5 @@
 
   
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</body>
 </html>

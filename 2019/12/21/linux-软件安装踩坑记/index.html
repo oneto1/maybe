@@ -74,6 +74,8 @@
 
 
 
+  <link rel="alternate" href="/atom.xml" title="oneto1" type="application/atom+xml">
+
 
 
 
@@ -134,15 +136,6 @@
 
 
 
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', '[object Object]', 'auto');
-  ga('send', 'pageview');
-</script>
 
 
 
@@ -223,12 +216,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-坑">
+        <li class="menu-item menu-item-杂物堆">
           <a href="/about/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
-            坑
+            杂物堆
           </a>
         </li>
       
@@ -378,7 +371,7 @@
 <h3 id="安装输入法"><a href="#安装输入法" class="headerlink" title="安装输入法"></a>安装输入法</h3><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sudo apt <span class="keyword">install</span> fcitx fcitx-googlepinyin</span><br></pre></td></tr></table></figure>
 <p>没有问题的话此时可用<code>ctrl + space</code>切换输入法了</p>
 <h3 id="安装google浏览器"><a href="#安装google浏览器" class="headerlink" title="安装google浏览器"></a>安装google浏览器</h3><p>已经习惯了登录账号同步插件书签等，故选择了google家的</p>
-<figure class="highlight mercury"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install google-chrome-<span class="meta">stable</span> </span><br><span class="line"></span><br><span class="line">google-chrome-<span class="meta">stable</span> --proxy-server<span class="built_in">=</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">1234</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install google-chrome-stable </span><br><span class="line"></span><br><span class="line">google-chrome-stable --proxy-server=<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">1234</span></span><br></pre></td></tr></table></figure>
 <p>将上边的ip和端口替换成自己的就好</p>
 <p>或</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install proxychains</span><br><span class="line"></span><br><span class="line">sudo echo <span class="string">"http 127.0.0.1 1234"</span> <span class="meta">&gt;&gt; </span>/etc/proxychains.conf</span><br><span class="line"></span><br><span class="line">proxychains google-chrome-stable</span><br></pre></td></tr></table></figure>
@@ -425,13 +418,13 @@
 <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt <span class="keyword">install</span> codeblocks</span><br></pre></td></tr></table></figure>
 <p>新建工程、console、helloword,最后发现压根编译不起来,一直error[-1],搜遍引擎翻遍设置<br>也不知道为什么</p>
 <p>好吧我还是手动安装吧</p>
-<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mkdir codeblocks</span><br><span class="line">tar -xJvf   codeblocks_17<span class="number">.12</span><span class="number">-1</span>_amd64_stable.tar.xz -C codeblocks/</span><br><span class="line"></span><br><span class="line"><span class="meta"># tar 的J参数时是指定xz来解压 等同于 xd-d file</span></span><br><span class="line"><span class="meta"># -C 为解压到指定文件夹 ，必须存在才能成功</span></span><br><span class="line"></span><br><span class="line">cd codeblocks/</span><br></pre></td></tr></table></figure>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">mkdir</span> <span class="string">codeblocks</span></span><br><span class="line"><span class="attr">tar</span> <span class="string">-xJvf   codeblocks_17.12-1_amd64_stable.tar.xz -C codeblocks/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># tar 的J参数时是指定xz来解压 等同于 xd-d file</span></span><br><span class="line"><span class="comment"># -C 为解压到指定文件夹 ，必须存在才能成功</span></span><br><span class="line"></span><br><span class="line"><span class="attr">cd</span> <span class="string">codeblocks/</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i <span class="class"><span class="keyword">lib</span>*</span></span><br><span class="line">sudo dpkg -i wxsmith*</span><br><span class="line">sudo dpkg -i codeblocks*</span><br></pre></td></tr></table></figure>
-<p>会出现下列错误<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">dpkg</span>: 依赖关系问题使得 <span class="selector-tag">codeblocks-contrib</span> 的配置工作不能继续：</span><br><span class="line"><span class="selector-tag">codeblocks-contrib</span> 依赖于 <span class="selector-tag">libboost-system1</span><span class="selector-class">.62</span><span class="selector-class">.0</span>；然而：</span><br><span class="line">未安装软件包 <span class="selector-tag">libboost-system1</span><span class="selector-class">.62</span><span class="selector-class">.0</span>。</span><br><span class="line"><span class="selector-tag">codeblocks-contrib</span> 依赖于 <span class="selector-tag">libgamin0</span>；然而：</span><br><span class="line">未安装软件包 <span class="selector-tag">libgamin0</span>。</span><br><span class="line"><span class="selector-tag">codeblocks-contrib</span> 依赖于 <span class="selector-tag">libhunspell-1</span><span class="selector-class">.4-0</span>；然而：</span><br><span class="line">未安装软件包 <span class="selector-tag">libhunspell-1</span><span class="selector-class">.4-0</span>。</span><br></pre></td></tr></table></figure></p>
+<p>会出现下列错误<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">dpkg: 依赖关系问题使得 codeblocks-contrib 的配置工作不能继续：</span><br><span class="line">codeblocks-contrib 依赖于 libboost-system1<span class="number">.62</span><span class="number">.0</span>；然而：</span><br><span class="line">未安装软件包 libboost-system1<span class="number">.62</span><span class="number">.0</span>。</span><br><span class="line">codeblocks-contrib 依赖于 libgamin0；然而：</span><br><span class="line">未安装软件包 libgamin0。</span><br><span class="line">codeblocks-contrib 依赖于 libhunspell<span class="number">-1.4</span><span class="number">-0</span>；然而：</span><br><span class="line">未安装软件包 libhunspell<span class="number">-1.4</span><span class="number">-0</span>。</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>[<a href="https://askubuntu.com/questions/599802/cant-install-codeblocks-plugin-wxsmith]" target="_blank" rel="noopener">https://askubuntu.com/questions/599802/cant-install-codeblocks-plugin-wxsmith]</a><br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt <span class="builtin-name">remove</span> codeblocks-contrib</span><br></pre></td></tr></table></figure></p>
 </blockquote>
-<p>会提示需要安装xterm<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt <span class="keyword">install</span> xterm</span><br><span class="line"></span><br><span class="line">sudo dpkg -i codeblocks*</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这次不再报错</span></span><br></pre></td></tr></table></figure></p>
+<p>会提示需要安装xterm<br><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">sudo</span> <span class="string">apt install xterm</span></span><br><span class="line"></span><br><span class="line"><span class="attr">sudo</span> <span class="string">dpkg -i codeblocks*</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 这次不再报错</span></span><br></pre></td></tr></table></figure></p>
 <p><img src="/images/20191221=4.png" alt></p>
 <h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><ul>
 <li><code>PrtSc</code> – 获取整个屏幕的截图并保存到 Pictures 目录。</li>
@@ -558,7 +551,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-count">61</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -588,6 +581,13 @@
 
           </nav>
 
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
           
 
           
@@ -1138,5 +1138,5 @@
 
   
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</body>
 </html>

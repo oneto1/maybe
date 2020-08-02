@@ -74,6 +74,8 @@
 
 
 
+  <link rel="alternate" href="/atom.xml" title="oneto1" type="application/atom+xml">
+
 
 
 
@@ -134,15 +136,6 @@
 
 
 
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', '[object Object]', 'auto');
-  ga('send', 'pageview');
-</script>
 
 
 
@@ -223,12 +216,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-坑">
+        <li class="menu-item menu-item-杂物堆">
           <a href="/about/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
-            坑
+            杂物堆
           </a>
         </li>
       
@@ -430,7 +423,7 @@
 <li>可见只需调用转换函数就可以不用关心自己主机是大端序还是<br>小端序了,统统转换为网络顺序即可</li>
 </ul>
 <p>当然如何判断大小端也是需要知道的<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="keyword">union</span> tmp&#123;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">short</span> <span class="keyword">int</span> val;</span><br><span class="line">	<span class="keyword">char</span> date;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">/*--------------------------------------------------------------</span></span><br><span class="line"><span class="comment">    利用指针强制转换</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">1</span> ;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">char</span> * p = (<span class="keyword">unsigned</span> <span class="keyword">char</span> * )&amp;i;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(*p)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"small "</span>);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"big "</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*--------------------------------------------------------------</span></span><br><span class="line"><span class="comment">   初始化一个16进制的类型的数据，然后把它放在一个char类型的数组中，由于十六进制的</span></span><br><span class="line"><span class="comment">   数据一位代表四个bit位char型是8个bit位，那么十六进制的两位占一个char位，那么就可</span></span><br><span class="line"><span class="comment">   以把数据位分离。</span></span><br><span class="line"><span class="comment">    若是小字节,数值高字节在高有效位</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">short</span> <span class="keyword">int</span> a = <span class="number">0x1122</span>;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">char</span> *pp = (<span class="keyword">unsigned</span> <span class="keyword">char</span> *)&amp;a;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(pp[<span class="number">0</span>]==<span class="number">0x22</span> &amp;&amp; pp[<span class="number">1</span>] == <span class="number">0x11</span>) </span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"small "</span>);</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"big "</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*--------------------------------------------------------------</span></span><br><span class="line"><span class="comment">    利用共用体内存占用为最小占用者大小性质</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">	<span class="keyword">union</span> tmp t;</span><br><span class="line">	t.val = <span class="number">0x1122</span>;</span><br><span class="line">	<span class="keyword">if</span>(t.date == <span class="number">0x11</span>)</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"big "</span>);</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"small "</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>从sockaddr_in这个数据结构看出不仅有端口需要转换,还有ip地址也需要转换<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;netinet/in.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;arpa/inet.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">inet_aton</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *cp, struct in_addr *inp)</span></span>;</span><br><span class="line"><span class="comment">// 将cp所指向的.和数字组成的ip地址字符串转化为网络序存储在inp指向结构内</span></span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">inet_ntoa</span><span class="params">(struct in_addr in)</span></span>;<span class="comment">//</span></span><br><span class="line"><span class="comment">//跟上面函数相反,返回的为静态分配的数组</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">in_addr_t</span> inet_addr(<span class="keyword">const</span> <span class="keyword">char</span> *cp);</span><br><span class="line"><span class="comment">//将.和数字组成的ip地址字符串转换为网络序</span></span><br></pre></td></tr></table></figure></p>
+<p>从sockaddr_in这个数据结构看出不仅有端口需要转换,还有ip地址也需要转换<br><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#<span class="keyword">include</span> &lt;sys/socket.h&gt;</span><br><span class="line">#<span class="keyword">include</span> &lt;netinet/<span class="keyword">in</span>.h&gt;</span><br><span class="line">#<span class="keyword">include</span> &lt;arpa/inet.h&gt;</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> inet<span class="constructor">_aton(<span class="params">const</span> <span class="params">char</span> <span class="operator">*</span><span class="params">cp</span>, <span class="params">struct</span> <span class="params">in_addr</span> <span class="operator">*</span><span class="params">inp</span>)</span>;</span><br><span class="line"><span class="comment">// 将cp所指向的.和数字组成的ip地址字符串转化为网络序存储在inp指向结构内</span></span><br><span class="line"><span class="built_in">char</span> *inet<span class="constructor">_ntoa(<span class="params">struct</span> <span class="params">in_addr</span> <span class="params">in</span>)</span>;<span class="comment">//</span></span><br><span class="line"><span class="comment">//跟上面函数相反,返回的为静态分配的数组</span></span><br><span class="line"></span><br><span class="line">in_addr_t inet<span class="constructor">_addr(<span class="params">const</span> <span class="params">char</span> <span class="operator">*</span><span class="params">cp</span>)</span>;</span><br><span class="line"><span class="comment">//将.和数字组成的ip地址字符串转换为网络序</span></span><br></pre></td></tr></table></figure></p>
 <ul>
 <li>简单例子<code>addr.sin_addr.s_addr = inet_addr(&quot;127.0.0.1&quot;);</code></li>
 </ul>
@@ -478,7 +471,7 @@
 <li>可见正常工作</li>
 </ul>
 <hr>
-<h1 id="抓包分析报文"><a href="#抓包分析报文" class="headerlink" title="抓包分析报文"></a>抓包分析报文</h1><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt <span class="keyword">install</span> -y wireshark  </span><br><span class="line">sudo wireshark</span><br></pre></td></tr></table></figure>
+<h1 id="抓包分析报文"><a href="#抓包分析报文" class="headerlink" title="抓包分析报文"></a>抓包分析报文</h1><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">sudo</span> <span class="string">apt install -y wireshark  </span></span><br><span class="line"><span class="attr">sudo</span> <span class="string">wireshark</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>选择loop接口,分别运行server和client</li>
 <li><p>在筛选框输入<code>tcp.port == 1234</code>,于是得到<br><img src="/images/20200115=1.png" alt></p>
@@ -634,7 +627,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-count">61</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -664,6 +657,13 @@
 
           </nav>
 
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
           
 
           
@@ -1214,5 +1214,5 @@
 
   
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</body>
 </html>

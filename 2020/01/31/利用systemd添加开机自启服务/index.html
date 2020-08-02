@@ -74,6 +74,8 @@
 
 
 
+  <link rel="alternate" href="/atom.xml" title="oneto1" type="application/atom+xml">
+
 
 
 
@@ -130,15 +132,6 @@
 
 
 
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', '[object Object]', 'auto');
-  ga('send', 'pageview');
-</script>
 
 
 
@@ -219,12 +212,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-坑">
+        <li class="menu-item menu-item-杂物堆">
           <a href="/about/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
-            坑
+            杂物堆
           </a>
         </li>
       
@@ -371,7 +364,7 @@
 </ul>
 <h3 id="etc-init-d"><a href="#etc-init-d" class="headerlink" title="/etc/init.d"></a>/etc/init.d</h3><p><code>/etc/init.d/</code>目录下存放的是各种可执行文件,可直接运行关闭</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Usage</span>: /etc/init.d/dbus &#123;start|stop|reload|restart|force-reload|status&#125;</span><br><span class="line"></span><br><span class="line"># 等同于</span><br><span class="line"></span><br><span class="line">service dbus &#123;start|stop|reload|restart|force-reload|status&#125;</span><br></pre></td></tr></table></figure>
-<p>需要新建自己的启动项也不难<br><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 需要写成符合LSB规范</span></span><br><span class="line">sudo vi <span class="string">/etc/init.d/mysh</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sudo chmod +x <span class="string">/etc/init.d/mysh</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># centos </span></span><br><span class="line"> sudo chkconfig <span class="params">--add</span><span class="params">(--remove)</span> mysh</span><br><span class="line"><span class="comment"># debian</span></span><br><span class="line"> sudo sudo update-rc.d mysh defaults 5</span><br></pre></td></tr></table></figure></p>
+<p>需要新建自己的启动项也不难<br><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 需要写成符合LSB规范</span></span><br><span class="line"><span class="attr">sudo</span> <span class="string">vi /etc/init.d/mysh</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="attr">sudo</span> <span class="string">chmod +x /etc/init.d/mysh</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># centos </span></span><br><span class="line"> <span class="attr">sudo</span> <span class="string">chkconfig --add(--remove) mysh</span></span><br><span class="line"><span class="comment"># debian</span></span><br><span class="line"> <span class="attr">sudo</span> <span class="string">sudo update-rc.d mysh defaults 5</span></span><br></pre></td></tr></table></figure></p>
 <ul>
 <li><code>update-rc.d</code>类似于<code>chkconfig</code>,具体见<code>man update-rc.d</code><br><a href="https://zh.opensuse.org/openSUSE:Packaging_init_scripts" target="_blank" rel="noopener">openSUSE:How to write a sysvinit script</a><br><a href="https://blog.csdn.net/gu_87_2008/article/details/47185767" target="_blank" rel="noopener">LSB参考资料</a></li>
 </ul>
@@ -380,7 +373,7 @@
 <blockquote>
 <p><a href="https://zh.wikipedia.org/zh-cn/Systemd" target="_blank" rel="noopener">systemd</a>是Linux电脑操作系统之下的一套中央化系统及设置管理程序（init），包括有守护进程、程序库以及应用软件，由Lennart Poettering带头开发。其开发目标是提供更优秀的框架以表示系统服务间的依赖关系，并依此实现系统初始化时服务的并行启动，同时达到降低Shell的系统开销的效果，最终代替现在常用的System V与BSD风格init程序。</p>
 </blockquote>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看当前系统是以哪种启动方式启动的</span></span><br><span class="line">ps -p1 </span><br><span class="line"></span><br><span class="line">PID TTY          TIME <span class="keyword">CMD</span><span class="bash"></span></span><br><span class="line"><span class="bash">    1  ?        00:00:02 systemd</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 查看当前系统是以哪种启动方式启动的</span><br><span class="line">ps -p1 </span><br><span class="line"></span><br><span class="line">PID TTY          TIME CMD</span><br><span class="line">    <span class="number">1</span>  ?        <span class="number">00</span>:<span class="number">00</span>:<span class="number">02</span> systemd</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>可见当前系统是以systemd启动的,而不是sysV风格的init</p>
 <h3 id="什么是-Systemd-service？"><a href="#什么是-Systemd-service？" class="headerlink" title="什么是 Systemd service？"></a>什么是 Systemd service？</h3><blockquote>
@@ -569,7 +562,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-count">61</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -599,6 +592,13 @@
 
           </nav>
 
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
           
 
           
@@ -1149,5 +1149,5 @@
 
   
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</body>
 </html>
