@@ -98,7 +98,7 @@
 <meta property="og:image" content="http://yoursite.com/images/20200221=7.png">
 <meta property="og:image" content="http://yoursite.com/images/20200221=8.png">
 <meta property="og:image" content="http://yoursite.com/images/20200221=9.png">
-<meta property="og:updated_time" content="2020-04-25T02:22:04.664Z">
+<meta property="og:updated_time" content="2020-08-12T12:29:01.291Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="当KDE Connect遇上Zerotier">
 <meta name="twitter:image" content="http://yoursite.com/images/20200221=0.png">
@@ -374,13 +374,15 @@
 <li><p>手机版获取<a href="https://play.google.com/store/apps/details?id=org.kde.kdeconnect_tp" target="_blank" rel="noopener">google play</a></p>
 </li>
 </ul>
-<p>安装好之后,已经是能看到了,打开<br><img src="/images/20200221=0.png" alt></p>
+<p>安装好之后,已经是能看到了,打开<br><!-- ![](/images/20200221=0.png) --><br> <img src="/images/20200221=0.png" width="1000" height="800" alt="图片名称" align="center"></p>
 <ul>
 <li>点击通知栏那个小手机的图案,点击Request  pairing</li>
-<li>这时确保手机与电脑在同一网段,此时手机已经能发现电脑了<br><img src="/images/20200221=1.png" alt></li>
-<li>点击配对,OK完成,已经可以享受各种功能了,如果有防火墙的话需要放行<code>1714:1764端口</code><br><img src="/images/20200221=2.png" alt></li>
+<li>这时确保手机与电脑在同一网段,此时手机已经能发现电脑了<!-- ![](/images/20200221=1.png) -->
+<img src="/images/20200221=1.png" width="1000" height="800" alt="图片名称" align="center"></li>
+<li>点击配对,OK完成,已经可以享受各种功能了,如果有防火墙的话需要放行<code>1714:1764端口</code><!-- ![](/images/20200221=2.png) -->
+<img src="/images/20200221=2.png" width="1000" height="800" alt="图片名称" align="center"></li>
 </ul>
-<p><del>妈妈再也不用担心我用电脑收不到手机通知了</del><br><img src="/images/20200221=10.png" alt></p>
+<p><del>妈妈再也不用担心我用电脑收不到手机通知了</del><br><!-- ![](/images/20200221=10.png) --><br> <img src="/images/20200221=10.png" width="1000" height="800" alt="图片名称" align="center"></p>
 <h1 id="Zerotier"><a href="#Zerotier" class="headerlink" title="Zerotier"></a>Zerotier</h1><blockquote>
 <p><a href="https://zerotier.com/" target="_blank" rel="noopener">来自官网的简介</a>Easily connect cloud, mobile, desktop, and data center resources anywhere.</p>
 </blockquote>
@@ -389,10 +391,11 @@
 <p>走流程一套</p>
 <ul>
 <li>先注册一个账号<a href="https://my.zerotier.com/" target="_blank" rel="noopener">this</a></li>
-<li>点击网页上方的Networks,再新建一个Network<br><img src="/images/20200221=3.png" alt></li>
-<li>填写名字描述<br><img src="/images/20200221=4.png" alt></li>
-<li>选择网段<br><img src="/images/20200221=5.png" alt></li>
-<li>设备认证<br><img src="/images/20200221=6.png" alt></li>
+<li>点击网页上方的Networks,再新建一个Network<br><img src="/images/20200221=3.png" width="1000" height="800" alt="图片名称" align="center"><!-- ![](/images/20200221=3.png) --></li>
+<li>填写名字描述<br><img src="/images/20200221=4.png" width="1000" height="800" alt="图片名称" align="center"><!-- ![](/images/20200221=4.png) --></li>
+<li>选择网段<br><img src="/images/20200221=5.png" width="1000" height="800" alt="图片名称" align="center"><!-- ![](/images/20200221=5.png) --></li>
+<li>设备认证<br><img src="/images/20200221=6.png" width="1000" height="800" alt="图片名称" align="center"><!-- ![](/images/20200221=6.png) -->
+</li>
 </ul>
 <p><a href="https://www.zerotier.com/download/" target="_blank" rel="noopener">客户端下载</a><br>这里我只用到linux、Android端</p>
 <ul>
@@ -403,11 +406,10 @@
 </li>
 </ul>
 <p>电脑端连接<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"># 查看加入退出网络,&lt;network&gt;为之前的网络号</span><br><span class="line">zerotier-cli </span><br><span class="line">        listnetworks            - List all networks</span><br><span class="line">        join &lt;network&gt;          - Join a network</span><br><span class="line">        leave &lt;network&gt;         - Leave a network</span><br><span class="line"></span><br><span class="line"># 或查看更多帮助</span><br><span class="line">zerotier-cli  -h</span><br><span class="line"></span><br><span class="line"># 加入后会多一个虚拟网卡</span><br><span class="line">ifconfig </span><br><span class="line"></span><br><span class="line">&gt;     随机的名字: flags=<span class="number">4163</span>&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu <span class="number">2800</span></span><br><span class="line">        inet <span class="number">10.20</span><span class="number">.1</span><span class="number">.32</span>  netmask <span class="number">255.255</span><span class="number">.255</span><span class="number">.0</span>  broadcast <span class="number">10.20</span><span class="number">.1</span><span class="number">.255</span></span><br><span class="line">        ether <span class="number">6</span>a:<span class="number">53</span>:fb:<span class="number">88</span>:<span class="number">82</span>:<span class="number">85</span>  txqueuelen <span class="number">1000</span>  (Ethernet)</span><br><span class="line">        RX packets <span class="number">212</span>  bytes <span class="number">99227</span> (<span class="number">99.2</span> KB)</span><br><span class="line">        RX errors <span class="number">0</span>  dropped <span class="number">0</span>  overruns <span class="number">0</span>  frame <span class="number">0</span></span><br><span class="line">        TX packets <span class="number">1791</span>  bytes <span class="number">382922</span> (<span class="number">382.9</span> KB)</span><br><span class="line">        TX errors <span class="number">0</span>  dropped <span class="number">0</span> overruns <span class="number">0</span>  carrier <span class="number">0</span>  collisions <span class="number">0</span></span><br><span class="line"></span><br><span class="line"># 查看当前路由表</span><br><span class="line">route</span><br><span class="line"></span><br><span class="line">&gt;      Destination     Gateway         Genmask         Flags Metric Ref    Use Iface</span><br><span class="line">    <span class="number">10.20</span><span class="number">.1</span><span class="number">.0</span>      <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span>       <span class="number">255.255</span><span class="number">.255</span><span class="number">.0</span>   U     <span class="number">0</span>    <span class="number">0</span>     <span class="number">0</span>          随机的名字</span><br><span class="line"># 不用担心没加路由,记得加入后要到网页设置那认证当前设备,才会有ip地址</span><br></pre></td></tr></table></figure></p>
-<p>手机端连接,输入之前的网络号,如果是数据流量要到设置里勾选数据流量<br><img src="/images/20200221=7.png" alt></p>
-<p>如果都成功的话,应该是可以相互ping通的,实测在数据流量下可以基本满足用Web端管理路由器的需求</p>
+<p>手机端连接,输入之前的网络号,如果是数据流量要到设置里勾选数据流量<br><!-- ![](/images/20200221=7.png) --><br> <img src="/images/20200221=7.png" width="1000" height="800" alt="图片名称" align="center"><br>如果都成功的话,应该是可以相互ping通的,实测在数据流量下可以基本满足用Web端管理路由器的需求</p>
 <h1 id="两者合体-–-gt"><a href="#两者合体-–-gt" class="headerlink" title="两者合体 –&gt;"></a>两者合体 –&gt;</h1><p>KDE Connect可以在内网中连接设备,Zerotier则可以创建一个虚拟大内网(VPN),恩恩那么两者一起用岂不是可以实现非相同网络环境下的同步</p>
-<p>在手机端KDE Connect设置里点击<code>通过IP添加设备</code>,输入新增接口的IP地址<br><img src="/images/20200221=8.png" alt></p>
-<p>果不其然,这是可以的,一个在wifi下,一个在数据流量下,成功实现互联<br><img src="/images/20200221=9.png" alt></p>
+<p>在手机端KDE Connect设置里点击<code>通过IP添加设备</code>,输入新增接口的IP地址<br><!-- ![](/images/20200221=8.png) --><br> <img src="/images/20200221=8.png" width="1000" height="800" alt="图片名称" align="center"></p>
+<p>果不其然,这是可以的,一个在wifi下,一个在数据流量下,成功实现互联<br><!-- ![](/images/20200221=9.png) --><br> <img src="/images/20200221=9.png" width="1000" height="800" alt="图片名称" align="center"></p>
 
       
     </div>
@@ -531,7 +533,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-count">62</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

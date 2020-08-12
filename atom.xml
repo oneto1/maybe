@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-08-02T09:56:36.280Z</updated>
+  <updated>2020-08-12T12:30:50.258Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,13 +17,39 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>关于nginx的一些URL的匹配规则</title>
+    <link href="http://yoursite.com/2020/08/12/%E5%85%B3%E4%BA%8Enginx%E7%9A%84%E4%B8%80%E4%BA%9B%E5%8C%B9%E9%85%8D%E8%A7%84%E5%88%99/"/>
+    <id>http://yoursite.com/2020/08/12/%E5%85%B3%E4%BA%8Enginx%E7%9A%84%E4%B8%80%E4%BA%9B%E5%8C%B9%E9%85%8D%E8%A7%84%E5%88%99/</id>
+    <published>2020-08-12T12:11:50.000Z</published>
+    <updated>2020-08-12T12:30:50.258Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><h3 id="location-匹配规则"><a href="#location-匹配规则" class="headerlink" title="location 匹配规则"></a>location 匹配规则</h3><ol><li>首先匹配 = (精确匹配)</li><li>其次匹配 ^~(正则匹配)</li><li>最后是交给 / 匹配所有<br>当有匹配成功时候，停止匹配，按当前匹配规则处理请求。</li></ol><ul><li>~ 是区分大小写的, ~* 是不区分大小写的</li><li>例如需要匹配某个后缀,可以这样 <figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">location</span> <span class="title">~* \.(png</span>|js|html)$ &#123;</span><br><span class="line">    root /data/ ; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul><p>而location后加不加 <code>/</code> , 也是有区别的 举个例子<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">location</span> <span class="title">/test</span>/&#123;&#125; </span><br><span class="line"></span><br><span class="line"><span class="keyword">location</span> <span class="title">/test</span> &#123;&#125;</span><br></pre></td></tr></table></figure></p><ul><li>当访问 /test/123.html,都能匹配到</li><li>当访问 /testtest.html,匹配到后面那个</li></ul><p>这里的 “<code>/</code>“强调的是路径</p><h3 id="proxy-pass-匹配规则"><a href="#proxy-pass-匹配规则" class="headerlink" title="proxy_pass 匹配规则"></a>proxy_pass 匹配规则</h3><p>当我们访问 /test/1.html<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">location</span> <span class="title">/test</span>/ &#123;</span><br><span class="line">    proxy_pass http://localhost/ ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><ul><li>此时实际访问的是 localhost/test/1.html</li></ul><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">location</span> <span class="title">/test</span>/ &#123;</span><br><span class="line">    proxy_pass http://localhost ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ul><li>此时访问的是 localhost/1.html</li></ul><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">location <span class="regexp">/test/</span> &#123;</span><br><span class="line">    proxy_pass http:<span class="regexp">//</span>localhost<span class="regexp">/dir/</span> ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ul><li>此时实际访问的是 localhost/dir/1.html</li></ul><p>虽然看上去多一个少一个”<code>/</code>“差别不大,但实际上各自意思大不一样,可不能想写那个就写哪个😿️</p><!-- location /test/ {    proxy_pass http://localhost/dir ;}此时实际访问的是 localhost/testdir/1.html -->]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;location-匹配规则&quot;&gt;&lt;a href=&quot;#location-匹配规则&quot; class=&quot;headerlink&quot; title=&quot;location 匹配规则&quot;&gt;&lt;/a&gt;location 匹配规则&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;首先
+      
+    
+    </summary>
+    
+    
+    
+      <category term="nginx" scheme="http://yoursite.com/tags/nginx/"/>
+    
+  </entry>
+  
+  <entry>
     <title>💁🏻‍♂️</title>
     <link href="http://yoursite.com/2020/08/02/%F0%9F%92%81%F0%9F%8F%BB%E2%80%8D%E2%99%82%EF%B8%8F/"/>
     <id>http://yoursite.com/2020/08/02/%F0%9F%92%81%F0%9F%8F%BB%E2%80%8D%E2%99%82%EF%B8%8F/</id>
     <published>2020-08-02T09:49:03.000Z</published>
-    <updated>2020-08-02T09:56:36.280Z</updated>
+    <updated>2020-08-12T12:24:49.796Z</updated>
     
-    <content type="html"><![CDATA[<p>时间过得真快啊,一下子就快实习了两个月了,虽然这也不是什么断更的理由</p><p>那么就接下来继续努力吧</p><p><img src="/images/990672b3e82963502a597c34e55546b5.gif" alt></p>]]></content>
+    <content type="html"><![CDATA[<p>时间过得真快啊,一下子就快实习了两个月了,虽然这也不是什么断更的理由</p><p>那么就接下来继续努力吧</p>]]></content>
     
     <summary type="html">
     
@@ -31,7 +57,6 @@
       
         &lt;p&gt;时间过得真快啊,一下子就快实习了两个月了,虽然这也不是什么断更的理由&lt;/p&gt;
 &lt;p&gt;那么就接下来继续努力吧&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/images/990672b3e82963502a597c34e55546b5.gif&quot; alt&gt;&lt;/p&gt;
 
       
     
@@ -62,9 +87,9 @@
     
       <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
     
-      <category term="翻译" scheme="http://yoursite.com/tags/%E7%BF%BB%E8%AF%91/"/>
-    
       <category term="ansible" scheme="http://yoursite.com/tags/ansible/"/>
+    
+      <category term="翻译" scheme="http://yoursite.com/tags/%E7%BF%BB%E8%AF%91/"/>
     
   </entry>
   
@@ -87,9 +112,9 @@
     
       <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
     
-      <category term="翻译" scheme="http://yoursite.com/tags/%E7%BF%BB%E8%AF%91/"/>
-    
       <category term="ansible" scheme="http://yoursite.com/tags/ansible/"/>
+    
+      <category term="翻译" scheme="http://yoursite.com/tags/%E7%BF%BB%E8%AF%91/"/>
     
   </entry>
   
@@ -112,9 +137,9 @@
     
       <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
     
-      <category term="翻译" scheme="http://yoursite.com/tags/%E7%BF%BB%E8%AF%91/"/>
-    
       <category term="ansible" scheme="http://yoursite.com/tags/ansible/"/>
+    
+      <category term="翻译" scheme="http://yoursite.com/tags/%E7%BF%BB%E8%AF%91/"/>
     
   </entry>
   
@@ -137,9 +162,9 @@
     
       <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
     
-      <category term="翻译" scheme="http://yoursite.com/tags/%E7%BF%BB%E8%AF%91/"/>
-    
       <category term="ansible" scheme="http://yoursite.com/tags/ansible/"/>
+    
+      <category term="翻译" scheme="http://yoursite.com/tags/%E7%BF%BB%E8%AF%91/"/>
     
   </entry>
   
@@ -162,9 +187,9 @@
     
       <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
     
-      <category term="翻译" scheme="http://yoursite.com/tags/%E7%BF%BB%E8%AF%91/"/>
-    
       <category term="ansible" scheme="http://yoursite.com/tags/ansible/"/>
+    
+      <category term="翻译" scheme="http://yoursite.com/tags/%E7%BF%BB%E8%AF%91/"/>
     
   </entry>
   
@@ -187,9 +212,9 @@
     
       <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
     
-      <category term="翻译" scheme="http://yoursite.com/tags/%E7%BF%BB%E8%AF%91/"/>
-    
       <category term="ansible" scheme="http://yoursite.com/tags/ansible/"/>
+    
+      <category term="翻译" scheme="http://yoursite.com/tags/%E7%BF%BB%E8%AF%91/"/>
     
   </entry>
   
@@ -237,9 +262,9 @@
     
     
     
-      <category term="翻译" scheme="http://yoursite.com/tags/%E7%BF%BB%E8%AF%91/"/>
-    
       <category term="ansible" scheme="http://yoursite.com/tags/ansible/"/>
+    
+      <category term="翻译" scheme="http://yoursite.com/tags/%E7%BF%BB%E8%AF%91/"/>
     
   </entry>
   
@@ -470,27 +495,6 @@
       <category term="flatpak" scheme="http://yoursite.com/tags/flatpak/"/>
     
       <category term="gnome-builder" scheme="http://yoursite.com/tags/gnome-builder/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>关于c语言中一些疑难点的复习</title>
-    <link href="http://yoursite.com/2020/03/07/%E5%85%B3%E4%BA%8Ec%E8%AF%AD%E8%A8%80%E4%B8%AD%E4%B8%80%E4%BA%9B%E7%96%91%E9%9A%BE%E7%82%B9%E7%9A%84%E5%A4%8D%E4%B9%A0/"/>
-    <id>http://yoursite.com/2020/03/07/%E5%85%B3%E4%BA%8Ec%E8%AF%AD%E8%A8%80%E4%B8%AD%E4%B8%80%E4%BA%9B%E7%96%91%E9%9A%BE%E7%82%B9%E7%9A%84%E5%A4%8D%E4%B9%A0/</id>
-    <published>2020-03-07T12:38:48.000Z</published>
-    <updated>2020-04-25T02:22:04.664Z</updated>
-    
-    <content type="html"><![CDATA[<hr><a id="more"></a><h1 id="声明和定义"><a href="#声明和定义" class="headerlink" title="声明和定义"></a>声明和定义</h1><table><thead><tr><th style="text-align:center">声明</th><th style="text-align:center">描述对象的类型,用于指代其他地方定义的对象,如<code>extern int i;</code></th></tr></thead><tbody><tr><td style="text-align:center">定义</td><td style="text-align:center">确定对象的类型并分配类型,用于创建新的对象,如<code>int i ;</code></td></tr></tbody></table><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span> i = <span class="number">0</span>;  <span class="comment">// 既是声明也是定义</span></span><br><span class="line">extern <span class="built_in">int</span> i; <span class="comment">// 为声明,表示在其他地方有定义</span></span><br><span class="line">extern <span class="built_in">int</span> i = <span class="number">0</span>; <span class="comment">// 既是声明也是定义</span></span><br></pre></td></tr></table></figure><ul><li>对于函数,结构体同样适用</li></ul><hr><h1 id="指针和数组名一样么"><a href="#指针和数组名一样么" class="headerlink" title="指针和数组名一样么"></a>指针和数组名一样么</h1><p>首先看一个例子<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span> pp[]= &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line"><span class="built_in">int</span> * p = pp ;</span><br><span class="line"></span><br><span class="line">printf(<span class="string">"%d %d"</span>,pp[<span class="number">0</span>],p[<span class="number">0</span>]);</span><br><span class="line"></span><br><span class="line">&gt; <span class="number">1</span> <span class="number">1</span></span><br></pre></td></tr></table></figure></p><ul><li>毫无疑问,这是没有问题的</li></ul><p>但是如果是这样的呢<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">extern <span class="built_in">int</span> pp[<span class="number">3</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;  <span class="comment">//假设在文件A</span></span><br><span class="line">extern <span class="built_in">int</span> *pp;  <span class="comment">//假设在文件B</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//在文件B中</span></span><br><span class="line">printf(<span class="string">"%d"</span>,pp[<span class="number">0</span>]);</span><br></pre></td></tr></table></figure></p><ul><li>能正确输出<code>1</code>吗,答案是<strong>不能</strong></li><li><code>int pp[]</code>是一个数组,<code>int *pp</code>是一个指针,不能因为变量名一样而将指针和数组名混为一谈</li><li>在<code>int pp[]</code>中,pp代表的是pp这个数组的真实地址,但在<code>int *pp</code>中,pp只是个指针变量,变量的值才为真正所需要访问的地址,在这里犯了类型不匹配的错误</li></ul><p>若要正确使用,在文件B中应该改为<code>extern int pp[]</code></p><p>什么时候数组等同于指针</p><ul><li>出现表达式中时,数组名会被转换为一个指针,如<code>int pp[3] = {0};  *(pp+1) ;</code></li><li>把数组下标作为指针的偏移量,<code>int *p =pp ; *(篇+1);</code></li><li>作为函数的参数</li></ul><hr><h1 id="如何在-main-执行之前先运行其它函数"><a href="#如何在-main-执行之前先运行其它函数" class="headerlink" title="如何在 main() 执行之前先运行其它函数"></a>如何在 main() 执行之前先运行其它函数</h1><p>刚学c语言的时候,相信对main()函数的印象都是它是程序运行时第一个运行的函数,其实不然</p><p>先写个简单小程序<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> agrc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Hello world!"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><ul><li>运行编译毫无疑问是<code>Hello world!</code></li></ul><p>先了解一下可执行文件格式<br><img src="/images/20200307=0.png" alt></p><p>其中的<code>.text</code> <code>.data</code> <code>.bss</code> 是不是像极了c语言程序运行时存储空间布局中所对应的</p><ul><li><code>text</code> 保存的是编译后得到的机器码</li><li><code>.rodata</code> 保存是只读数据,如<code>char *buf = &quot;hi&quot;</code>这里的<code>hi</code>为只读的字符串常量</li><li><code>data</code> 保存的是被初始化的全局变量和静态变量</li><li><code>bss</code> 保存的是未初始化的保存的是未被初始化额全局变量和静态变量，及被初始化为0的初始变量</li></ul><p>而这里想看是<code>.systab</code>保存的是在程序中定义或者引用的函数、全局变量<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># readelf - Displays information about ELF files.</span></span><br><span class="line"></span><br><span class="line">readelf -s a.out</span><br><span class="line"></span><br><span class="line"> &gt;    2: 0000000000000000     0 FUNC    GLOBAL<span class="built_in"> DEFAULT </span> UND puts@GLIBC_2.2.5 (2)</span><br><span class="line">     3: 0000000000000000     0 FUNC    GLOBAL<span class="built_in"> DEFAULT </span> UND __libc_start_main@GLIBC_2.2.5 (2)</span><br><span class="line">     6: 0000000000000000     0 FUNC    WEAK  <span class="built_in"> DEFAULT </span> UND __cxa_finalize@GLIBC_2.2.5 (2)</span><br><span class="line">    27: 0000000000000560     0 FUNC    LOCAL <span class="built_in"> DEFAULT </span>  14 deregister_tm_clones</span><br><span class="line">    28: 00000000000005a0     0 FUNC    LOCAL <span class="built_in"> DEFAULT </span>  14 register_tm_clones</span><br><span class="line">    29: 00000000000005f0     0 FUNC    LOCAL <span class="built_in"> DEFAULT </span>  14 __do_global_dtors_aux</span><br><span class="line">    32: 0000000000000630     0 FUNC    LOCAL <span class="built_in"> DEFAULT </span>  14 frame_dummy</span><br><span class="line">    43: 00000000000006d0     2 FUNC    GLOBAL<span class="built_in"> DEFAULT </span>  14 __libc_csu_fini</span><br><span class="line">    46: 0000000000000000     0 FUNC    GLOBAL<span class="built_in"> DEFAULT </span> UND puts@@GLIBC_2.2.5</span><br><span class="line">    48: 00000000000006d4     0 FUNC    GLOBAL<span class="built_in"> DEFAULT </span>  15 _fini</span><br><span class="line">    49: 0000000000000000     0 FUNC    GLOBAL<span class="built_in"> DEFAULT </span> UND __libc_start_main@@GLIBC_</span><br><span class="line">    54: 0000000000000660   101 FUNC    GLOBAL<span class="built_in"> DEFAULT </span>  14 __libc_csu_init</span><br><span class="line">    56: 0000000000000530    43 FUNC    GLOBAL<span class="built_in"> DEFAULT </span>  14 _start</span><br><span class="line">    58: 000000000000063a    34 FUNC    GLOBAL<span class="built_in"> DEFAULT </span>  14 main</span><br><span class="line">    61: 0000000000000000     0 FUNC    WEAK  <span class="built_in"> DEFAULT </span> UND __cxa_finalize@@GLIBC_2.2</span><br><span class="line">    62: 00000000000004e8     0 FUNC    GLOBAL<span class="built_in"> DEFAULT </span>  11 _init</span><br></pre></td></tr></table></figure></p><ul><li>从这里看我们所写的main函数排在了58位,可见实际在mian()运行前确实运行了很多函数</li><li>在编译链接时,第一个入口函数地址是<code>_start</code></li></ul><p>借此我们可以编写一个自己的<code>_start</code>函数<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;stdio.h&gt; </span></span><br><span class="line"><span class="comment">#include &lt;stdlib.h&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="regexp">//m</span>ain()放前面是因为入口函数为自己定义的_start,这里的main()相当于一个子函数</span><br><span class="line">int main(void )</span><br><span class="line">&#123;</span><br><span class="line">printf(<span class="string">"hello world 1 !\n"</span>);</span><br><span class="line"></span><br><span class="line">return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="regexp">//</span> 这里必须调用<span class="keyword">exit</span>()来善后,否则会core dump</span><br><span class="line">int _start(void) </span><br><span class="line">&#123; </span><br><span class="line">    printf(<span class="string">"hello world 2 !\n"</span>);</span><br><span class="line">main();</span><br><span class="line"><span class="keyword">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>编译链接时不使用标准开始文件,而是使用自己写的<code>_start</code><br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*gcc        -nostartfiles</span></span><br><span class="line"><span class="comment">                    Do not use the standard system startup files when linking.  The standard system</span></span><br><span class="line"><span class="comment">                    libraries are used normally, unless -nostdlib or -nodefaultlibs is used.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">gcc test<span class="selector-class">.c</span> -nostartfiles  &amp;&amp; ./<span class="selector-tag">a</span>.out</span><br><span class="line"></span><br><span class="line">&gt;   hello world <span class="number">2</span> !</span><br><span class="line">     hello world <span class="number">1</span> !</span><br></pre></td></tr></table></figure></p><p>再查看二进制文件<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">readelf -s a.out | grep FUNC</span><br><span class="line">   </span><br><span class="line">&gt;   1: 0000000000000000     0 FUNC    GLOBAL<span class="built_in"> DEFAULT </span> UND puts@GLIBC_2.2.5 (2)</span><br><span class="line">     2: 0000000000000000     0 FUNC    GLOBAL<span class="built_in"> DEFAULT </span> UND exit@GLIBC_2.2.5 (2)</span><br><span class="line">    22: 0000000000000000     0 FUNC    GLOBAL<span class="built_in"> DEFAULT </span> UND puts@@GLIBC_2.2.5</span><br><span class="line">    25: 00000000000003a7    31 FUNC    GLOBAL<span class="built_in"> DEFAULT </span>  10 _start</span><br><span class="line">    27: 0000000000000390    23 FUNC    GLOBAL<span class="built_in"> DEFAULT </span>  10 main</span><br><span class="line">    28: 0000000000000000     0 FUNC    GLOBAL<span class="built_in"> DEFAULT </span> UND exit@@GLIBC_2.2.5</span><br></pre></td></tr></table></figure></p><ul><li>相对比使用标准开始文件这里少了很多函数</li><li>由于链接时还是使用了系统库,所以程序还是能跑起来的</li></ul><p>另外一种方法是使用GNU特色之gcc关键字</p><blockquote><p>关键字<code>__attribute__</code>可以为函数（Function Attributes），变量（Variable Attributes）和结构成员（Type Attributes）赋属性。具体可以查看gcc手册（<a href="http://gcc.gnu.org/onlinedocs/）" target="_blank" rel="noopener">http://gcc.gnu.org/onlinedocs/）</a></p></blockquote><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 关键字需要在定义之前</span></span><br><span class="line"></span><br><span class="line"> __attribute__((<span class="function"><span class="keyword">constructor</span>))<span class="title">void</span> <span class="title">before</span><span class="params">()</span>;</span></span><br><span class="line"></span><br><span class="line">__attribute__((<span class="function"><span class="keyword">destructor</span>))<span class="title">void</span> <span class="title">after</span><span class="params">()</span>;</span></span><br></pre></td></tr></table></figure><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt; </span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">m</span><span class="params">()</span>__<span class="title">attribute__</span><span class="params">((constructor))</span> </span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span> )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"hello world  !\n"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*int _start(void) </span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">void m()</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">printf("%d ",666);</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">&gt; 666 hello world  !</span></span><br></pre></td></tr></table></figure><p><a href="https://www.jianshu.com/p/4912a1dc8a50" target="_blank" rel="noopener">可执行文件格式说明</a><br><a href="https://www.jianshu.com/p/dda61084f9b5" target="_blank" rel="noopener">c语言中<strong>attribute</strong>的意义</a><br><a href="https://www.jb51.net/article/62360.htm" target="_blank" rel="noopener">C语言之没有main函数的helloworld示例</a><br><a href="https://bbs.csdn.net/topics/300103318#r_78088969" target="_blank" rel="noopener">一个c程序在执行main函数之前和main之后都做了那些事情啊？</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;hr&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="c" scheme="http://yoursite.com/tags/c/"/>
     
   </entry>
   

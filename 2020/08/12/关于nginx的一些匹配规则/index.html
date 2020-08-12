@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="null">
+  <meta name="keywords" content="nginx,">
 
 
 
@@ -81,16 +81,18 @@
 
 
 
-<meta name="description" content="你说是梦所以才痛   睡醒了再说">
-<meta property="og:type" content="website">
-<meta property="og:title" content="oneto1">
-<meta property="og:url" content="http://yoursite.com/archives/page/4/index.html">
+<meta name="description" content="location 匹配规则 首先匹配 = (精确匹配) 其次匹配 ^~(正则匹配) 最后是交给 / 匹配所有当有匹配成功时候，停止匹配，按当前匹配规则处理请求。   ~ 是区分大小写的, ~* 是不区分大小写的 例如需要匹配某个后缀,可以这样 123location ~* \.(png|js|html)$ &amp;#123;    root /data/ ; &amp;#125;   而location后加不">
+<meta name="keywords" content="nginx">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于nginx的一些URL的匹配规则">
+<meta property="og:url" content="http://yoursite.com/2020/08/12/关于nginx的一些匹配规则/index.html">
 <meta property="og:site_name" content="oneto1">
-<meta property="og:description" content="你说是梦所以才痛   睡醒了再说">
+<meta property="og:description" content="location 匹配规则 首先匹配 = (精确匹配) 其次匹配 ^~(正则匹配) 最后是交给 / 匹配所有当有匹配成功时候，停止匹配，按当前匹配规则处理请求。   ~ 是区分大小写的, ~* 是不区分大小写的 例如需要匹配某个后缀,可以这样 123location ~* \.(png|js|html)$ &amp;#123;    root /data/ ; &amp;#125;   而location后加不">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-08-12T12:30:50.258Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="oneto1">
-<meta name="twitter:description" content="你说是梦所以才痛   睡醒了再说">
+<meta name="twitter:title" content="关于nginx的一些URL的匹配规则">
+<meta name="twitter:description" content="location 匹配规则 首先匹配 = (精确匹配) 其次匹配 ^~(正则匹配) 最后是交给 / 匹配所有当有匹配成功时候，停止匹配，按当前匹配规则处理请求。   ~ 是区分大小写的, ~* 是不区分大小写的 例如需要匹配某个后缀,可以这样 123location ~* \.(png|js|html)$ &amp;#123;    root /data/ ; &amp;#125;   而location后加不">
 
 
 
@@ -120,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/page/4/">
+  <link rel="canonical" href="http://yoursite.com/2020/08/12/关于nginx的一些匹配规则/">
 
 
 
 
 
-  <title>归档 | oneto1</title>
+  <title>关于nginx的一些URL的匹配规则 | oneto1</title>
   
 
 
@@ -145,7 +147,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -271,390 +273,181 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/12/关于nginx的一些匹配规则/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="oneto1">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="oneto1">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
-         
+          <h1 class="post-title" itemprop="name headline">关于nginx的一些URL的匹配规则</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-12T20:11:50+08:00">
+                2020-08-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        好! 目前共计 62 篇日志。 继续努力。
-      </span>
 
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
+            
+          
 
-        
+          
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/12/01/我的第一个xshell自动化脚本/" itemprop="url">
-              
-                <span itemprop="name">我的第一个xshell自动化脚本</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-12-01T14:14:54+08:00" content="2019-12-01">
-          12-01
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+        </div>
+      </header>
+    
 
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/11/17/刷题小总结之动态规划、双指针/" itemprop="url">
-              
-                <span itemprop="name">刷题小总结之动态规划、双指针</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-11-17T12:47:19+08:00" content="2019-11-17">
-          11-17
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
+      
+        <a id="more"></a>
+<h3 id="location-匹配规则"><a href="#location-匹配规则" class="headerlink" title="location 匹配规则"></a>location 匹配规则</h3><ol>
+<li>首先匹配 = (精确匹配)</li>
+<li>其次匹配 ^~(正则匹配)</li>
+<li>最后是交给 / 匹配所有<br>当有匹配成功时候，停止匹配，按当前匹配规则处理请求。</li>
+</ol>
+<ul>
+<li>~ 是区分大小写的, ~* 是不区分大小写的</li>
+<li>例如需要匹配某个后缀,可以这样 <figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">location</span> <span class="title">~* \.(png</span>|js|html)$ &#123;</span><br><span class="line">    root /data/ ; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>而location后加不加 <code>/</code> , 也是有区别的 举个例子<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">location</span> <span class="title">/test</span>/&#123;&#125; </span><br><span class="line"></span><br><span class="line"><span class="keyword">location</span> <span class="title">/test</span> &#123;&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>当访问 /test/123.html,都能匹配到</li>
+<li>当访问 /testtest.html,匹配到后面那个</li>
+</ul>
+<p>这里的 “<code>/</code>“强调的是路径</p>
+<h3 id="proxy-pass-匹配规则"><a href="#proxy-pass-匹配规则" class="headerlink" title="proxy_pass 匹配规则"></a>proxy_pass 匹配规则</h3><p>当我们访问 /test/1.html<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">location</span> <span class="title">/test</span>/ &#123;</span><br><span class="line">    proxy_pass http://localhost/ ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>此时实际访问的是 localhost/test/1.html</li>
+</ul>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">location</span> <span class="title">/test</span>/ &#123;</span><br><span class="line">    proxy_pass http://localhost ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>此时访问的是 localhost/1.html</li>
+</ul>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">location <span class="regexp">/test/</span> &#123;</span><br><span class="line">    proxy_pass http:<span class="regexp">//</span>localhost<span class="regexp">/dir/</span> ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>此时实际访问的是 localhost/dir/1.html</li>
+</ul>
+<p>虽然看上去多一个少一个”<code>/</code>“差别不大,但实际上各自意思大不一样,可不能想写那个就写哪个😿️</p>
+<!-- location /test/ {
+    proxy_pass http://localhost/dir ;
+}
 
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/11/09/数据结构之数组、链表、队列、栈/" itemprop="url">
-              
-                <span itemprop="name">数据结构之数组、链表、队列、栈</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-11-09T20:14:24+08:00" content="2019-11-09">
-          11-09
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+此时实际访问的是 localhost/testdir/1.html -->
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/11/01/UNIX下文件系统学习/" itemprop="url">
-              
-                <span itemprop="name">UNIX下文件系统学习</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-11-01T17:59:55+08:00" content="2019-11-01">
-          11-01
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/10/23/UNIX下线程学习/" itemprop="url">
-              
-                <span itemprop="name">UNIX下线程学习</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-10-23T12:04:05+08:00" content="2019-10-23">
-          10-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/10/08/面向对象方法学习/" itemprop="url">
-              
-                <span itemprop="name">面向对象方法学习</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-10-08T17:20:14+08:00" content="2019-10-08">
-          10-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/10/06/UNIX下信号与进程关系学习/" itemprop="url">
-              
-                <span itemprop="name">UNIX下信号与进程关系学习</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-10-06T14:58:30+08:00" content="2019-10-06">
-          10-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/10/01/UNIX下进程环境与控制学习/" itemprop="url">
-              
-                <span itemprop="name">UNIX下进程环境与控制学习</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-10-01T14:48:46+08:00" content="2019-10-01">
-          10-01
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/09/28/UNIX下标准I-O与系统信息学习/" itemprop="url">
-              
-                <span itemprop="name">UNIX下标准I/O与系统信息学习</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-09-28T12:34:37+08:00" content="2019-09-28">
-          09-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/09/24/UNIX下文件目录学习/" itemprop="url">
-              
-                <span itemprop="name">UNIX下文件目录学习</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-09-24T10:36:38+08:00" content="2019-09-24">
-          09-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/nginx/" rel="tag"># nginx</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/08/02/💁🏻‍♂️/" rel="next" title="💁🏻‍♂️">
+                <i class="fa fa-chevron-left"></i> 💁🏻‍♂️
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/archives/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/7/">7</a><a class="extend next" rel="next" href="/archives/page/5/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -662,6 +455,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -682,8 +479,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -750,6 +556,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#location-匹配规则"><span class="nav-number">1.</span> <span class="nav-text">location 匹配规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#proxy-pass-匹配规则"><span class="nav-number">2.</span> <span class="nav-text">proxy_pass 匹配规则</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -886,6 +708,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
