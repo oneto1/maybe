@@ -88,7 +88,7 @@
 <meta property="og:site_name" content="oneto1">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/images/20200131=0.png">
-<meta property="og:updated_time" content="2020-04-25T02:22:04.664Z">
+<meta property="og:updated_time" content="2020-08-16T06:57:24.598Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用systemd添加开机自启服务">
 <meta name="twitter:image" content="http://yoursite.com/images/20200131=0.png">
@@ -413,7 +413,7 @@
 </ul>
 <p>现在就可以写出一个相对完整的[Unit]定义了<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Ｕnit]</span></span><br><span class="line"><span class="attr">Description</span> = unit demo</span><br><span class="line"><span class="attr">After</span> = x11-common.service</span><br></pre></td></tr></table></figure></p>
 <h3 id="service部分"><a href="#service部分" class="headerlink" title="service部分"></a>service部分</h3><p>[Unit]用于识别单元，那么[Service]就是定义服务自身了</p>
-<p>Tpye为设置进程的启动类型</p>
+<p>Type为设置进程的启动类型</p>
 <ul>
 <li>simple : 为默认的启动方式,systemd 会认为在创建了该服务的主服务进程之后，该服务就已经启动完成。</li>
 <li>oneshot :与 simple 类似，不同之处在于， 只有在该服务的主服务进程退出之后，systemd 才会认为该服务启动完成，才会开始启动后继单元。适用于那些被一次性执行的任务或者命令</li>
@@ -428,7 +428,7 @@
 <ul>
 <li>但ExecStart和ExecStop必须至少存在一个</li>
 </ul>
-<p>好了，现在可以完善[Service]部分了<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Service]</span></span><br><span class="line"><span class="attr">Tpye</span>=<span class="literal">on</span>eshot</span><br><span class="line"><span class="attr">ExecStart</span>=/home/user/brightness.sh</span><br></pre></td></tr></table></figure></p>
+<p>好了，现在可以完善[Service]部分了<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Service]</span></span><br><span class="line"><span class="attr">Type</span>=<span class="literal">on</span>eshot</span><br><span class="line"><span class="attr">ExecStart</span>=/home/user/brightness.sh</span><br></pre></td></tr></table></figure></p>
 <p>brightness.sh部分，记得加可执行权限<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /bin/bash </span></span><br><span class="line"></span><br><span class="line">sleep 1</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> 75 &gt; /sys/class/backlight/nvidia_0/brightness</span><br><span class="line"><span class="comment"># 这里我的显卡是nvdia的</span></span><br></pre></td></tr></table></figure></p>
 <h3 id="install部分"><a href="#install部分" class="headerlink" title="install部分"></a>install部分</h3><p>[Install]用于解释systemd怎么装载服务</p>
 <ul>
@@ -562,7 +562,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">62</span>
+                  <span class="site-state-item-count">63</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

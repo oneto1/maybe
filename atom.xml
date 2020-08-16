@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-08-12T12:30:50.258Z</updated>
+  <updated>2020-08-16T08:11:17.757Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>简单打造自己的中转文件服务器</title>
+    <link href="http://yoursite.com/2020/08/13/%E6%89%93%E9%80%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E7%A7%81%E6%9C%89%E7%BD%91%E7%9B%98/"/>
+    <id>http://yoursite.com/2020/08/13/%E6%89%93%E9%80%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E7%A7%81%E6%9C%89%E7%BD%91%E7%9B%98/</id>
+    <published>2020-08-13T14:44:27.000Z</published>
+    <updated>2020-08-16T08:11:17.757Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近突然有一些文件中转的需求,目标机器上可用的基本上只有个浏览器和一个简易SHELL可用, <del>没错说的就是chromeos</del></p><p>本着数据自主可用和资源合理利用的原则,于是就有了这篇</p><a id="more"></a><h2 id="nginx方案"><a href="#nginx方案" class="headerlink" title="nginx方案"></a>nginx方案</h2><p>简单思路就是开启目录功能和加上基本的认证</p><h4 id="创建所需密码认证文件"><a href="#创建所需密码认证文件" class="headerlink" title="创建所需密码认证文件"></a>创建所需密码认证文件</h4><p><a href="http://nginx.org/en/docs/http/ngx_http_auth_basic_module.html" target="_blank" rel="noopener">ngx_http_auth_basic_module</a></p><p>这里使用’openssl passwd`手动来拼接,就不用专用的命令行工具了</p><p>请确保自己有权限</p><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">username</span>=1234</span><br><span class="line"></span><br><span class="line">echo -n <span class="string">"<span class="variable">$&#123;username&#125;</span>:"</span> &gt;&gt; /etc/nginx/.passwd</span><br><span class="line"></span><br><span class="line"><span class="comment"># 按提示输入密码</span></span><br><span class="line">openssl passwd  &gt;&gt; /etc/nginx/.passwd</span><br></pre></td></tr></table></figure><ul><li>这样我们拥有了一个密钥文件</li></ul><p>再来配置  nginx.conf</p><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">location</span> / &#123;</span><br><span class="line">    <span class="attribute">basic_auth</span> <span class="string">"/"</span> ;</span><br><span class="line">    <span class="attribute">basic_auth_user_file</span> /etc/nginx/.passwd ;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">root</span> /usr/local/nginx/html ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>来测试一下<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl -u <span class="number">1234</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line"></span><br><span class="line"># 手动输入密码</span><br></pre></td></tr></table></figure></p><ul><li>不是 401 错误即成功</li></ul><h4 id="开启-autoindex"><a href="#开启-autoindex" class="headerlink" title="开启 autoindex"></a>开启 autoindex</h4><p>上面只是加上了认证,但在浏览器上看还是不方便</p><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">location</span> / &#123;</span><br><span class="line">    <span class="attribute">basic_auth</span> <span class="string">"/"</span> ;</span><br><span class="line">    <span class="attribute">basic_auth_user_file</span> /etc/nginx/.passwd ;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">root</span> /usr/local/nginx/html ;</span><br><span class="line">    </span><br><span class="line">    <span class="attribute">autoindex</span> <span class="literal">on</span>;</span><br><span class="line">    <span class="attribute">autoindex_exact_size</span> <span class="literal">on</span>;  <span class="comment">#显示大小  </span></span><br><span class="line">    <span class="attribute">autoindex_localtime</span> <span class="literal">on</span>;    <span class="comment">#显示时间</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ul><li>这样一来,文件多起来也不用怕</li></ul><h2 id="code-server-方案"><a href="#code-server-方案" class="headerlink" title="code-server 方案"></a>code-server 方案</h2><p><a href="https://github.com/cdr/code-server" target="_blank" rel="noopener">https://github.com/cdr/code-server</a></p><ul><li>在浏览器中使用vscode</li></ul><p>发现是可以在(进入到网页版code的)资源管理器通过拖拉文件来实现文件上传下载,还挺方便的</p><p>默认登录进去是有对机器完整访问权限的,为省事就用 docker 好了<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">docker</span> pull  codercom/<span class="meta">code</span>-server:latest</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="symbol">docker</span> run -<span class="keyword">it </span>-p <span class="number">8080</span>:<span class="number">8080</span> \</span><br><span class="line">-v <span class="string">"/data/vscode:/home/coder"</span> \</span><br><span class="line"><span class="symbol">codercom</span>/<span class="meta">code</span>-server:latest</span><br></pre></td></tr></table></figure></p><p>查看登录密码<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it code-server cat /<span class="built_in">home</span>/coder/.<span class="built_in">config</span>/code-server/<span class="built_in">config</span>.yaml</span><br></pre></td></tr></table></figure></p><ul><li>此时再去浏览器登录就好了</li></ul><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>其实还看了一些如 nextcloud 的方案 . 发现还是依赖太多,或者说是大多数功能用不上,<del>最重要的不想整国内域名的备案,上不了TLS,自签名设置起来也麻烦</del>,现阶段简单能用就好,当然也不会存什么重要资料</p><p>怎么能用上OSS也许值得考虑下</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近突然有一些文件中转的需求,目标机器上可用的基本上只有个浏览器和一个简易SHELL可用, &lt;del&gt;没错说的就是chromeos&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;本着数据自主可用和资源合理利用的原则,于是就有了这篇&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="工具" scheme="http://yoursite.com/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="nginx" scheme="http://yoursite.com/tags/nginx/"/>
+    
+  </entry>
   
   <entry>
     <title>关于nginx的一些URL的匹配规则</title>
@@ -470,31 +494,6 @@
       <category term="zabbix" scheme="http://yoursite.com/tags/zabbix/"/>
     
       <category term="监控" scheme="http://yoursite.com/tags/%E7%9B%91%E6%8E%A7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>flatpak入门指南</title>
-    <link href="http://yoursite.com/2020/03/10/flatpak%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/"/>
-    <id>http://yoursite.com/2020/03/10/flatpak%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/</id>
-    <published>2020-03-10T13:48:18.000Z</published>
-    <updated>2020-04-25T02:22:04.661Z</updated>
-    
-    <content type="html"><![CDATA[<hr><a id="more"></a><p>之所以会用到<code>flatpak</code>主要是突然想学学GTK,刚好有个亲生的IDE<code>gnome-builder</code>,安装有点小坑</p><h1 id="flatpak"><a href="#flatpak" class="headerlink" title="flatpak"></a>flatpak</h1><blockquote><p><a href="https://docs.flatpak.org/en/latest/introduction.html" target="_blank" rel="noopener">Flatpak</a> is a framework for distributing desktop applications on Linux. It has been created by developers who have a long history of working on the Linux desktop, and is run as an independent open source project.</p></blockquote><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>几个概念需要了解一下<br><img src="/images/20200310=0.png" alt></p><ul><li>最底层的是我们的操作系统,往上是由不同的仓库所提供的runtime,也就是打包好的依赖项加上软件,这样就能做到安装即使用,不依赖具体的发行版,这个概念类似与<code>snap</code>和<code>.appimage</code>了</li><li>仓库就类似与git里的远程仓库,自带版本控制,可自由升级降级</li><li>对于安装的应用本身是运行在应用独占的沙盒里的,很好的做到了权限的分离,也用不着<code>sudo apt *</code>一把嗦了</li></ul><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>在mint19.2 上已经自带安装了，但默认是不可用的<a href="https://flatpak.org/setup/" target="_blank" rel="noopener">setup</a></p><h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><p>查看当前仓库情况<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">flatpak remotes</span></span><br></pre></td></tr></table></figure></p><p>添加一个新的仓库<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flatpak remote-<span class="built_in">add</span> --<span class="keyword">if</span>-not-<span class="built_in">exists</span> flathub http<span class="variable">s:</span>//<span class="keyword">dl</span>.flathub.org/repo/flathub.flatpakrepo</span><br></pre></td></tr></table></figure></p><ul><li>语法也与git相似,<code>flathub</code>为给仓库取的别名,后面接的是相应url</li><li><code>--if-not-exists</code>防止重复添加相同的仓库</li></ul><p>删除一个仓库<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flatpak remote-<span class="keyword">delete</span> flathub</span><br></pre></td></tr></table></figure></p><p>搜索新的软件<br><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flatpak <span class="keyword">search</span> <span class="type">name</span></span><br></pre></td></tr></table></figure></p><ul><li>将会返回<code>Application ID</code>,<code>Version Branch</code>, <code>Remotes</code>, <code>Description</code>,依次是应用的id(后面安装的时候会用到),版本,仓库别名,描述</li></ul><p>安装卸载新的软件<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">flatpak <span class="keyword">install</span> flathub(仓库别名) Application <span class="keyword">ID</span></span><br><span class="line"></span><br><span class="line">flatpak <span class="keyword">uninstall</span> Application <span class="keyword">ID</span></span><br></pre></td></tr></table></figure></p><p>查看已安装软件<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">flatpak lists</span></span><br></pre></td></tr></table></figure></p><p>更新软件<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">flatpak update</span></span><br></pre></td></tr></table></figure></p><p>至此已经可以愉快的玩耍了</p><h1 id="gnome-builder"><a href="#gnome-builder" class="headerlink" title="gnome-builder"></a>gnome-builder</h1><p>抱着多学知识<del>瞎折腾</del>的心态一开始选择了编译源码</p><p>然后成功见识到meson和ninja这套跨平台编译工具<del>下篇见</del>,折腾了一晚上后最终倒在不知名错误上</p><p>尝试自带软件源的gnome-builder又是个半残废,最后使用flatpak安装成功</p><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flatpak install flathub org<span class="selector-class">.gnome</span><span class="selector-class">.Builder</span></span><br></pre></td></tr></table></figure><h3 id="解决不能使用暗间模式的问题"><a href="#解决不能使用暗间模式的问题" class="headerlink" title="解决不能使用暗间模式的问题"></a>解决不能使用暗间模式的问题</h3><p>由于是基于沙箱运行的程序,导致不能正确识别到自身主题控件,需要单独安装相应黑暗主题</p><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看主题</span></span><br><span class="line"><span class="attr">neofetch</span> <span class="string">| grep Theme</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 搜索主题</span></span><br><span class="line"><span class="attr">flatpak</span> <span class="string">search name</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装</span></span><br><span class="line"><span class="attr">flatpak</span> <span class="string">install * *</span></span><br></pre></td></tr></table></figure><p>此时黑暗主题可用</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;hr&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="工具" scheme="http://yoursite.com/tags/%E5%B7%A5%E5%85%B7/"/>
-    
-      <category term="flatpak" scheme="http://yoursite.com/tags/flatpak/"/>
-    
-      <category term="gnome-builder" scheme="http://yoursite.com/tags/gnome-builder/"/>
     
   </entry>
   
