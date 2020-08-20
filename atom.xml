@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-08-20T06:43:07.117Z</updated>
+  <updated>2020-08-20T10:55:23.888Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>记一次网页加载速度优化</title>
+    <link href="http://yoursite.com/2020/08/20/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BD%91%E9%A1%B5%E5%8A%A0%E8%BD%BD%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96/"/>
+    <id>http://yoursite.com/2020/08/20/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BD%91%E9%A1%B5%E5%8A%A0%E8%BD%BD%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96/</id>
+    <published>2020-08-20T08:28:48.000Z</published>
+    <updated>2020-08-20T10:55:23.888Z</updated>
+    
+    <content type="html"><![CDATA[<p>接上一篇code-server搭建完之后,单单可用是当然不行的,在没有缓存的情况下,每次要加载完十几秒,不能忍,忍不了</p><a id="more"></a><h2 id="抓出罪魁祸首"><a href="#抓出罪魁祸首" class="headerlink" title="抓出罪魁祸首"></a>抓出罪魁祸首</h2><p>打开开发者工具</p><p><img src="/images/20200820=2.png" alt></p><p>发现竟有一个js文件达到了7.1MB,好吧,以5M的小水管下完肯定要十几秒,还算超常发挥了</p><p>然后就是协议还是HTTP1.1,请求数超过了40个,这里可以升级一下</p><h2 id="HTTP2-的新特性"><a href="#HTTP2-的新特性" class="headerlink" title="HTTP2 的新特性"></a>HTTP2 的新特性</h2><ul><li>二进制分帧: 同域名下所有通信都在单个连接上完成，该连接可以承载任意数量的双向数据流. 每个数据流都以消息的形式发送，而消息又由一个或多个帧组成. 多个帧之间可以乱序发送，根据帧首部的流标识可以重新组装</li><li>多路复用: 所有的请求通过一个TCP连接来完成,不同的请求被当作不同的流分为不同的帧双向传送. 这里可以解决HTTP1.1中,请求的最大连接数只有6-8个,减少了TCP连接数和节省了资源</li><li>首部压缩: 为了减少冗余首部带来的性能浪费,各自维护首部的”首部表”,下次只发送差异部分</li><li>服务器推送: 浏览器发送一个请求，服务器主动向浏览器推送与这个请求相关的资源，这样浏览器就不用发起后续请求</li></ul><blockquote><p><a href="https://juejin.im/post/6844903667569541133#heading-0" target="_blank" rel="noopener">refer</a></p></blockquote><h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><p>由于不好对code-server直接下手,那么就套一层反向代理吧</p><h4 id="开启gzip压缩"><a href="#开启gzip压缩" class="headerlink" title="开启gzip压缩"></a>开启gzip压缩</h4><p>对于大文件只好先压缩再发送了</p><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line"></span><br><span class="line">    gzip  <span class="keyword">on</span>;</span><br><span class="line">    gzip_comp_level <span class="number">6</span>;  <span class="comment"># 压缩级别</span></span><br><span class="line">    gzip_proxied any;   <span class="comment"># 压缩为所有代理请求</span></span><br><span class="line">    gzip_types <span class="built_in">text</span>/plain <span class="built_in">text</span>/css <span class="built_in">application</span>/wasm  \</span><br><span class="line">    <span class="built_in">application</span>/json <span class="built_in">application</span>/javascript \</span><br><span class="line">    <span class="built_in">application</span>/x-javascript  <span class="built_in">text</span>/javascript ;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ul><li>开启 gzip 默认只压缩 <code>text/html</code></li><li>用<code>gzip_types</code> 把大文件统统压缩</li></ul><p><a href="https://docs.nginx.com/nginx/admin-guide/web-server/compression/" target="_blank" rel="noopener">https://docs.nginx.com/nginx/admin-guide/web-server/compression/</a></p><h3 id="开启HTTP2"><a href="#开启HTTP2" class="headerlink" title="开启HTTP2"></a>开启HTTP2</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   <span class="built_in"> server </span>&#123;</span><br><span class="line">        listen 12345 ssl http2;</span><br><span class="line"></span><br><span class="line">        ssl_certificate /etc/nginx/path.cer;</span><br><span class="line">        ssl_certificate_key /etc/nginx/path.key;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="设置反向代理"><a href="#设置反向代理" class="headerlink" title="设置反向代理"></a>设置反向代理</h3><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">location</span> / &#123;</span><br><span class="line">    <span class="attribute">proxy_pass</span> http://127.0.0.1:8080/;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> Connection upgrade;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> Accept-Encoding gzip;</span><br><span class="line">    <span class="attribute">expires</span>      <span class="number">24h</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ul><li><code>Connection upgrade;</code> 表示将协议切换至WebSocket</li><li>然而HTTP2 并不支持WebSocket,这里指的是 nginx 与 被代理的服务用到是WebSocket协议</li></ul><p><a href="https://github.com/cdr/code-server/blob/master/doc/guide.md#nginx" target="_blank" rel="noopener">https://github.com/cdr/code-server/blob/master/doc/guide.md#nginx</a></p><h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><p><img src="/images/20200820=3.png" alt></p><p>一番设置下来那还是比刚开始快了不少</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;接上一篇code-server搭建完之后,单单可用是当然不行的,在没有缓存的情况下,每次要加载完十几秒,不能忍,忍不了&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="工具" scheme="http://yoursite.com/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="nginx" scheme="http://yoursite.com/tags/nginx/"/>
+    
+      <category term="优化" scheme="http://yoursite.com/tags/%E4%BC%98%E5%8C%96/"/>
+    
+  </entry>
   
   <entry>
     <title>简单打造自己的中转文件服务器</title>
@@ -115,9 +140,9 @@
     
       <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
     
-      <category term="翻译" scheme="http://yoursite.com/tags/%E7%BF%BB%E8%AF%91/"/>
-    
       <category term="ansible" scheme="http://yoursite.com/tags/ansible/"/>
+    
+      <category term="翻译" scheme="http://yoursite.com/tags/%E7%BF%BB%E8%AF%91/"/>
     
   </entry>
   
@@ -140,9 +165,9 @@
     
       <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
     
-      <category term="翻译" scheme="http://yoursite.com/tags/%E7%BF%BB%E8%AF%91/"/>
-    
       <category term="ansible" scheme="http://yoursite.com/tags/ansible/"/>
+    
+      <category term="翻译" scheme="http://yoursite.com/tags/%E7%BF%BB%E8%AF%91/"/>
     
   </entry>
   
@@ -165,9 +190,9 @@
     
       <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
     
-      <category term="翻译" scheme="http://yoursite.com/tags/%E7%BF%BB%E8%AF%91/"/>
-    
       <category term="ansible" scheme="http://yoursite.com/tags/ansible/"/>
+    
+      <category term="翻译" scheme="http://yoursite.com/tags/%E7%BF%BB%E8%AF%91/"/>
     
   </entry>
   
@@ -190,9 +215,9 @@
     
       <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
     
-      <category term="翻译" scheme="http://yoursite.com/tags/%E7%BF%BB%E8%AF%91/"/>
-    
       <category term="ansible" scheme="http://yoursite.com/tags/ansible/"/>
+    
+      <category term="翻译" scheme="http://yoursite.com/tags/%E7%BF%BB%E8%AF%91/"/>
     
   </entry>
   
@@ -215,9 +240,9 @@
     
       <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
     
-      <category term="翻译" scheme="http://yoursite.com/tags/%E7%BF%BB%E8%AF%91/"/>
-    
       <category term="ansible" scheme="http://yoursite.com/tags/ansible/"/>
+    
+      <category term="翻译" scheme="http://yoursite.com/tags/%E7%BF%BB%E8%AF%91/"/>
     
   </entry>
   
@@ -240,9 +265,9 @@
     
       <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
     
-      <category term="翻译" scheme="http://yoursite.com/tags/%E7%BF%BB%E8%AF%91/"/>
-    
       <category term="ansible" scheme="http://yoursite.com/tags/ansible/"/>
+    
+      <category term="翻译" scheme="http://yoursite.com/tags/%E7%BF%BB%E8%AF%91/"/>
     
   </entry>
   
@@ -290,9 +315,9 @@
     
     
     
-      <category term="翻译" scheme="http://yoursite.com/tags/%E7%BF%BB%E8%AF%91/"/>
-    
       <category term="ansible" scheme="http://yoursite.com/tags/ansible/"/>
+    
+      <category term="翻译" scheme="http://yoursite.com/tags/%E7%BF%BB%E8%AF%91/"/>
     
   </entry>
   
@@ -473,31 +498,6 @@
     
     
       <category term="linxu" scheme="http://yoursite.com/tags/linxu/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>zabbix折腾记-安装篇</title>
-    <link href="http://yoursite.com/2020/03/26/zabbix%E6%8A%98%E8%85%BE%E8%AE%B0/"/>
-    <id>http://yoursite.com/2020/03/26/zabbix%E6%8A%98%E8%85%BE%E8%AE%B0/</id>
-    <published>2020-03-26T12:51:08.000Z</published>
-    <updated>2020-04-25T02:22:04.664Z</updated>
-    
-    <content type="html"><![CDATA[<hr><a id="more"></a><h1 id="源码安装"><a href="#源码安装" class="headerlink" title="源码安装"></a>源码安装</h1><p>要想服务跑起来看得见,就得安装自身服务端,MySQL,前端</p><h3 id="服务端安装"><a href="#服务端安装" class="headerlink" title="服务端安装"></a>服务端安装</h3><p><a href="https://www.zabbix.com/documentation/current/manual/installation/install" target="_blank" rel="noopener">添加用户组</a><br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">addgroup --system --quiet zabbix</span><br><span class="line">adduser --quiet --system --disabled-login --ingroup zabbix --home /var/<span class="class"><span class="keyword">lib</span>/<span class="title">zabbix</span> --<span class="title">no</span>-<span class="title">create</span>-<span class="title">home</span> <span class="title">zabbix</span></span></span><br></pre></td></tr></table></figure></p><p><a href="https://www.zabbix.com/cn/download_sources#tab:40LTS" target="_blank" rel="noopener">下载地址</a><br><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看编译的一些功能选项</span></span><br><span class="line"><span class="string">./configure</span> <span class="params">--help</span></span><br><span class="line"></span><br><span class="line"><span class="string">./configure</span> <span class="params">--prefix=/usr/local/zabbix</span> <span class="params">--enable-server</span> <span class="params">--enable-agent</span> <span class="params">--enable-java</span> </span><br><span class="line"><span class="params">--with-mysql</span> <span class="params">--with-libxml2</span> <span class="params">--with-unixodbc</span> <span class="params">--with-net-snmp</span> <span class="params">--with-ssh2</span>  <span class="params">--with-libcurl</span> <span class="params">--with-iconv</span></span><br><span class="line"></span><br><span class="line">make install</span><br></pre></td></tr></table></figure></p><h5 id="依赖问题"><a href="#依赖问题" class="headerlink" title="依赖问题"></a>依赖问题</h5><ul><li>MySQL library not found <code>sudo apt install libmysqlclient-dev</code></li><li>unixODBC <code>sudo apt install unixodbc-dev</code></li><li>configure error: Invalid Net-SNMP directory - unable to find net-snmp-config <code>sudo apt install libsnmp-dev</code></li><li>error: SSH2 library not found  <code>sudo apt install libssh2-1-dev</code></li><li>Unable to find “javac” executable in path <code>sudo apt install openjdk-11-jdk</code></li></ul><p>经过大量搜索貌似找到了解决依赖的一个好办法</p><ul><li><code>apt search &#39;*软件名*&#39;</code></li><li>一般安装那个带<code>-dev</code>的就OK了 </li></ul><h3 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h3><p>不知道为什么自带软件源安装的mysql、httpd、nginx都用不了，可能是因为用着ubuntu的源，而issue里写的是mint没直接写上基于ubuntu了 ┑(￣Д ￣)┍</p><p>这里还是直接用了docker<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="builtin-name">run</span> -id -name mysql -p3306:3306 -e  <span class="attribute">MYSQL_ROOT_PASSWORD</span>=111111 mysql</span><br></pre></td></tr></table></figure></p><ul><li>不加MYSQL_ROOT_PASSWORD=111111 的话容器都不会开启</li></ul><p><a href="https://www.zabbix.com/documentation/current/manual/appendix/install/db_scripts" target="_blank" rel="noopener">创建数据库</a><br><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">shell&gt; mysql -uroot -p&lt;<span class="keyword">password</span>&gt;</span><br><span class="line">mysql&gt; <span class="keyword">create</span> <span class="keyword">database</span> zabbix <span class="type">character</span> <span class="keyword">set</span> utf8 <span class="keyword">collate</span> utf8_bin;</span><br><span class="line"></span><br><span class="line">mysql&gt; <span class="keyword">create</span> <span class="keyword">user</span> <span class="string">'zabbix'</span>@<span class="string">'%'</span> identified <span class="keyword">by</span> <span class="string">'&lt;password&gt;'</span>;</span><br><span class="line">mysql&gt; <span class="keyword">grant</span> <span class="keyword">all</span> <span class="keyword">privileges</span> <span class="keyword">on</span> *.* <span class="keyword">to</span> <span class="string">'zabbix'</span>@<span class="string">'%'</span>;#需要加上这条授权参考下面第一个错误</span><br><span class="line"></span><br><span class="line">shell&gt; cd <span class="keyword">database</span>/mysql</span><br><span class="line">shell&gt; mysql -uzabbix -p&lt;<span class="keyword">password</span>&gt; zabbix &lt; <span class="keyword">schema</span>.<span class="keyword">sql</span></span><br><span class="line"># stop here <span class="keyword">if</span> you are creating <span class="keyword">database</span> <span class="keyword">for</span> Zabbix proxy</span><br><span class="line">shell&gt; mysql -uzabbix -p&lt;<span class="keyword">password</span>&gt; zabbix &lt; images.<span class="keyword">sql</span></span><br><span class="line">shell&gt; mysql -uzabbix -p&lt;<span class="keyword">password</span>&gt; zabbix &lt; data.<span class="keyword">sql</span></span><br></pre></td></tr></table></figure></p><ul><li><a href="https://www.cnblogs.com/B1ackWall/p/11643136.html" target="_blank" rel="noopener">ERROR 1410 (42000): You are not allowed to create a user with GRANT</a></li></ul><ul><li><a href="https://stackoverflow.com/questions/10299148/mysql-error-1045-28000-access-denied-for-user-billlocalhost-using-passw" target="_blank" rel="noopener">MySQL ERROR 1045 (28000): Access denied for user ‘bill‘@’localhost’ (using password: YES)</a></li></ul><ul><li>[Error connecting to database: The server requested authentication method unknow]<br>(<a href="https://learnku.com/articles/10736/some-craters-in-mysql-8011" target="_blank" rel="noopener">https://learnku.com/articles/10736/some-craters-in-mysql-8011</a>)</li></ul><h2 id="php"><a href="#php" class="headerlink" title="php"></a>php</h2><p>前端拿php写的,故需要安装php<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install php7<span class="number">.2</span>-fpm</span><br></pre></td></tr></table></figure></p><p>需要修改默认配置文件以满足zabbix需求<br><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/php/7.2/fpm/php.ini </span><br><span class="line"></span><br><span class="line">max_execution_time = 300 <span class="comment">##368行（执行时间）</span></span><br><span class="line">max_input_time = 300 <span class="comment">##378行（接收数据等待时间）</span></span><br><span class="line">memory_limit = 128M <span class="comment">##389行（每个脚本占用内存）</span></span><br><span class="line">post_max_size = 16M <span class="comment">##656行（POST数据大小）</span></span><br><span class="line">upload_max_filesize = 2M <span class="comment">##799行（下载文件大小）</span></span><br><span class="line">always_populate_raw_post_data = -1 <span class="comment">##800行</span></span><br><span class="line">date.timezone = Asia/Shanghai <span class="comment">##877行（时区</span></span><br></pre></td></tr></table></figure></p><ul><li>不改的话,后面也不会成功</li></ul><h2 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h2><p><a href="http://nginx.org/en/download.html" target="_blank" rel="noopener">下载</a></p><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./configure</span><br><span class="line">make <span class="keyword">install</span></span><br></pre></td></tr></table></figure><ul><li><del>配置不太熟还需仔细研究</del></li></ul><p>遇到的一个错误<br><figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">[error]</span> <span class="number">16119</span>#<span class="number">0</span>: *<span class="number">75</span> FastCGI sent in stderr: <span class="string">"Primary script unknown"</span> </span><br><span class="line">while reading response header from upstream, client: <span class="number">127.0.0.1</span>, server: localhost, request:</span><br><span class="line"> <span class="string">"<span class="keyword">GET</span> / HTTP/1.1"</span>, upstream: <span class="string">"fastcgi://unix:/run/php/php7.2-fpm.sock:"</span>, host: <span class="string">"127.0.0.1"</span></span><br></pre></td></tr></table></figure></p><ul><li>参考<a href="https://serverfault.com/questions/517190/nginx-1-fastcgi-sent-in-stderr-primary-script-unknown" target="_blank" rel="noopener">这里</a> . 犯了两个错误 :</li></ul><ol><li><code>/etc/php/7.2/fpm/pool.d/www.conf</code>   里设置的用户名和用户组与ngnix运行的不一致</li><li>复制php前端文件时用的是root</li></ol><p>附上简单丑陋的配置<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">     listen       80;</span><br><span class="line">     server_name  localhost;</span><br><span class="line">     index index.php;</span><br><span class="line">     root /<span class="keyword">var</span>/www/php/;</span><br><span class="line"></span><br><span class="line">     location ~* \.php$ &#123;</span><br><span class="line">         <span class="keyword">include</span> fastcgi_params;</span><br><span class="line">         fastcgi_index  index.php;</span><br><span class="line">                     <span class="keyword">include</span>      fastcgi_params;</span><br><span class="line">         <span class="keyword">set</span> <span class="variable">$path_info</span> <span class="string">""</span>; </span><br><span class="line">         <span class="keyword">set</span> <span class="variable">$real_script_name</span> <span class="variable">$fastcgi_script_name</span>;</span><br><span class="line">         <span class="keyword">if</span> (<span class="variable">$fastcgi_script_name</span> ~ <span class="string">"^(.+?\.php)(/.+)$"</span>) &#123;</span><br><span class="line">                 <span class="keyword">set</span> <span class="variable">$real_script_name</span> <span class="variable">$1</span>; </span><br><span class="line">                 <span class="keyword">set</span> <span class="variable">$path_info</span> <span class="variable">$2</span>; </span><br><span class="line">         &#125;</span><br><span class="line">         fastcgi_param SCRIPT_FILENAME /<span class="keyword">var</span>/www/php/<span class="variable">$real_script_name</span>;</span><br><span class="line">         fastcgi_param SCRIPT_NAME <span class="variable">$real_script_name</span>;</span><br><span class="line">         fastcgi_param PATH_INFO <span class="variable">$path_info</span>;</span><br><span class="line"></span><br><span class="line">         <span class="comment">//这里默认是127.0.0.1:9000;</span></span><br><span class="line">         <span class="comment">//需要到/etc/php/7.2/fpm/pool.d/www.conf查看监听的地址</span></span><br><span class="line">         fastcgi_pass unix:/<span class="keyword">run</span>/php/php7.2-fpm.sock;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><ul><li>查看error日志可以快速定位问题</li></ul><h1 id="docker-install"><a href="#docker-install" class="headerlink" title="docker install"></a>docker install</h1><p><a href="https://www.zabbix.com/documentation/current/manual/installation/containers" target="_blank" rel="noopener">源自这里</a><br><figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># docker run --name zabbix-appliance -t \</span><br><span class="line">      -<span class="ruby">p <span class="number">10051</span><span class="symbol">:</span><span class="number">10051</span> \</span></span><br><span class="line"><span class="ruby">      -p <span class="number">80</span><span class="symbol">:</span><span class="number">80</span> \</span></span><br><span class="line"><span class="ruby">      --restart <span class="keyword">unless</span>-stopped \</span></span><br><span class="line"><span class="ruby">      -d zabbix/zabbix-<span class="symbol">appliance:</span>latest</span></span><br></pre></td></tr></table></figure></p><ul><li>开箱可用,十分方便</li></ul><h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>都安装好之后,需要检查/etc/zabbix/zabbix_server.conf里的数据库账号名密码地址是否正确</p><p>需要检查/etc/zabbix/zabbix_agent.conf里server名字地址是否正确</p><p>真香<img src="/images/20200326=0.png" alt></p><p>太香了<img src="/images/20200326=1.png" alt></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;hr&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="工具" scheme="http://yoursite.com/tags/%E5%B7%A5%E5%85%B7/"/>
-    
-      <category term="zabbix" scheme="http://yoursite.com/tags/zabbix/"/>
-    
-      <category term="监控" scheme="http://yoursite.com/tags/%E7%9B%91%E6%8E%A7/"/>
     
   </entry>
   
